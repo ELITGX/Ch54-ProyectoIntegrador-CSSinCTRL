@@ -15,4 +15,5 @@
 - Melissa Ailed Hernandez Valdez  
 - Athenas Marlene García Miranda  
 - Nancy Claudia Sánchez Espinosa
+- Miguel Ángel Palomera Galván
 
