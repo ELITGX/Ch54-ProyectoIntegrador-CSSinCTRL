@@ -20,7 +20,7 @@ body {
   line-height: 1.6;
 }
 
-/* Imagen en sección "Sobre nosotros" (si se usa) */
+/* Imagen en sección "Sobre nosotros" */
 #sobre-nosotros img {
   max-width: 100%;
   border-radius: 0.5rem;
@@ -84,7 +84,7 @@ body {
 }
 
 
-/* Animaciones (opcional para scroll reveal después) */
+/* Animaciones  */
 .reveal {
   opacity: 0;
   transform: translateY(50px);
