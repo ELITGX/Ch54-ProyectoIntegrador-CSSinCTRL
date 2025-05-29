@@ -57,7 +57,7 @@ a:hover {
 }
 
 h2{
-    font-size: 21px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -95,7 +95,7 @@ p {
 /* Pantallas (≥ 420px) */
 @media (min-width: 420px) {
   h2 {
-    font-size: 27px;
+    font-size: 26px;
   }
 }
 
