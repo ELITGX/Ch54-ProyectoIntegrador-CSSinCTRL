@@ -68,9 +68,9 @@ h2{
 .round-i{
     background-color: #F280B6; 
     color: white;
-    padding:4px;
+    padding:5px;
     border-radius: 50%;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 #btnEnviar{
@@ -140,14 +140,14 @@ p {
 }
 
 
- @media (max-width: 340px) {
+ @media (max-width: 339px) {
     .col-ssm {
       flex: 0 0 100% !important;
       max-width: 100% !important;
     }
 }
 
-@media (max-width: 340px) {
+@media (max-width: 339px) {
     .text-ssm-start {
       text-align: start !important;
     }
