@@ -24,6 +24,7 @@ body {
 }
 
 .locationPage{
+    margin: 0;
     margin-top: 40px;
     padding: 15px;
 }
@@ -56,7 +57,7 @@ a:hover {
 }
 
 h2{
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -69,7 +70,7 @@ h2{
     color: white;
     padding:5px;
     border-radius: 50%;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 #btnEnviar{
@@ -82,7 +83,7 @@ h2{
 
 
 p {
-  font-size: 12px; /* tamaño base para móviles (pantallas pequeñas) */
+  font-size: 12px; 
 }
 
 .justify-row {
@@ -90,39 +91,63 @@ p {
   justify-content: center;
 }
 
-/* Pantallas medianas (≥ 576px) */
-@media (min-width: 576px) {
+
+/* Pantallas (≥ 420px) */
+@media (min-width: 420px) {
+  h2 {
+    font-size: 27px;
+  }
+}
+
+/* Pantallas (≥ 420px) */
+@media (min-width: 420px) {
+  p {
+    font-size: 14px;
+  }
+}
+
+/* Pantallas (≥ 420px) */
+@media (min-width: 420px) {
+  .round-i {
+    padding:7px;
+    border-radius: 50%;
+    font-size: 17px;
+  }
+}
+
+
+/* Pantallas (≥ 500px) */
+@media (min-width: 500px) {
   h2 {
     font-size: 32px;
   }
 }
 
-/* Pantallas medianas (≥ 576px) */
-@media (min-width: 576px) {
+/* Pantallas (≥ 500px) */
+@media (min-width: 500px) {
   p {
     font-size: 16px;
   }
 }
 
-/* Pantallas medianas (≥ 576px) */
-@media (min-width: 576px) {
+/* Pantallas (≥ 500px) */
+@media (min-width: 500px) {
   .round-i {
-    background-color: #F280B6; 
-    color: white;
     padding:7px;
     border-radius: 50%;
     font-size: 20px;
   }
 }
 
- @media (max-width: 375px) {
+
+ @media (max-width: 350px) {
     .col-ssm {
       flex: 0 0 100% !important;
       max-width: 100% !important;
     }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 350px) {
     .text-ssm-start {
       text-align: start !important;
     }
@@ -139,4 +164,3 @@ p {
       padding: 30px;
     }
 }
-
