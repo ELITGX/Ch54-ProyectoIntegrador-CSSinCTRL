@@ -70,7 +70,7 @@ h2{
     color: white;
     padding:4px;
     border-radius: 50%;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 #btnEnviar{
@@ -95,7 +95,7 @@ p {
 /* Pantallas (≥ 420px) */
 @media (min-width: 420px) {
   h2 {
-    font-size: 26px;
+    font-size: 27px;
   }
 }
 
