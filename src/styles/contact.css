@@ -57,7 +57,7 @@ a:hover {
 }
 
 h2{
-    font-size: 22px;
+    font-size: 21px;
     font-weight: bold;
 }
 
@@ -68,9 +68,9 @@ h2{
 .round-i{
     background-color: #F280B6; 
     color: white;
-    padding:5px;
+    padding:4px;
     border-radius: 50%;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 #btnEnviar{
@@ -140,14 +140,14 @@ p {
 }
 
 
- @media (max-width: 350px) {
+ @media (max-width: 340px) {
     .col-ssm {
       flex: 0 0 100% !important;
       max-width: 100% !important;
     }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 340px) {
     .text-ssm-start {
       text-align: start !important;
     }
