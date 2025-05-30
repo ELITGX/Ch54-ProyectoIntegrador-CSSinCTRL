@@ -1,0 +1,27 @@
+#footer {
+  background-color: #80AACC;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  text-align: center;
+  max-height:min-content;
+  box-sizing:border-box;
+}
+
+#footer a {
+  color: #0D0D0D;
+}
+
+p {
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.img-fluid{
+    max-width: 50%;
+    height: auto;
+}
+
+h3 {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
