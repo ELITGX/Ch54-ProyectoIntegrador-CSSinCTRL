@@ -12,7 +12,7 @@
 }
 
 p {
-    font-size: 12px;
+    font-size: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -24,4 +24,13 @@ p {
 h3 {
     font-size: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.soporte, .contacto {
+  display: flex;
+  flex-direction: column;
+}
+
+.copyright{
+  font-size: 14px;
 }
