@@ -1,0 +1,23 @@
+#header .nav-link.text-mamx {
+  color: #F280B6 !important;
+}
+
+#header {
+  background: #05AFF2;
+}
+
+#header .nav-link {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000 !important;
+}
+
+#header .nav-link:hover {
+  color: #333 !important;
+}
+
+#header img {
+  max-height: 150px;
+  height: auto;
+  width: auto;
+}
