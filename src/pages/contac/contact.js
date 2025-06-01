@@ -1,6 +1,11 @@
-import { postContactRequest } from "./api/postContactRequest.js";
-import { isContactRequestValid } from "./contactValidations.js";
-import { readInputsContactForm } from "./readInputsContactForm.js";
+import { postContactRequest } from "../../js/api/postContactRequest.js";
+import { isContactRequestValid } from "../../js/contactValidations.js";
+import { readInputsContactForm } from "../../js/readInputsContactForm.js";
+import { insertHeader } from "../../../modules/header/header.js";
+import { insertFooter } from "../../../modules/footer/footer.js";
+
+insertHeader(document.getElementById("header"));
+insertFooter(document.getElementById("footer"));
 
 
 const contactForm = document.getElementById("contactForm");

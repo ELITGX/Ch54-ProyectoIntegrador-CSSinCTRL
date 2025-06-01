@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <!-- Bootstrap icons -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="./aboutUs.css">
+  <link rel="stylesheet" href="../../styles/header.css">
+  <link rel="stylesheet" href="../../styles/footer.css">
+</head>
+
+<body>
+  <header id="header"></header>
+
+  <main>
+
+    <!-- Sección: Sobre Nosotros -->
+    <section class="container py-5" id="sobre-nosotros">
+      <div class="row">
+        <div class="col-12 text-center mb-4">
+          <h2 class="fw-bold">Sobre Nosotros</h2>
+        </div>
+        <div class="col-md-8 offset-md-2 text-center">
+          <p class="lead">
+            En Medicinas Alternativas MX nos especializamos en la distribución de productos de medicina alternativa y
+            complementaria de alta calidad. Nuestro catálogo incluye sueroterapia, homeopatía, suplementos nutracéuticos y
+            más, todos respaldados por laboratorios confiables.Colaboramos estrechamente con médicos, terapeutas y
+            especialistas en salud natural, brindando un suministro eficiente, transparente y centrado en el bienestar
+            integral de los pacientes.Creemos en el poder de la naturaleza, la ciencia y la confianza mutua.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección: Equipo de Desarrollo -->
+    <section class="container py-5 bg-light" id="equipo">
+      <div class="row">
+        <div class="col-12 text-center mb-4">
+          <h2 class="fw-bold border-bottom pb-2">Comentarios</h2>
+        </div>
+      </div>
+
+      <div class="row g-5 justify-content-center">
+
+        <!-- Tarjeta 1 -->
+        <div class="col-12 col-md-6 mb-4">
+          <div class="d-flex align-items-center gap-3 p-3 border rounded shadow-sm h-100">
+
+            <!-- Imagen -->
+            <img src="/images/Doctora.jpg" width="640" height="480" allow="autoplay" class="rounded-circle flex-shrink-0"
+              style="width: 100px; height: 100px; object-fit: cover;">
+
+            <!-- Texto -->
+            <div class="text-center text-md-start">
+              <h5 class="fw-semibold mb-1">Dra. Verónica Ramírez</h5>
+              <p class="mb-0">La calidad de los medicamentos es impecable. Todo viene perfectamente sellado, con fecha
+                vigente y extensa y de laboratorios. Destaco que en Medicinas Alternativas MX no se arriesga la salud por
+                ahorrar, los envíos siempre vienen muy bien protegidos, mis medicamentos tienden a llegar en perfecto
+                estado. ¡Confianza total!</p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Tarjeta 2 -->
+        <div class="col-12 col-md-6 mb-4">
+          <div class="d-flex flex-row-reverse align-items-center gap-3 p-3 border rounded shadow-sm h-100">
+
+            <!-- Imagen -->
+            <img src="/images/fisio.png" width="640" height="480" allow="encrypted-media"
+              sandbox="allow-scripts allow-same-origin" class="rounded-circle flex-shrink-0"
+              style="width: 100px; height: 100px; object-fit: cover;">
+
+            <!-- Texto -->
+            <div class="text-center text-md-start">
+              <h5 class="fw-semibold mb-1">Fisioterapeuta Erasmo López</h5>
+              <p class="mb-0">Desde que me contacté, el trato fue cálido y profesional. Me explicaron todo con paciencia y
+                hasta me ayudaron con la ficha técnica de varios productos. ¡Así da gusto comprar!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="col-12 col-md-6 mb-4">
+          <div class="d-flex align-items-center gap-3 p-3 border rounded shadow-sm h-100">
+
+            <!-- Imagen -->
+            <img src="/images/pexels-anvar-tushakov-2978749-11581418.jpg" width="640" height="480" allow="autoplay"
+              class="rounded-circle flex-shrink-0" style="width: 100px; height: 100px; object-fit: cover;">
+
+            <!-- Texto -->
+            <div class="text-center text-md-start">
+              <h5 class="fw-semibold mb-1">Dr. Adrian Vallejo</h5>
+              <p class="mb-0">Medicinas Alternativas MX es mi centro de distribución favorito debido a sus precios, aun
+                comprando en mayoreo e cotizado con otros distribuidores y el mejor precio lo obtengo aquí, con sus
+                promociones semanales se aprecia que siempre piensan en nuestra economía. ¡Definitivamente seguiré
+                comprando aquí siempre!</p>
+            </div>
+          </div>
+        </div>
+
+
+        <section class="container py-5 bg-light" id="carousel">
+          <div class="col-12 text-center mb-4">
+            <h2 class="fw-bold">Equipo de desarrollo</h2>
+          </div>
+
+          <!-- Carrusel -->
+          <div id="carouselEquipo" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#equipoCarousel" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#equipoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#equipoCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <div class="carousel-inner">
+
+              <!-- ===== Slide 1 ===== -->
+              <div class="carousel-item active">
+                <div class="row g-4 justify-content-center">
+
+                  <!-- Tarjeta 1 -->
+                  <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-3">
+                      <img src="/images/Melissa.jpeg" alt="Imagen de Melissa" width="640" height="480" allow="autoplay"
+                        class="card-img-top rounded-circle mx-auto"
+                        style="width: 150px; height: 150px; object-fit: cover;" alt="Miembro 2">
+                      <div class="card-body">
+                        <h5 class="card-title mb-1">Melissa Ailed Hernandez Valdez</h5>
+                        <p class="card-text small">Desarrolladora web</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tarjeta 2 -->
+                  <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-3">
+                      <img src="/images/Jesus.jpeg" width="640" height="480" allow="autoplay"
+                        class="card-img-top rounded-circle mx-auto"
+                        style="width: 150px; height: 150px; object-fit: cover;" alt="Miembro 2">
+
+                      <div class="card-body">
+                        <h5 class="card-title mb-1">Jesús Alejandro Soto Montaño</h5>
+                        <p class="card-text small">Desarrollador web</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tarjeta 3 -->
+                  <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-3">
+                      <img src="/images/Gus.jpeg" width="640" height="480" allow="autoplay"
+                        class="card-img-top rounded-circle mx-auto"
+                        style="width: 150px; height: 150px; object-fit: cover;" alt="Miembro 3">
+                      <div class="card-body">
+                        <h5 class="card-title mb-1">José Gustavo Ortega Márquez</h5>
+                        <p class="card-text small">Desarrollador web</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div><!-- /carousel-item -->
+
+              <!-- ===== Slide 2 ===== -->
+              <div class="carousel-item">
+                <div class="row g-4 justify-content-center">
+
+                  <!-- Tarjeta 4 -->
+                  <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-3">
+                      <img src="/images/Abril.jpeg" width="640" height="480" allow="autoplay"
+                        class="card-img-top rounded-circle mx-auto"
+                        style="width: 150px; height: 150px; object-fit: cover;" alt="Miembro 1">
+                      <div class="card-body">
+                        <h5 class="card-title mb-1">Abril Armenta Peñas</h5>
+                        <p class="card-text small">Desarrolladora web</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tarjeta 5 -->
+                  <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-3">
+                      <img src="/images/Chuy.jpeg" width="640" height="480" allow="autoplay"
+                        class="card-img-top rounded-circle mx-auto"
+                        style="width: 150px; height: 150px; object-fit: cover;" alt="Miembro 2">
+                      <div class="card-body">
+                        <h5 class="card-title mb-1">Jesus Antonio Servin Monroy</h5>
+                        <p class="card-text small">Desarrollador web</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tarjeta 6 -->
+                  <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-3">
+                      <img src="/images/David.jpeg" width="640" height="480" allow="autoplay"
+                        class="card-img-top rounded-circle mx-auto"
+                        style="width: 150px; height: 150px; object-fit: cover;" alt="Miembro 3">
+                      <div class="card-body">
+                        <h5 class="card-title mb-1">Luis David Méndez Pérez</h5>
+                        <p class="card-text small">Desarrollador web</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- ===== Slide 3 ===== -->
+              <div class="carousel-item">
+                <div class="row g-4 justify-content-center">
+
+                  <!-- Tarjeta 7 -->
+                  <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-3">
+                      <img src="/images/Athenas.jpeg" width="640" height="480" allow="autoplay"
+                        class="card-img-top rounded-circle mx-auto"
+                        style="width: 150px; height: 150px; object-fit: cover;" alt="Miembro 1">
+                      <div class="card-body">
+                        <h5 class="card-title mb-1">Athenas Marlene García Miranda</h5>
+                        <p class="card-text small">Desarrolladora web</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tarjeta 8 -->
+                  <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-3">
+                      <img src="/images/Nancy.jpeg" width="640" height="480" allow="autoplay"
+                        class="card-img-top rounded-circle mx-auto"
+                        style="width: 150px; height: 150px; object-fit: cover;" alt="Miembro 2">
+                      <div class="card-body">
+                        <h5 class="card-title mb-1">Nancy Claudia Sánchez Espinosa</h5>
+                        <p class="card-text small">Desarrolladora web</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tarjeta 9 -->
+                  <div class="col-12 col-md-4">
+                    <div class="card h-100 text-center p-3">
+                      <img src="/images/Mich.jpeg" width="640" height="480" allow="autoplay"
+                        class="card-img-top rounded-circle mx-auto"
+                        style="width: 150px; height: 150px; object-fit: cover;" alt="Miembro 3">
+                      <div class="card-body">
+                        <h5 class="card-title mb-1">Michelle Estefanía Martínez García</h5>
+                        <p class="card-text small">Desarrolladora web</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Controles -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselEquipo" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselEquipo" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+
+            <!-- Indicadores -->
+            <div class="carousel-indicators mt-3">
+              <button type="button" data-bs-target="#carouselEquipo" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselEquipo" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselEquipo" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+          </div><!-- /carousel -->
+        </section>
+      </div>
+    </section>
+
+  </main>
+  
+  <footer id="footer"></footer>
+
+  <script type="module" src="./aboutUs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+</body>
+
+
+</html>

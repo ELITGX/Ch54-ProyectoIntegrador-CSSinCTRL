@@ -1,9 +1,20 @@
-body {
+body{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: 
+        auto 1fr auto;
+    ;
+    padding: 0;
+    margin: 0;
+}
+
+main {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #222;
   background-color: #fff;
   margin: 0;
   padding: 0;
+  
 }
 
 /* Sección "Sobre nosotros" */

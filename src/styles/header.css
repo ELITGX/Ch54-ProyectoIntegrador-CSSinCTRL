@@ -1,5 +1,6 @@
+
 #header .nav-link.text-mamx {
-  color: #2C3E50 !important;
+  color: #2C3E50;
 }
 
 #header {
@@ -10,20 +11,26 @@
 #header .nav-link {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #000 !important;
+  color: #000;
+  padding-bottom: 1px;
+ 
 }
 
+
 .nav-link:hover {
-  text-decoration: underline;
-  text-decoration-color: #FF6F61;
+  border-bottom: solid #FF6F61;
   text-decoration-thickness: 3px;
 
 }
 
 #header img {
-  max-height: 100px;
+  max-height: 85px;
   height: auto;
   width: auto;
+  padding: 0;
+  margin: 0;
 }
+
+
 
 

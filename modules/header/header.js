@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inicio - Medicinas Alternativas</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <!-- Bootstrap Icons (para el ícono de la lupa) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Tu CSS -->
-    <link rel="stylesheet" href="../../src/styles/header.css">
-  </head>
 
-  <body>
+const insertHeader = header => {
+
+    header.innerHTML = `
     <!-- Navbar (HEADER) -->
     <nav id="header" class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
@@ -73,8 +62,7 @@
         </div>
       </div>
     </nav>
-    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+    `
+}
+
+export {insertHeader};

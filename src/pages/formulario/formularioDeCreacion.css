@@ -1,3 +1,15 @@
+body{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: 
+        auto 1fr auto;
+    ;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+
+}
+
 .locationPage{
     margin: 0;
     margin-top: 40px;

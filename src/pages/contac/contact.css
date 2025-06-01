@@ -1,4 +1,22 @@
 
+body{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: 
+        auto 1fr auto;
+    ;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 /* estilo para los input*/
 .input-message, .input-text{
   margin-bottom: 15px;
