@@ -8,7 +8,7 @@ const insertHeader = header => {
       <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="#">
-          <img src="/images/logoMAMX.png" alt="Logo Medicina Alternativa">
+          <img src="../../images/logoMAMX.png" alt="Logo Medicina Alternativa">
         </a>
 
         <!-- Botón del menú en móvil -->
@@ -44,19 +44,19 @@ const insertHeader = header => {
           <!-- Enlaces del navbar alineados a la derecha -->
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="/index.html">Inicio</a>
+              <a class="nav-link active" href="./index.html">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/src/pages/listaItems/listaItems.html">Lista de Ítems</a>
+              <a class="nav-link" href="./src/pages/listaItems/listaItems.html">Lista de Ítems</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/src/pages/formulario/formularioDeCreacion.html">Formulario</a>
+              <a class="nav-link" href="./src/pages/formulario/formularioDeCreacion.html">Formulario</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/src/pages/aboutUs/aboutUs.html">Acerca de</a>
+              <a class="nav-link" href="./src/pages/aboutUs/aboutUs.html">Acerca de</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-mamx" href="/src/pages/contac/contact.html">Contáctanos</a>
+              <a class="nav-link text-mamx" href="./src/pages/contact/contact.html">Contáctanos</a>
             </li>
           </ul>
         </div>
