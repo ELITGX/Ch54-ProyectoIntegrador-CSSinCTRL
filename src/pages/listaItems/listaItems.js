@@ -53,5 +53,3 @@ const createProductCars = async (url)=>{
 }
 
 createProductCars("../../../modules/assets/objetos.json");
-
-const eliminate
