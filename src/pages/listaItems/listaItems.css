@@ -15,3 +15,8 @@ main{
     justify-content: center;
     align-items: center;
 }
+
+.cardImage {
+    height: 272px;
+    width: 129px;
+}

@@ -1,4 +1,7 @@
-[
+
+
+{ "results":  [
+
   {
     "id": 1,
     "name": "Ácido Alfa Lipoíco",
@@ -99,4 +102,4 @@
     "concentracion": "150 mg/ml",
     "viaAdministracion": "intravenoso"
   }
-]
+]}
