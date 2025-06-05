@@ -21,7 +21,7 @@ const readProducts = async(url) =>{
     } 
 }
 
-
+// Esta funcion es para renderizar el producto
 
 const buildProductCards = ( productos ) => {
     const cards = productos.map( (product)=>(
@@ -53,3 +53,5 @@ const createProductCars = async (url)=>{
 }
 
 createProductCars("../../../modules/assets/objetos.json");
+
+const eliminate
