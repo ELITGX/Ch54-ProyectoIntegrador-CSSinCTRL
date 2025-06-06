@@ -7,23 +7,34 @@ insertFooter(document.getElementById("footer"));
 
 
 // ================================================================================
-const form = document.getElementById('productForm');
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("productForm");
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault(); // Evita recargar la página
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  const nuevoProducto = {
-    nombre: document.getElementById('nombre').value,
-    descripcion: document.getElementById('descripcion').value,
-    cantidad: parseInt(document.getElementById('cantidad').value),
-    precio: parseFloat(document.getElementById('precio').value),
-    imagen: document.getElementById('imagen').value || 'https://via.placeholder.com/150'
-  };
+    const nuevoProducto = {
+      id: document.getElementById("ID").value,
+      nombre: document.getElementById("nombre").value,
+      descripcion: document.getElementById("descripcion").value,
+      precio: parseFloat(document.getElementById("precio").value),
+      presentacion: document.getElementById("presentacion").value,
+      concentracion: document.getElementById("concentracion").value,
+      viaAdministracion: document.getElementById("via-administración").value,
+      cantidad: parseInt(document.getElementById("cantidad").value),
+      imagen: document.getElementById("imagen").value || "https://via.placeholder.com/150"
+    };
 
-  let productos = JSON.parse(localStorage.getItem('productos')) || [];
-  productos.push(nuevoProducto);
-  localStorage.setItem('productos', JSON.stringify(productos));
+    console.log("Producto creado:", nuevoProducto);
 
-  alert('✅ Producto guardado');
-  form.reset(); // Limpia el formulario
+    // Aquí puedes guardar el producto en localStorage o enviarlo al backend.
+    // Por ejemplo, para guardarlo en localStorage:
+    const productosGuardados = JSON.parse(localStorage.getItem("productos")) || [];
+    productosGuardados.push(nuevoProducto);
+    localStorage.setItem("productos", JSON.stringify(productosGuardados));
+
+    // Limpiar formulario
+    form.reset();
+    alert("¡Producto añadido con éxito!");
+  });
 });

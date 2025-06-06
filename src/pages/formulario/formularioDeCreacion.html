@@ -43,7 +43,19 @@
       <div class="container text-center">
         <div class="row align-items-start" id="descripción">
 
-            <!-- 1 -->
+          <!-- 1: id -->
+          <div class="col-4 col-lg-3"> <!-- Se quita el id="columna1"-->
+            <h3>ID</h3>
+            <input
+              type="text"
+              id="ID" 
+              class="form-control text-dark"
+              placeholder="ID | Serial del producto"
+              required
+            /> <!-- id="nombre"  en lugar de id="nombreDelProducto"-->
+          </div>
+
+            <!-- 2: Name -->
           <div class="col-4 col-lg-3"> <!-- Se quita el id="columna1"-->
             <h3>Producto</h3>
             <input
@@ -55,7 +67,7 @@
             /> <!-- id="nombre"  en lugar de id="nombreDelProducto"-->
           </div>
 
-          <!-- 2 -->
+          <!-- 4: descripción -->
           <div class="col-4 col-lg-3"> <!-- Se quita el id="columna2"-->
             <h3>Descripción</h3>
             <input
@@ -67,19 +79,7 @@
             /> <!-- id="descripcion"  en lugar de id="Descripción del producto"-->
           </div>
 
-            <!-- 3 -->
-          <div class="col-4 col-lg-3"> <!-- Se quita el id="columna3"-->
-            <h3>Cantidad</h3>
-            <input
-              type="number"
-              id="cantidad"
-              class="form-control"
-              placeholder="Cantidad disponible"
-              required
-            /> <!-- se le añade el id="cantidad" porque antes no tenía: placeholder="Cantidad disponible" en lugar de "01"-->
-          </div>
-
-            <!-- 4 -->
+          <!-- 5: precio -->
           <div class="col-4 col-lg-3"> <!-- Se quita el id="columna4"-->
             <h3>Precio</h3>
             <input
@@ -91,8 +91,58 @@
               required
             /> <!--Este pues sí se modificó casi en su totalidad para que cumpliera con los json-->
           </div>
+
+          <!-- 6: presentacion -->
+          <div class="col-4 col-lg-3"> <!-- Se quita el id="columna4"-->
+            <h3>Presentación</h3>
+            <input
+              type="text"
+              id="presentacion"
+              class="form-control text-dark"
+              placeholder="10 ml"
+              required
+            /> <!--Este pues sí se modificó casi en su totalidad para que cumpliera con los json-->
+          </div>
+            
+          <!-- 7: concentración -->
+          <div class="col-4 col-lg-3"> <!-- Se quita el id="columna4"-->
+            <h3>Concentración</h3>
+            <input
+              type="text"
+              id="concentracion"
+              class="form-control text-dark"
+              placeholder="Concentración del producto"
+              required
+            /> <!--Este pues sí se modificó casi en su totalidad para que cumpliera con los json-->
+          </div>
+
+          <!-- 8: via de administración -->
+          <div class="col-4 col-lg-3"> <!-- Se quita el id="columna4"-->
+            <h3>Via de Administracion</h3>
+            <input
+              type="text"
+              id="via-administración"
+              class="form-control text-dark"
+              placeholder="Intravenoso|Muscular|Oral|etc"
+              required
+            /> <!--Este pues sí se modificó casi en su totalidad para que cumpliera con los json-->
+          </div>
+
+            <!-- 9: stock -->
+          <div class="col-4 col-lg-3"> <!-- Se quita el id="columna3"-->
+            <h3>Cantidad</h3>
+            <input
+              type="number"
+              id="cantidad"
+              class="form-control"
+              placeholder="Cantidad disponible"
+              required 
+            /> <!-- se le añade el id="cantidad" porque antes no tenía: placeholder="Cantidad disponible" en lugar de "01"-->
+          </div>
+
         </div>
       </div>
+
 
       <!-- Card multimedia -->
       <div class="card mb-4 border border-info-subtle" id="añadirPrincipalDiv">
