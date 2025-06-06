@@ -52,5 +52,4 @@ const createProductCars = ()=>{
     insertCardsDom(cards);
 }
 
-
-
+createProductCars("../../../modules/assets/objetos.json");
