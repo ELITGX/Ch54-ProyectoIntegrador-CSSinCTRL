@@ -1,0 +1,105 @@
+
+
+{ "results":  [
+
+  {
+    "id": 1,
+    "name": "Ácido Alfa Lipoíco",
+    "img": "../../../images/Productos/alfaLip.png",
+    "description": "Posee propiedades antioxidantes, neutraliza radicales libres, retrasa el envejecimiento, incrementa la respuesta inmune, mejora la capacidad detoxificadora del hígado y ayuda a prevenir las cataratas y las enfermedades vasculares ateroscleróticas. Estimula la síntesis de glutatión, reduce los niveles de triglicéridos y de lipoproteínas de muy baja densidad, favorece la conversión de carbohidratos en energía, incrementa el transporte de glucosa a través de las membranas celulares y su captación por adipocitos y células musculares, mejorando la respuesta a la insulina y disminuyendo la glucosa en sangre.",
+    "precio": 850,
+    "presentacion": "10 ml",
+    "concentracion": "60 mg/ml",
+    "viaAdministracion": "intravenoso"
+  },
+  {
+    "id": 2,
+    "name": "Arginina y Ornitina",
+    "img": "../../../images/Productos/arginina.png",
+    "description": "La arginina es esencial para la síntesis de proteínas. Estimula la glándula hipofisaria, la secreción de la hormona del crecimiento humano y la función inmune. Ayuda a combatir la fatiga física y mental, y actúa sobre el músculo liso intestinal, mejorando la contracción peristáltica. También regenera el tejido hepático, es un antioxidante hormonal, favorece la remetilación del ADN, es precursora del óxido nítrico y mejora la cicatrización de heridas y quemaduras al estimular la producción de colágeno y elastina. La ornitina potencia la producción de hormona del crecimiento humano, contribuye al metabolismo de las grasas, con un efecto mayor cuando se combina con arginina o carnitina. Refuerza el sistema inmunológico, estimula la secreción de insulina y su acción anabólica, desintoxica el organismo del amoníaco y favorece la regeneración hepática.",
+    "precio": 350,
+    "presentacion": "10 ml",
+    "concentracion": "300 mg/ml",
+    "viaAdministracion": "intravenoso"
+  },
+  {
+    "id": 3,
+    "name": "Ascorbato de Sodio",
+    "img": "../../../images/Productos/ascorbato.png",
+    "description": "Potente antioxidante que protege a las células contra radicales libres y otros agentes destructivos, y puede incluso potenciar la eficacia de otros antioxidantes. Reduce considerablemente el riesgo de varios tipos de cáncer y enfermedades cardiovasculares, y promueve la salud ocular al mantener sanos los tejidos blandos y los vasos capilares. Además, esta fórmula, elaborada con materia prima alemana de la más alta calidad, garantiza máxima efectividad, incrementando los beneficios y reduciendo los efectos secundarios propios del ascorbato de sodio.",
+    "precio": 890,
+    "presentacion": "50 y 100 ml",
+    "concentracion": "500 mg/ml",
+    "viaAdministracion": "intravenoso"
+  },
+  {
+    "id": 4,
+    "name": "Cafeína",
+    "img": "../../../images/Productos/cafeína.png",
+    "description": "Contribuye a reducir el cansancio físico y mental, mantener la alerta y mejorar la capacidad de trabajo muscular, la concentración, la agilidad mental, la coordinación corporal y la conservación de funciones cognitivas en personas mayores.",
+    "precio": 150,
+    "presentacion": "50 y 100 ml",
+    "concentracion": "50 mg/ml",
+    "viaAdministracion": "intravenoso"
+  },
+  {
+    "id": 5,
+    "name": "L-Carnitina",
+    "img": "../../../images/Productos/carnitina.png",
+    "description": "La L-Carnitina transporta ácidos grasos al interior de las mitocondrias, donde se produce la beta-oxidación y se genera energía para la célula. Esto permite que las células musculares utilicen la grasa como fuente energética, lo que puede mejorar la resistencia y el rendimiento físico. Además, puede mejorar la función cardíaca en casos de insuficiencia o cardiomiopatías, reducir el estrés oxidativo y optimizar la función mitocondrial. Mejora la calidad del esperma al favorecer su movilidad y reducir el daño oxidativo. Es esencial en pacientes con deficiencia primaria o secundaria de carnitina.",
+    "precio": 600,
+    "presentacion": "10 ml",
+    "concentracion": "300 mg/ml",
+    "viaAdministracion": "intravenoso"
+  },
+  {
+    "id": 6,
+    "name": "EDTA",
+    "img": "../../../images/Productos/edta.png",
+    "description": "La quelación con EDTA mejora la circulación al eliminar depósitos de calcio en las arterias y válvulas del corazón. Reduce o elimina la angina de pecho, disminuye las várices y el tamaño de los cálculos renales, evita el crecimiento de lesiones por pie diabético y favorece su cicatrización. Mejora los síntomas en pacientes con demencia vascular y ayuda a reducir la disfunción eréctil relacionada con problemas circulatorios.",
+    "precio": 420,
+    "presentacion": "50 ml",
+    "concentracion": "150 mg/ml",
+    "viaAdministracion": "intravenoso"
+  },
+  {
+    "id": 7,
+    "name": "glutatión",
+    "img": "../../../images/Productos/glutation.png",
+    "description": "El glutatión es un poderoso antioxidante presente en todas las células del cuerpo. Su función principal es combatir el estrés oxidativo, neutralizando los radicales libres que pueden dañar las células y provocar enfermedades crónicas. La terapia intravenosa permite una absorción inmediata, mayor biodisponibilidad y un bienestar general. Su acción desintoxicante mejora las funciones corporales y promueve la longevidad, al ayudar al hígado a procesar toxinas y mejorar el funcionamiento general del organismo. A nivel cutáneo, mejora la apariencia, el brillo, la textura, la elasticidad y la firmeza de la piel.",
+    "precio": 2000,
+    "presentacion": "10 y 50 ml",
+    "concentracion": "100 mg/ml",
+    "viaAdministracion": "intravenoso"
+  },
+  {
+    "id": 8,
+    "name": "Melatonina",
+    "img": "../../../images/Productos/melatonina.png",
+    "description": "La melatonina es una terapia innovadora para combatir trastornos del sueño, especialmente en casos graves como el insomnio crónico. Este tratamiento destaca por su rápida acción, logrando efectos casi inmediatos al ser absorbido de manera directa y eficaz. Ha demostrado mejoras significativas en la calidad del sueño, reduciendo el tiempo para conciliarlo y los despertares nocturnos. También es útil en personas mayores, pacientes con trastornos psiquiátricos o en recuperación postquirúrgica, ayudando a restablecer los ciclos de sueño. Aunque es segura y efectiva, debe utilizarse bajo supervisión médica. La melatonina no reemplaza los tratamientos convencionales, pero potencia sus efectos, ofreciendo una solución rápida y eficaz para mejorar el descanso y la calidad de vida.",
+    "precio": 45,
+    "presentacion": "10 ml",
+    "concentracion": "2 mg/ml",
+    "viaAdministracion": "intravenoso"
+  },
+  {
+    "id": 9,
+    "name": "Procalive",
+    "img": "../../../images/Productos/procalive.png",
+    "description": "Sus compuestos le confieren una amplia gama de propiedades antienvejecimiento. Genera una sensación de bienestar, estimula la mente y favorece la formación de neurotransmisores, mejorando la función cerebral, la calidad del sueño en casos de insomnio y la memoria. Reduce problemas auditivos, dolores de cabeza frecuentes y síntomas relacionados con el Parkinson, la aterosclerosis y la mala circulación. Combate la desintegración celular, contribuye a la formación de células sanguíneas y proteínas metabolizadoras, conserva la piel, el cabello y las glándulas, y regula la arritmia cardíaca y la presión arterial elevada.",
+    "precio": 300,
+    "presentacion": "10 ml",
+    "concentracion": "10%",
+    "viaAdministracion": "subcutáneo"
+  },
+  {
+    "id": 10,
+    "name": "Selenio Orgánico",
+    "img": "../../../images/Productos/selenio.png",
+    "description": "El selenio orgánico es ideal para tu cuerpo: desintoxica el hígado, promoviendo su buen funcionamiento. Fortalece el sistema inmunológico y refuerza las defensas al aumentar el número de células protectoras. Regenera las vitaminas C y E, manteniendo el cuerpo lleno de energía y vitalidad. Pero eso no es todo: combate la inflamación, aliviando dolores y molestias. Ayuda a prevenir el cáncer gracias a su acción sobre la metilación del ADN. Descubre cómo este potente antioxidante puede revolucionar tu práctica.",
+    "precio": 60,
+    "presentacion": "10 ml",
+    "concentracion": "150 mg/ml",
+    "viaAdministracion": "intravenoso"
+  }
+]}
