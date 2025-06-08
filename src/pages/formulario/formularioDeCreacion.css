@@ -33,6 +33,7 @@ body{
 .row{
     display: flex;/* 
     justify-self: center; */
+    flex-wrap: wrap; 
 }
 
 .añade{
@@ -80,6 +81,6 @@ h3{
 #añadirPrincipalDiv{
     margin: 30px;
 }
-#descripción{
-    margin: 12px;
+#descripción .col-4 {
+    margin-bottom: 16px;
 }
