@@ -1,7 +1,7 @@
 import { insertHeader } from "../../../modules/header/header.js";
 import { insertFooter } from "../../../modules/footer/footer.js";
-const homePath = "../../../";
 
+const homePath = "../../../";
 insertHeader(document.getElementById("header"), homePath);
 insertFooter(document.getElementById("footer"));
 
@@ -14,7 +14,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let imagenDataUrl = ""; // Aquí guardaremos la imagen en base64
 
-  // Escuchar cambios en el input file para mostrar previsualización
+  // ==================== Vía de administración ===========================
+  const viaPrincipal = document.getElementById("via-administracion-principal");
+  const viaSub = document.getElementById("via-administracion-sub");
+
+  // Opciones de subcategorías
+  const subopciones = {
+    enterales: ["Oral", "Sublingual", "Buccal", "Rectal"],
+    parenterales: [
+      "Intravenosa (IV)",
+      "Intramuscular (IM)",
+      "Subcutánea (SC)",
+      "Intradérmica",
+      "Intraósea",
+      "Intratecal / Intraespinal",
+      "Intraarticular",
+      "Intracardiaca",
+      "Intraperitoneal"
+    ],
+    topicas: [
+      "Cutánea o tópica",
+      "Oftálmica",
+      "Ótica",
+      "Nasal",
+      "Vaginal",
+      "Rectal"
+    ],
+    respiratoria: ["Inhalatoria"],
+    transdermica: ["Parches"]
+  };
+
+  viaPrincipal.addEventListener("change", () => {
+    const seleccion = viaPrincipal.value;
+
+    // Limpia las subopciones
+    viaSub.innerHTML = "<option value=''>Selecciona una subcategoría</option>";
+
+    if (subopciones[seleccion]) {
+      subopciones[seleccion].forEach((opcion) => {
+        const opt = document.createElement("option");
+        opt.value = opcion;
+        opt.textContent = opcion;
+        viaSub.appendChild(opt);
+      });
+    }
+  });
+
+  // ==================== Previsualización de imagen ======================
   imagenInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -32,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Al enviar el formulario
+  // ==================== Envío de formulario =============================
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -43,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
       precio: parseFloat(document.getElementById("precio").value),
       presentacion: document.getElementById("presentacion").value,
       concentracion: document.getElementById("concentracion").value,
-      viaAdministracion: document.getElementById("via-administración").value,
+      viaAdministracion: viaSub.value, // obtenemos la subcategoría elegida
       cantidad: parseInt(document.getElementById("cantidad").value),
       imagen: imagenDataUrl || "https://via.placeholder.com/150",
     };
@@ -61,6 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
     imagenPreview.style.display = "none";
     imagenDataUrl = "";
 
+    // Limpiar subopciones de vía
+    viaSub.innerHTML = "<option value=''>Selecciona una subcategoría</option>";
+
     alert("¡Producto añadido con éxito!");
   });
 });
+
