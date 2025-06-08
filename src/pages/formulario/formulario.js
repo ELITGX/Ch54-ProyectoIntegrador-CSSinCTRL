@@ -78,6 +78,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+// ==================== Descuento a producto ========================
+  const botonDescuento = document.getElementById("botonDescuento");
+  const resultadoDescuento = document.getElementById("resultadoDescuento");
+  
+
+  botonDescuento.addEventListener("click", ()=>{
+    const precioOriginal = parseFloat(document.getElementById("precio").value);
+  const descuento = parseFloat(document.getElementById("descuento").value);
+      
+      // Validar los valores
+      if (descuento < 0 || descuento > 100) {
+          resultadoDescuento.innerHTML = "El descuento debe estar entre 0% y 100%.";
+          return;
+      }
+      
+      // Calcular el precio con descuento
+      const descuentoAplicado = precioOriginal * (descuento / 100);
+      const precioFinal = precioOriginal - descuentoAplicado;
+      
+      // Mostrar el resultado
+      resultadoDescuento.innerHTML = `
+          <p>Precio original: $${precioOriginal.toFixed(2)}</p>
+          <p>Descuento aplicado: ${descuento}% ($${descuentoAplicado.toFixed(2)})</p>
+          <p><strong>Precio final: $${precioFinal.toFixed(2)}</strong></p>
+      `;
+  });
+
+
   // ==================== Envío de formulario =============================
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -92,6 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
       viaAdministracion: viaSub.value, // obtenemos la subcategoría elegida
       cantidad: parseInt(document.getElementById("cantidad").value),
       imagen: imagenDataUrl || "https://via.placeholder.com/150",
+      porcentajeDescuento: parseFloat(document.getElementById("descuento").value)
+      
     };
 
     console.log("Producto creado:", nuevoProducto);
@@ -106,11 +136,18 @@ document.addEventListener("DOMContentLoaded", () => {
     imagenPreview.src = "";
     imagenPreview.style.display = "none";
     imagenDataUrl = "";
+    
 
     // Limpiar subopciones de vía
     viaSub.innerHTML = "<option value=''>Selecciona una subcategoría</option>";
 
+    // Limpiar descuento
+    resultadoDescuento.innerHTML = "";
+
     alert("¡Producto añadido con éxito!");
   });
 });
+
+
+  
 
