@@ -20,7 +20,10 @@ formulario.addEventListener("submit", function(event) {
   localStorage.setItem("usuario", usuarioJSON);
 
  // Confirmar que se guardó correctamente
-   alert("¡Datos guardados en localStorage!");
+  // alert("¡Datos guardados en localStorage!");
+
+ // Mostrar la alerta de Bootstrap
+  document.getElementById("alertaExito").classList.remove("d-none");
 
 // Opcional: limpiar el formulario
   formulario.reset();
