@@ -3,21 +3,8 @@
     "id": 1,
     "name": "alfaLip",
     "img": "../../../images/Productos/alfaLip.png",
-    "description": "Tiene propiedades antioxidantes, neutraliza
-radicales libres, retrasa el envejecimiento,
-incrementa la respuesta inmune, mejora la
-capacidad detoxificadora del higado y ayuda
-a prevenir las cataratas y las enfermedades
-vasculares ateroscleróticas. Mejora la sínte-
-sis de glutatión, reduce los niveles de trigli-
-ceridos y lipoproteínas de muy baja densi-
-dad, favorece la conversión de los carbohi-
-dratos en energía, incrementa el transporte
-de glucosa en las membranas celulares y su
-captación por parte de los adipositos y las
-células musculares, y mejora la respuesta a
-la insulina disminuyendo laglucosa en la
-sangre.",
+    "description": "Tiene propiedades antioxidantes, neutraliza radicales libres, retrasa el envejecimiento, incrementa la respuesta inmune, mejora la capacidad detoxificadora del higado y ayuda a prevenir las cataratas y las enfermedades vasculares ateroscleróticas. Mejora la síntesis de glutatión, reduce los niveles de trigli- ceridos y lipoproteínas de muy baja densidad, favorece la conversión de los carbohidratos en energía, incrementa el transporte de glucosa en las membranas celulares y su captación por parte de los adipositos
+    y las células musculares, y mejora la respuesta a la insulina disminuyendo laglucosa en la sangre.",
     "precio": 850,
     "presentacion": "10 ml",
     "concentracion": "60 mg/ml",
@@ -29,8 +16,7 @@ sangre.",
     "img": "../../../images/Productos/arginina.png",
     "description": "La Arginina es esencial para la síntesis proteica, estimula la glándula hipofisaria, la secreción de la hormona de crecimiento humana y la función inmune, ayuda a combatir la fatiga física y mental, y actúa sobre el músculo liso intestinal mejorando la contracción peristáltica. También regenera el tejido hepático, , es un antioxidante hormonal, favorece la remetilación del ADN, es precursora del óxido nítrico y mejora la curación de heridas y quemaduras al estimular la producción de colágeno y elastina.
 La Ornitina mejora la producción de la hormona del crecimiento humano, colabora en el metabolismo de la grasa corporal, con un efecto mayor si se combina con Arginina o Carnitina, fortalece el sistema inmunológico, estimula la secreción de insulina y su función como hormona anabólica, desintoxica el organismo del amoniaco y ayuda en la regeneración del hígado.
-Intravenoso",
-    "precio": 350,
+Intravenoso","precio": 350,
     "presentacion": "10 ml",
     "concentracion": "300 mg/ml",
     "viaAdministracion": "intravenoso"
@@ -63,8 +49,7 @@ Intravenoso",
 además Puede mejorar la función cardíaca en casos de insuficiencia cardíaca o cardiomiopatías.
 reduce el estrés oxidativo y mejorar la función mitocondrial.
 Mejora la calidad del esperma al favorecer la movilidad y reducir el daño oxidativo en los espermatozoides.
-Esencial en pacientes con deficiencia primaria o secundaria de carnitina",
-    "precio": 600,
+Esencial en pacientes con deficiencia primaria o secundaria de carnitina","precio": 600,
     "presentacion": "10 ml",
     "concentracion": "300 mg/ml",
     "viaAdministracion": "intravenoso"
@@ -86,8 +71,7 @@ Esencial en pacientes con deficiencia primaria o secundaria de carnitina",
     "description": "El glutatión es un poderoso antioxidante que se encuentra en todas las células del cuerpo, su principal función es combatir el estrés oxidativo, neutralizando los radicales libres que pueden dañar las células y provocar enfermedades crónicas.
 La terapia intravenosa permite una absorción inmediata, mayor biodisponibilidad y bienestar en general.
 Su función como desintoxicante mejora las funciones corporales y promueve la longevidad, ayuda al hígado a procesar las toxinas y mejora el funcionamiento general del organismo .
-En la piel mejora la apariencia, el brillo y la textura de la piel, así como la elasticidad y firmeza.",
-    "precio": 2000,
+En la piel mejora la apariencia, el brillo y la textura de la piel, así como la elasticidad y firmeza.","precio": 2000,
     "presentacion": "10 y 50 ml",
     "concentracion": "100 mg/ml",
     "viaAdministracion": "intravenoso"
@@ -123,8 +107,7 @@ Renueva tus vitaminas C y E, manteniendo tu cuerpo lleno de energía y vitalidad
 Pero eso no es todo:
 Combate la inflamación, aliviando dolores y molestias.
 Previene el cáncer, gracias a su acción en la metilación del ADN.
-Descubre cómo este potente antioxidante puede revolucionar tu práctica.",
-    "precio": 60,
+Descubre cómo este potente antioxidante puede revolucionar tu práctica.","precio": 60,
     "presentacion": "10 ml",
     "concentracion": "150 mg/ml",
     "viaAdministracion": "intravenoso"
