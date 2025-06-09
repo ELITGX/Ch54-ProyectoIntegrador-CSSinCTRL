@@ -6,7 +6,7 @@ body{
     ;
     padding: 0;
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
 
 }
 
@@ -33,6 +33,7 @@ body{
 .row{
     display: flex;/* 
     justify-self: center; */
+    flex-wrap: wrap; 
 }
 
 .añade{
@@ -77,9 +78,22 @@ h3{
     padding-left: 0px;
     padding-right: 0px;
 }
-#añadirPrincipalDiv{
+#añadirPrincipalDiv, #botonesDiv{
     margin: 30px;
 }
-#descripción{
-    margin: 12px;
+#descripción .col-4 {
+    margin-bottom: 16px;
+}
+ #botonDescuento {
+    background-color: #80AACC;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+#resultadoDescuento {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
 }
