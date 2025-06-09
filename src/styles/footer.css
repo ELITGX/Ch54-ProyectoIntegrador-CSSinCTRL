@@ -34,3 +34,9 @@ h3 {
 .copyright{
   font-size: 14px;
 }
+
+#correo{
+  word-break: break-all;
+  font-size: 14px;
+  align-items: flex-start;
+}
