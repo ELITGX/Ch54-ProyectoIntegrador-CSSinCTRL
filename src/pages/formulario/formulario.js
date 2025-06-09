@@ -9,17 +9,17 @@ insertFooter(document.getElementById("footer"));
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("productForm");
-  const imagenInput = document.getElementById("imagen");
-  const imagenPreview = document.getElementById("imagenPreview");
+  const imageInput = document.getElementById("image");
+  const imagePreview = document.getElementById("imagePreview");
 
-  let imagenDataUrl = ""; // Aquí guardaremos la imagen en base64
+  let imageDataUrl = ""; // Aquí guardaremos la image en base64
 
   // ==================== Vía de administración ===========================
-  const viaPrincipal = document.getElementById("via-administracion-principal");
-  const viaSub = document.getElementById("via-administracion-sub");
+  const routemain = document.getElementById("route-main");
+  const routeSub = document.getElementById("route-sub");
 
   // Opciones de subcategorías
-  const subopciones = {
+  const subOptions = {
     enterales: ["Oral", "Sublingual", "Buccal", "Rectal"],
     parenterales: [
       "Intravenosa (IV)",
@@ -44,37 +44,37 @@ document.addEventListener("DOMContentLoaded", () => {
     transdermica: ["Parches"]
   };
 
-  viaPrincipal.addEventListener("change", () => {
-    const seleccion = viaPrincipal.value;
+  routemain.addEventListener("change", () => {
+    const seleccion = routemain.value;
 
     // Limpia las subopciones
-    viaSub.innerHTML = "<option value=''>Selecciona una subcategoría</option>";
+    routeSub.innerHTML = "<option value=''>Selecciona una subcategoría</option>";
 
-    if (subopciones[seleccion]) {
-      subopciones[seleccion].forEach((opcion) => {
+    if (subOptions[seleccion]) {
+      subOptions[seleccion].forEach((opcion) => {
         const opt = document.createElement("option");
         opt.value = opcion;
         opt.textContent = opcion;
-        viaSub.appendChild(opt);
+        routeSub.appendChild(opt);
       });
     }
   });
 
   // ==================== Previsualización de imagen ======================
-  imagenInput.addEventListener("change", (e) => {
+  imageInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        imagenDataUrl = reader.result; // Guardamos el base64
-        imagenPreview.src = imagenDataUrl;
-        imagenPreview.style.display = "block";
+        imageDataUrl = reader.result; // Guardamos el base64
+        imagePreview.src = imageDataUrl;
+        imagePreview.style.display = "block";
       };
       reader.readAsDataURL(file);
     } else {
-      imagenPreview.src = "";
-      imagenPreview.style.display = "none";
-      imagenDataUrl = "";
+      imagePreview.src = "";
+      imagePreview.style.display = "none";
+      imageDataUrl = "";
     }
   });
 
@@ -110,36 +110,36 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const nuevoProducto = {
+    const newProduct = {
       id: document.getElementById("ID").value,
       nombre: document.getElementById("nombre").value,
       descripcion: document.getElementById("descripcion").value,
       precio: parseFloat(document.getElementById("precio").value),
       presentacion: document.getElementById("presentacion").value,
       concentracion: document.getElementById("concentracion").value,
-      viaAdministracion: viaSub.value, // obtenemos la subcategoría elegida
-      cantidad: parseInt(document.getElementById("cantidad").value),
-      imagen: imagenDataUrl || "https://via.placeholder.com/150",
+      viaAdministracion: routeSub.value, // obtenemos la subcategoría elegida
+      stock: parseInt(document.getElementById("cantidad").value),
+      imagen: imageDataUrl || "https://via.placeholder.com/150",
       porcentajeDescuento: parseFloat(document.getElementById("descuento").value)
       
     };
 
-    console.log("Producto creado:", nuevoProducto);
+    console.log("Producto creado:", newProduct);
 
     // Guardar en localStorage
-    const productosGuardados = JSON.parse(localStorage.getItem("productos")) || [];
-    productosGuardados.push(nuevoProducto);
-    localStorage.setItem("productos", JSON.stringify(productosGuardados));
+    const savedProducts = JSON.parse(localStorage.getItem("productos")) || [];
+    savedProducts.push(newProduct);
+    localStorage.setItem("productos", JSON.stringify(savedProducts));
 
     // Limpiar formulario y previsualización
     form.reset();
-    imagenPreview.src = "";
-    imagenPreview.style.display = "none";
-    imagenDataUrl = "";
+    imagePreview.src = "";
+    imagePreview.style.display = "none";
+    imageDataUrl = "";
     
 
     // Limpiar subopciones de vía
-    viaSub.innerHTML = "<option value=''>Selecciona una subcategoría</option>";
+    routeSub.innerHTML = "<option value=''>Selecciona una subcategoría</option>";
 
     // Limpiar descuento
     resultadoDescuento.innerHTML = "";
