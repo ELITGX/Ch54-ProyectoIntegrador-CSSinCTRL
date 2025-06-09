@@ -3,11 +3,15 @@ body{
     min-height: 100dvh;
     grid-template-rows: 
         auto 1fr auto;
-    ;
     padding: 0;
     margin: 0;
     overflow: auto;
 
+}
+
+.error-alert{
+    z-index: 1;
+    display: none;
 }
 
 .locationPage{

@@ -45,16 +45,16 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   routemain.addEventListener("change", () => {
-    const seleccion = routemain.value;
+    const selection = routemain.value;
 
     // Limpia las subopciones
     routeSub.innerHTML = "<option value=''>Selecciona una subcategoría</option>";
 
-    if (subOptions[seleccion]) {
-      subOptions[seleccion].forEach((opcion) => {
+    if (subOptions[selection]) {
+      subOptions[selection].forEach(option => {
         const opt = document.createElement("option");
-        opt.value = opcion;
-        opt.textContent = opcion;
+        opt.value = option;
+        opt.textContent = option;
         routeSub.appendChild(opt);
       });
     }
@@ -79,33 +79,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 // ==================== Descuento a producto ========================
-  const botonDescuento = document.getElementById("botonDescuento");
-  const resultadoDescuento = document.getElementById("resultadoDescuento");
+  const discountBtn = document.getElementById("discount-Btn");
+  const discountResult = document.getElementById("discount-Result");
   
 
-  botonDescuento.addEventListener("click", ()=>{
-    const precioOriginal = parseFloat(document.getElementById("precio").value);
-  const descuento = parseFloat(document.getElementById("descuento").value);
+  discountBtn.addEventListener("click", ()=>{
+    const priceOriginal = parseFloat(document.getElementById("price").value);
+  const discount = parseFloat(document.getElementById("discount").value);
       
       // Validar los valores
-      if (descuento < 0 || descuento > 100) {
-          resultadoDescuento.innerHTML = "El descuento debe estar entre 0% y 100%.";
+      if (discount < 0 || discount > 100) {
+          discountResult.innerHTML = "El descuento debe estar entre 0% y 100%.";
           return;
       }
       
       // Calcular el precio con descuento
-      const descuentoAplicado = precioOriginal * (descuento / 100);
-      const precioFinal = precioOriginal - descuentoAplicado;
+      const discountApplied = priceOriginal * (discount / 100);
+      const priceFinal = priceOriginal - discountApplied;
       
       // Mostrar el resultado
-      resultadoDescuento.innerHTML = `
-          <p>Precio original: $${precioOriginal.toFixed(2)}</p>
-          <p>Descuento aplicado: ${descuento}% ($${descuentoAplicado.toFixed(2)})</p>
-          <p><strong>Precio final: $${precioFinal.toFixed(2)}</strong></p>
+      discountResult.innerHTML = `
+          <p>Precio original: $${priceOriginal.toFixed(2)}</p>
+          <p>Descuento aplicado: ${discount}% ($${discountApplied.toFixed(2)})</p>
+          <p><strong>Precio final: $${priceFinal.toFixed(2)}</strong></p>
       `;
   });
 
 
+  
   // ==================== Envío de formulario =============================
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -114,37 +115,50 @@ document.addEventListener("DOMContentLoaded", () => {
       id: document.getElementById("ID").value,
       nombre: document.getElementById("nombre").value,
       descripcion: document.getElementById("descripcion").value,
-      precio: parseFloat(document.getElementById("precio").value),
+      precio: parseFloat(document.getElementById("price").value),
       presentacion: document.getElementById("presentacion").value,
       concentracion: document.getElementById("concentracion").value,
       viaAdministracion: routeSub.value, // obtenemos la subcategoría elegida
       stock: parseInt(document.getElementById("cantidad").value),
       imagen: imageDataUrl || "https://via.placeholder.com/150",
-      porcentajeDescuento: parseFloat(document.getElementById("descuento").value)
+      porcentajeDescuento: parseFloat(document.getElementById("discount").value)
       
     };
 
-    console.log("Producto creado:", newProduct);
+    const {id:prod_id, nombre, descripcion, precio, presentacion, concentracion, viaAdministracion, stock, imagen, porcentajeDescuento} = newProduct;
 
-    // Guardar en localStorage
-    const savedProducts = JSON.parse(localStorage.getItem("productos")) || [];
-    savedProducts.push(newProduct);
-    localStorage.setItem("productos", JSON.stringify(savedProducts));
+      // Validaciones básicas
+      if (nombre && imagen && descripcion && precio !== 0 && presentacion && concentracion && viaAdministracion && stock ) {
+              console.log("Producto creado:", newProduct);
+        alertContainer.innerHTML = `
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>¡Datos enviados!</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>`
 
-    // Limpiar formulario y previsualización
-    form.reset();
-    imagePreview.src = "";
-    imagePreview.style.display = "none";
-    imageDataUrl = "";
-    
+      // Guardar en localStorage
+      const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
+      savedProducts.push(newProduct);
+      localStorage.setItem("products", JSON.stringify(savedProducts));
 
-    // Limpiar subopciones de vía
-    routeSub.innerHTML = "<option value=''>Selecciona una subcategoría</option>";
+      // Limpiar formulario y previsualización
+      form.reset();
+      imagePreview.src = "";
+      imagePreview.style.display = "none";
+      imageDataUrl = "";
+      
 
-    // Limpiar descuento
-    resultadoDescuento.innerHTML = "";
+      // Limpiar subopciones de vía
+      routeSub.innerHTML = "<option value=''>Selecciona una subcategoría</option>";
 
-    alert("¡Producto añadido con éxito!");
+      // Limpiar descuento
+      discountResult.innerHTML = "";
+      
+      alert("¡Producto añadido con éxito!");
+
+    } 
+
+
   });
 });
 
