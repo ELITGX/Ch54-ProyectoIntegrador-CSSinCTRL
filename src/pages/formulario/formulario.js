@@ -153,8 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Limpiar descuento
       discountResult.innerHTML = "";
-      
-      alert("¡Producto añadido con éxito!");
 
     } 
 
