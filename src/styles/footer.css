@@ -37,13 +37,10 @@ h3 {
 .break-text {
   word-break: break-word;
   overflow-wrap: break-word;
-<<<<<<< HEAD
 }
 
 #correo{
   word-break: break-all;
   font-size: 14px;
   align-items: flex-start;
-=======
->>>>>>> 82aad90a602a76fec776f2a855ca93c6bbcbcaf0
 }
