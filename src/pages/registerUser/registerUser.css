@@ -95,3 +95,7 @@ h3{
     cursor: pointer;
     border-radius: 4px;
 }
+#img{
+    max-width: 24%;
+    display: block;
+}
