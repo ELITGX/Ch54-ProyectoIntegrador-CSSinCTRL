@@ -1,5 +1,5 @@
 
-
+ 
 { "results":  [
 
   {
@@ -10,7 +10,8 @@
     "precio": 850,
     "presentacion": "10 ml",
     "concentracion": "60 mg/ml",
-    "viaAdministracion": "intravenoso"
+    "viaAdministracion": "intravenoso",
+    "stock": 100
   },
   {
     "id": 2,
@@ -20,7 +21,8 @@
     "precio": 350,
     "presentacion": "10 ml",
     "concentracion": "300 mg/ml",
-    "viaAdministracion": "intravenoso"
+    "viaAdministracion": "intravenoso",
+    "stock": 100
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "precio": 890,
     "presentacion": "50 y 100 ml",
     "concentracion": "500 mg/ml",
-    "viaAdministracion": "intravenoso"
+    "viaAdministracion": "intravenoso",
+    "stock": 100
   },
   {
     "id": 4,
@@ -40,7 +43,8 @@
     "precio": 150,
     "presentacion": "50 y 100 ml",
     "concentracion": "50 mg/ml",
-    "viaAdministracion": "intravenoso"
+    "viaAdministracion": "intravenoso",
+    "stock": 100
   },
   {
     "id": 5,
@@ -50,7 +54,8 @@
     "precio": 600,
     "presentacion": "10 ml",
     "concentracion": "300 mg/ml",
-    "viaAdministracion": "intravenoso"
+    "viaAdministracion": "intravenoso",
+    "stock": 100
   },
   {
     "id": 6,
@@ -60,7 +65,8 @@
     "precio": 420,
     "presentacion": "50 ml",
     "concentracion": "150 mg/ml",
-    "viaAdministracion": "intravenoso"
+    "viaAdministracion": "intravenoso",
+    "stock": 100
   },
   {
     "id": 7,
@@ -70,7 +76,8 @@
     "precio": 2000,
     "presentacion": "10 y 50 ml",
     "concentracion": "100 mg/ml",
-    "viaAdministracion": "intravenoso"
+    "viaAdministracion": "intravenoso",
+    "stock": 100
   },
   {
     "id": 8,
@@ -80,7 +87,8 @@
     "precio": 45,
     "presentacion": "10 ml",
     "concentracion": "2 mg/ml",
-    "viaAdministracion": "intravenoso"
+    "viaAdministracion": "intravenoso",
+    "stock": 100
   },
   {
     "id": 9,
@@ -90,7 +98,8 @@
     "precio": 300,
     "presentacion": "10 ml",
     "concentracion": "10%",
-    "viaAdministracion": "subcutáneo"
+    "viaAdministracion": "subcutáneo",
+    "stock": 100
   },
   {
     "id": 10,
@@ -100,6 +109,7 @@
     "precio": 60,
     "presentacion": "10 ml",
     "concentracion": "150 mg/ml",
-    "viaAdministracion": "intravenoso"
+    "viaAdministracion": "intravenoso",
+    "stock": 100
   }
 ]}

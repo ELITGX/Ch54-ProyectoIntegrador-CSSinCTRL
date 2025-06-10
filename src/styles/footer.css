@@ -34,6 +34,10 @@ h3 {
 .copyright{
   font-size: 14px;
 }
+.break-text {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
 
 #correo{
   word-break: break-all;
