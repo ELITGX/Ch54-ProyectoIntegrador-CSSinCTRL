@@ -38,3 +38,9 @@ h3 {
   word-break: break-word;
   overflow-wrap: break-word;
 }
+
+#correo{
+  word-break: break-all;
+  font-size: 14px;
+  align-items: flex-start;
+}
