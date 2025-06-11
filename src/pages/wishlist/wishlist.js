@@ -46,9 +46,10 @@ const createProductCars = () => {
             const div = document.createElement("div");
             div.classList.add("card");//
             div.innerHTML = 
-            `<h2>${card.name}</h2>
-            <img src="${card.img}" alt="${card.name}">
-            <p>${card.description}</p>`;
+            `<img src="${card.img}" alt="${card.name}">
+            <h4>${card.name}</h4>
+            <p>precio $${card.precio}</p>
+            <p>Stock ${card.stock}</p>`;
             contenedor.appendChild(div);
         }
     };
