@@ -1,7 +1,7 @@
 import { insertHeader } from "../../../modules/header/header.js";
 import { insertFooter } from "../../../modules/footer/footer.js";
 const homePath ="../../../"
-const localStorageKey = "url";
+const localStorageKey = "products";
 
 insertHeader(document.getElementById("header"), homePath);
 insertFooter(document.getElementById("footer"));
@@ -24,14 +24,14 @@ const readProducts = async(url) =>{
 
 // Esta funcion es para renderizar el producto
 
-const buildProductCards = ( productos ) => {
-    const cards = productos.map( (product)=>(
+const buildProductCards = ( products ) => {
+    const cards = products.map( (product)=>(
         `<div class="col-auto mt-3">
             <div class="card" style="width: 18rem;">
                 <img src=${product.img} class="card-img-top cardImage mx-auto d-block" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">$${product.precio}</p>
+                    <p class="card-text">$${product.price}</p>
                     <a href="#" class="btn btn-primary"> Añadir al carrito </a>
                 </div>
             </div>
@@ -46,7 +46,7 @@ const insertCardsDom = (tarjetas, idDOM = "cards")=>{
 }
 
 const createProductCars = ()=>{
-    let data = JSON.parse(localStorage.getItem("url"));
+    let data = JSON.parse(localStorage.getItem(localStorageKey));
     console.log(data);
     const products = data.results;
     const  cards= buildProductCards(products);
@@ -57,9 +57,9 @@ const createProductCars = ()=>{
 
 // Funcion para almacenar el json en local storage
 const jsonToLocal = async(url) =>{
-    if (!localStorage.getItem("url")){
+    if (!localStorage.getItem(localStorageKey) || localStorage.getItem(localStorageKey).includes("nombre:")){
         let data = await readProducts(url);
-        localStorage.setItem("url", JSON.stringify(data))
+        localStorage.setItem(localStorageKey, JSON.stringify(data))
     }
 }
 

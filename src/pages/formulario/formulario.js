@@ -113,22 +113,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const newProduct = {
       id: document.getElementById("ID").value,
-      nombre: document.getElementById("nombre").value,
-      descripcion: document.getElementById("descripcion").value,
-      precio: parseFloat(document.getElementById("price").value),
-      presentacion: document.getElementById("presentacion").value,
-      concentracion: document.getElementById("concentracion").value,
-      viaAdministracion: routeSub.value, // obtenemos la subcategoría elegida
+      name: document.getElementById("nombre").value,
+      description: document.getElementById("descripcion").value,
+      price: parseFloat(document.getElementById("price").value),
+      presentation: document.getElementById("presentacion").value,
+      concentration: document.getElementById("concentracion").value,
+      administrationRoute: routeSub.value, // obtenemos la subcategoría elegida
       stock: parseInt(document.getElementById("cantidad").value),
-      imagen: imageDataUrl || "https://via.placeholder.com/150",
+      img: imageDataUrl || "https://via.placeholder.com/150",
       porcentajeDescuento: parseFloat(document.getElementById("discount").value)
       
     };
 
-    const {id:prod_id, nombre, descripcion, precio, presentacion, concentracion, viaAdministracion, stock, imagen, porcentajeDescuento} = newProduct;
+    const {id:prod_id, name, description, price, presentation, concentration, administrationRoute, stock, img, porcentajeDescuento} = newProduct;
 
       // Validaciones básicas
-      if (nombre && imagen && descripcion && precio !== 0 && presentacion && concentracion && viaAdministracion && stock ) {
+      if (name && img && description && price !== 0 && presentation && concentration && administrationRoute && stock ) {
               console.log("Producto creado:", newProduct);
         alertContainer.innerHTML = `
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Guardar en localStorage
       const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
-      savedProducts.push(newProduct);
+      savedProducts.results.push(newProduct);
       localStorage.setItem("products", JSON.stringify(savedProducts));
 
       // Limpiar formulario y previsualización

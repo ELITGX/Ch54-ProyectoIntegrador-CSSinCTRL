@@ -48,7 +48,7 @@ const createProductCars = () => {
             div.innerHTML = 
             `<img src="${card.img}" alt="${card.name}">
             <h4>${card.name}</h4>
-            <p>precio $${card.precio}</p>
+            <p>precio $${card.price}</p>
             <p>Stock ${card.stock}</p>`;
             contenedor.appendChild(div);
         }
