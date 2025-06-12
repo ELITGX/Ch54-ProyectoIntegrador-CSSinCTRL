@@ -40,10 +40,10 @@ function renderCart() {
     itemElement.innerHTML = `
       <div>
         <h5 class="mb-0">${item.name}</h5>
-        <small class="text-muted">$${item.precio.toFixed(2)}</small>
+        <small class="text-muted">$${item.price.toFixed(2)}</small>
       </div>
       <div>
-        <span class="fw-bold">$${item.precio.toFixed(2)}</span>
+        <span class="fw-bold">$${item.price.toFixed(2)}</span>
         <button class="btn btn-sm btn-outline-danger ms-2" data-index="${index}">
           <i class="bi bi-trash"></i>
         </button>
@@ -51,7 +51,7 @@ function renderCart() {
     `;
 
     cartItemsContainer.appendChild(itemElement);
-    total += item.precio;
+    total += item.price;
   });
 
   cartTotalElement.textContent = `$${total.toFixed(2)}`;
