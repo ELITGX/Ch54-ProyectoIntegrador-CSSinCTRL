@@ -99,3 +99,9 @@ h3{
     max-width: 24%;
     display: block;
 }
+a:hover{
+    color: #000000;
+}
+a{
+    color:white;
+}
