@@ -56,6 +56,9 @@ const insertHeader = (header, homePath ="./") => {
               <a class="nav-link" href="${homePath}src/pages/aboutUs/aboutUs.html">Acerca de</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="${homePath}src/pages/ShoppingCart/ShoppingCart.html">Carrito</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link text-mamx" href="${homePath}src/pages/contact/contact.html">Contáctanos</a>
             </li>
           </ul>
