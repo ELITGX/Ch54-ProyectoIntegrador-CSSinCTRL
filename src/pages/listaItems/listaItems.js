@@ -125,3 +125,29 @@ const clearAllProducts = () => {
 jsonToLocal("../../../modules/assets/objetos.json").then(() => {
     createProductCars();
 });
+
+//Codigo usado para probar funciones
+
+/* const newProduct = {
+    id: 12,
+    name: "Selenio Orgánico",
+    img: "../../../images/Productos/selenio.png",
+    description: "El selenio orgánico es ideal para tu cuerpo: desintoxica el hígado, promoviendo su buen funcionamiento. Fortalece el sistema inmunológico y refuerza las defensas al aumentar el número de células protectoras. Regenera las vitaminas C y E, manteniendo el cuerpo lleno de energía y vitalidad. Pero eso no es todo: combate la inflamación, aliviando dolores y molestias. Ayuda a prevenir el cáncer gracias a su acción sobre la metilación del ADN. Descubre cómo este potente antioxidante puede revolucionar tu práctica.",
+    precio: 60,
+    presentacion: "10 ml",
+    concentracion: "150 mg/ml",
+    viaAdministracion: "intravenoso",
+    stock: 100
+}
+
+const newProduct2 = {
+    id: 12,
+    name: "Selenio Orgánico Modificado",
+    img: "../../../images/Productos/selenio.png",
+    precio: 1234,
+}
+
+addProduct(newProduct);
+updateProductById(4,newProduct2);
+clearAllProducts();
+deleteProduct({name:"MELATONINA"}); */
