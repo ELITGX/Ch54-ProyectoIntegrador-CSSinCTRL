@@ -1,3 +1,4 @@
+// Shopping.js 
 import { insertHeader } from "../../../modules/header/header.js";
 import { insertFooter } from "../../../modules/footer/footer.js";
 const homePath ="../../../"
@@ -8,24 +9,21 @@ insertFooter(document.getElementById("footer"));
 
 
 //==================== uso de la api fetch ==========================
-const readProducts = async(url) =>{
-
+const readProducts = async(url) => {
     try {
         const response = await fetch(url);
         console.log(response);
         const datosApi = await response.json();
         console.log(datosApi);
         return datosApi;
-        
     } catch (error) {
         console.log("No se pueden obtener los datos", error);            
     } 
 }
 
 // Esta funcion es para renderizar el producto
-
-const buildProductCards = ( products ) => {
-    const cards = products.map( (product)=>(
+const buildProductCards = (products) => {
+    const cards = products.map((product) => (
         `<div class="col-auto mt-3">
             <div class="card" style="width: 18rem;">
                 <img src=${product.img} class="card-img-top cardImage mx-auto d-block" alt="...">
@@ -36,33 +34,46 @@ const buildProductCards = ( products ) => {
                 </div>
             </div>
         </div>`
-    ) );
+    ));
     return cards;
 }
 
-const insertCardsDom = (tarjetas, idDOM = "cards")=>{
-    const refDom =  document.getElementById( idDOM );
+const insertCardsDom = (tarjetas, idDOM = "cards") => {
+    const refDom = document.getElementById(idDOM);
     refDom.innerHTML = tarjetas.join("");
 }
 
-const createProductCars = ()=>{
+// Función para agregar productos al carrito
+const addToCart = (product) => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+const createProductCars = () => {
     let data = JSON.parse(localStorage.getItem(localStorageKey));
     console.log(data);
     const products = data.results;
-    const  cards= buildProductCards(products);
+    const cards = buildProductCards(products);
     insertCardsDom(cards);
+
+    // Escuchar clicks en botones de "Añadir al carrito"
+    document.querySelectorAll(".btn.btn-primary").forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+            const product = products[index];
+            addToCart(product);
+            alert(`${product.name} se agregó al carrito`);
+        });
+    });
 }
 
-
-
 // Funcion para almacenar el json en local storage
-const jsonToLocal = async(url) =>{
+const jsonToLocal = async(url) => {
     if (!localStorage.getItem(localStorageKey) || localStorage.getItem(localStorageKey).includes("nombre:")){
         let data = await readProducts(url);
         localStorage.setItem(localStorageKey, JSON.stringify(data))
     }
 }
-
 
 
 // Agregar producto
@@ -114,31 +125,3 @@ const clearAllProducts = () => {
 jsonToLocal("../../../modules/assets/objetos.json").then(() => {
     createProductCars();
 });
-
-
-
-//Codigo usado para probar funciones
-
-/* const newProduct = {
-    id: 12,
-    name: "Selenio Orgánico",
-    img: "../../../images/Productos/selenio.png",
-    description: "El selenio orgánico es ideal para tu cuerpo: desintoxica el hígado, promoviendo su buen funcionamiento. Fortalece el sistema inmunológico y refuerza las defensas al aumentar el número de células protectoras. Regenera las vitaminas C y E, manteniendo el cuerpo lleno de energía y vitalidad. Pero eso no es todo: combate la inflamación, aliviando dolores y molestias. Ayuda a prevenir el cáncer gracias a su acción sobre la metilación del ADN. Descubre cómo este potente antioxidante puede revolucionar tu práctica.",
-    precio: 60,
-    presentacion: "10 ml",
-    concentracion: "150 mg/ml",
-    viaAdministracion: "intravenoso",
-    stock: 100
-}
-
-const newProduct2 = {
-    id: 12,
-    name: "Selenio Orgánico Modificado",
-    img: "../../../images/Productos/selenio.png",
-    precio: 1234,
-}
-
-addProduct(newProduct);
-updateProductById(4,newProduct2);
-clearAllProducts();
-deleteProduct({name:"MELATONINA"}); */
