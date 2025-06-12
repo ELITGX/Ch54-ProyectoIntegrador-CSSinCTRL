@@ -57,7 +57,7 @@ const createProductCars = ()=>{
 
 // Funcion para almacenar el json en local storage
 const jsonToLocal = async(url) =>{
-    if (!localStorage.getItem(localStorageKey) || localStorage.getItem(localStorageKey).includes("nombre:")){
+    if (!localStorage.getItem(localStorageKey)){
         let data = await readProducts(url);
         localStorage.setItem(localStorageKey, JSON.stringify(data))
     }
