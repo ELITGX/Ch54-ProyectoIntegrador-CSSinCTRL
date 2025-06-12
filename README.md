@@ -7,13 +7,13 @@
 
 ### 👥 Integrantes y roles
 
-| Sprint  Scrum Master              | Desarrollo                                                                                                                                 || Product Owner       |
-| ------  | ------------------------|------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------
-| 1       | Nancy Claudia Sánchez   | Abril Armenta, Athenas García, Jesús Soto, Antonio Servín, Gustavo Ortega, Ailed Hernández, Michelle Martínez, David Méndez                || Nancy Claudia Sánchez
-| 2       | Melissa Ailed Hernández | Abril Armenta, Athenas García, Jesús Soto, Nancy Sánchez, Antonio Servín, Gustavo Ortega, Michelle Martínez, David Méndez                  || Nancy Claudia Sánchez
-| 3       | David Méndez Pérez (JS) | Abril Armenta, Athenas García, Jesús Soto, Nancy Sánchez, Antonio Servín, Gustavo Ortega, Ailed Hernández, Michelle Martínez, David Méndez || Nancy Claudia Sánchez
-| 4       | Athenas Marlene García  | Abril Armenta                                                                                                                              || Nancy Claudia Sánchez
-| 5       | Gustavo Ortega          | Abril Armenta, Athenas García, Jesús Soto, Nancy Sánchez, Antonio Servín, Ailed Hernández, Michelle Martínez, David Méndez                 || Nancy Claudia Sánchez
+| Sprint  | Scrum Master            | Desarrollo                                                                                                                                 | Product Owner        |
+| ------  | ------------------------|------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------|
+| 1       | Nancy Claudia Sánchez   | Abril Armenta, Athenas García, Jesús Soto, Nancy Sánchez, Antonio Servín, Gustavo Ortega, Ailed Hernández, Michelle Martínez, David Méndez | Nancy Claudia Sánchez|
+| 2       | Melissa Ailed Hernández | Abril Armenta, Athenas García, Jesús Soto, Nancy Sánchez, Antonio Servín, Gustavo Ortega, Ailed Hernández, Michelle Martínez, David Méndez | Nancy Claudia Sánchez|
+| 3       | David Méndez Pérez (JS) | Abril Armenta, Athenas García, Jesús Soto, Nancy Sánchez, Antonio Servín, Gustavo Ortega, Ailed Hernández, Michelle Martínez, David Méndez | Nancy Claudia Sánchez|
+| 4       | Athenas Marlene García  | Abril Armenta, Athenas García, Jesús Soto, Nancy Sánchez, Antonio Servín, Gustavo Ortega, Ailed Hernández, Michelle Martínez, David Méndez | Nancy Claudia Sánchez|
+| 5       | Gustavo Ortega          | Abril Armenta, Athenas García, Jesús Soto, Nancy Sánchez, Antonio Servín, Gustavo Ortega, Ailed Hernández, Michelle Martínez, David Méndez | Nancy Claudia Sánchez|
 
 ### ¿Qué hace el proyecto?
 - Diseño y Desarrollo Web
@@ -21,6 +21,7 @@
 - Panel de Administración
 - Soporte y Contacto
 - Alcance Técnico
+
 ---------------------------------- Nota importante ----------------------------------
 - Se usa la rama dev para subir cambios y después se actualiza la rama main
 
@@ -79,51 +80,6 @@
 - JavaScript para funcionalidad de la web
 - Java para Backend de la web
 
-### Estructura del proyecto
-CH54-PROYECTOINTEGRADOR/
-├── .gitignore
-├── 404.html
-├── index.html
-├── README.md
-├── src/
-│ ├── js/
-│ │ ├── api/
-│ │ │ ├── aboutUs.js
-│ │ │ ├── contactValidations.js
-│ │ │ ├── main.js
-│ │ │ └── readInputsContactForm.js
-│ │ └── pages/
-│ │ ├── 404/
-│ │ │ ├── error-404.css
-│ │ │ └── error-404.js
-│ │ ├── aboutUs/
-│ │ │ ├── aboutUs.css
-│ │ │ ├── aboutUs.html
-│ │ │ └── aboutUs.js
-│ │ ├── contact/
-│ │ │ ├── contact.css
-│ │ │ ├── contact.html
-│ │ │ └── contact.js
-│ │ ├── formulario/
-│ │ │ ├── formulario.js
-│ │ │ ├── formularioDeCreacion.css
-│ │ │ └── formularioDeCreacion.html
-│ │ ├── inicioSesion/
-│ │ │ ├── inicioSesion.css
-│ │ │ ├── inicioSesion.html
-│ │ │ └── inicioSesion.js
-│ │ ├── listaltems/
-│ │ │ ├── listaltems.css
-│ │ │ ├── listaltems.html
-│ │ │ └── listaltems.js
-│ │ └── registerUser/
-│ │ ├── registerUser.css
-│ │ ├── registerUser.html
-│ │ └── registerUser.js
-├── styles/
-│ ├── footer.css
-│ ├── header.css
-│ └── index.css
 
 ### paso a paso para instalar y correr el proyecto localmente.
 - Te recomendamos Clone
