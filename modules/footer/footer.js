@@ -1,6 +1,6 @@
 
 
-const insertFooter = footer => {
+const insertFooter = (footer, homePath = "./") => {
     footer.innerHTML = `
     <div class="conteiner">
             <div class="row">
@@ -16,7 +16,7 @@ const insertFooter = footer => {
                 <div class="col-3">
                     <h3>Cuenta</h3>
                     <!-- Debe ir a tu perfil de usuario -->
-                    <a href="">Mi cuenta</a>
+                    <a href="${homePath}src/pages/registerUser/registerUser.html">Mi cuenta</a>
                 </div>
                 <div class="col-3 contacto">
                     <h3>Contacto</h3>

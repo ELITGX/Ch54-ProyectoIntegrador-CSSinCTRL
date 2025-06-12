@@ -5,7 +5,7 @@ const homePath ="../../../"
 const localStorageKey = "products";
 
 insertHeader(document.getElementById("header"), homePath);
-insertFooter(document.getElementById("footer"));
+insertFooter(document.getElementById("footer"), homePath);
 
 
 //==================== uso de la api fetch ==========================

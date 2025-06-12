@@ -4,7 +4,7 @@ const homePath = "../../../"
 const localStorageKey = "url";
 
 insertHeader(document.getElementById("header"), homePath);
-insertFooter(document.getElementById("footer"));
+insertFooter(document.getElementById("footer"), homePath);
 
 // Funcion para almacenar el json en local storage
 const jsonToLocal = async (url) => {
