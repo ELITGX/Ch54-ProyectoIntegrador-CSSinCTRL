@@ -1,17 +1,29 @@
+:root{
+    --blue-demon: #80aacc;
+    --blue-god: #2C3E50;
+    --blue-little: #d6e6d6; 
+    --highlights: #ff6f61;
+    --font-text: #3b3b3b;
+    
+}
+
 .gradient-custom-2 {
 /* fallback for old browsers */
 background: #fccb90;
 
 /* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, #80aacc 20%, #d6e6f2 );
+background: -webkit-linear-gradient(to right, var(--blue-demon) 20%, var(--blue-little) );
 
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(180deg,#2c3e50 30%, #80aacc );
+background: linear-gradient(0deg, var(--blue-god) 30%, var(--blue-demon) );
 }
 
 .gradient-custom-1{
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(180deg,#2c3e50 30%, #80aacc );
+background: linear-gradient(180deg, var(--blue-god) 30%, var(--blue-demon) );
+
+
+
 }
 
 @media (min-width: 768px) {
@@ -25,4 +37,21 @@ height: 100vh !important;
 border-top-right-radius: .3rem;
 border-bottom-right-radius: .3rem;
 }
+}
+
+.btn-arrow {
+  top: 10px;
+  left: 10px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  z-index: 10;
+}
+.btn-arrow svg {
+  width: 28px;
+  height: 28px;
+}
+
+svg:hover{
+    fill: var(--highlights);
 }

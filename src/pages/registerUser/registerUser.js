@@ -24,7 +24,8 @@ form.addEventListener("submit", event => {
     privacityAgreement: document.getElementById("checkPrivacity").checked
   };
 
- 
+  // ================================ Desestructuración ==============================================
+
   const { nameUser, phone, email, password, passwordConfirm, termsAndConditions, privacityAgreement} = userData;
   
   //  ================ Validaciones de entradas de usuario ======================================
@@ -33,6 +34,8 @@ form.addEventListener("submit", event => {
   let validationEmail = RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
   let validationPhone = RegExp("^\\d{10}$");
   let validationPassword = RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$");
+
+ // ======================== Alertas de bootstrap ===========================================
 
   const alertInput = (message, color, borderColor, backgroundColor) => {
     alertContainer.innerHTML = `
@@ -46,6 +49,8 @@ form.addEventListener("submit", event => {
         }, 5000);
   }
   
+  // ========================================== Validación de inputs ==========================================
+
   if (!validationName.test(nameUser)) {
     
     alertInput("¡Verifica que el nombre no contenga números, caracteres especiales o espacios al inicio y al final!", "#FF6F61", "#FF6F61", "#D6E6F2");

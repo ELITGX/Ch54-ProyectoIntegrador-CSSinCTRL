@@ -5,7 +5,6 @@
 
 #header {
   background: #80AACC;
-;
 }
 
 #header .nav-link {
@@ -15,7 +14,6 @@
   padding-bottom: 1px;
  
 }
-
 
 .nav-link:hover {
   border-bottom: solid #FF6F61;

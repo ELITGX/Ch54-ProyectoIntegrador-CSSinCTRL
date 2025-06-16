@@ -27,7 +27,7 @@ contactForm.addEventListener( "submit" , async ( e )=>{
     if(validateContactRequest.isValid){
         try
         {
-            const response = await postContactRequest( "https://formsubmit.co/97425e8082464ce5f7307c104d63bf08", formData);// se manda a la api el objeto con los datos del formulario           
+            const response = await postContactRequest( "https://formsubmit.co/athenasgm.proteco@gmail.com", formData);// se manda a la api el objeto con los datos del formulario           
             document.getElementById('contactForm').reset();
             alert('Formulario enviado con éxito, espera por nuestra respuesta.');
         }
