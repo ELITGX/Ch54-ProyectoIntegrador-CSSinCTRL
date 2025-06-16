@@ -1,0 +1,184 @@
+
+body{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: 
+        auto 1fr auto;
+    ;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* estilo para los input*/
+.input-message, .input-text{
+  margin-bottom: 15px;
+  width: 100%;
+  font-size: 16px;
+  background-color: #F5F5F5;
+  color: black;
+  font-weight: bold;
+  border-color: #F5F5F5;
+  border-width: 0;
+  padding: 3px;
+}
+/* Reset básico */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  background-color: #fff;
+}
+
+.my-container{
+    margin-top: 40px;
+    padding: 15px;
+}
+
+.locationPage{
+    margin: 0;
+    margin-top: 40px;
+    padding: 15px;
+}
+
+#mainRef{
+    opacity: 0.5;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#contactRef{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a {
+    display: inline-block;
+    transform: scale(1);
+    transition: transform 0.2s ease;
+}
+
+a:hover {
+  transform: scale(0.95);
+}
+
+#btnEnviar, p{
+    font-size: 16px;
+}
+
+h2{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.divButton{
+    text-align: end;
+}
+
+.round-i{
+    background-color: #F280B6; 
+    color: white;
+    padding:5px;
+    border-radius: 50%;
+    font-size: 10px;
+}
+
+#btnEnviar{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #80AACC;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+
+p {
+  font-size: 12px; 
+}
+
+.justify-row {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Pantallas (≥ 420px) */
+@media (min-width: 420px) {
+  h2 {
+    font-size: 27px;
+  }
+}
+
+/* Pantallas (≥ 420px) */
+@media (min-width: 420px) {
+  p {
+    font-size: 14px;
+  }
+}
+
+/* Pantallas (≥ 420px) */
+@media (min-width: 420px) {
+  .round-i {
+    padding:7px;
+    border-radius: 50%;
+    font-size: 17px;
+  }
+}
+
+
+/* Pantallas (≥ 500px) */
+@media (min-width: 500px) {
+  h2 {
+    font-size: 32px;
+  }
+}
+
+/* Pantallas (≥ 500px) */
+@media (min-width: 500px) {
+  p {
+    font-size: 16px;
+  }
+}
+
+/* Pantallas (≥ 500px) */
+@media (min-width: 500px) {
+  .round-i {
+    padding:7px;
+    border-radius: 50%;
+    font-size: 20px;
+  }
+}
+
+
+ @media (max-width: 339px) {
+    .col-ssm {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+    }
+}
+
+@media (max-width: 339px) {
+    .text-ssm-start {
+      text-align: start !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .btn.w-md-auto {
+      width: auto !important;
+    }
+}
+
+@media (min-width: 530px) {
+    .md-padding-cont {
+      padding: 30px;
+    }
+}

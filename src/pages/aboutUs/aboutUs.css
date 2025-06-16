@@ -1,0 +1,136 @@
+body{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: 
+        auto 1fr auto;
+    ;
+    padding: 0;
+    margin: 0;
+}
+
+main {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+  
+}
+
+/* Sección "Sobre nosotros" */
+#sobre-nosotros h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+#sobre-nosotros p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Imagen en sección "Sobre nosotros" */
+#sobre-nosotros img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Sección "Nuestro equipo" */
+#equipo h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Tarjetas de miembros */
+#equipo h3 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-bottom: 1px solid #000;
+  margin-bottom: 0.8rem;
+}
+
+#equipo p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+#equipo img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease;
+}
+
+#equipo img:hover {
+  transform: scale(1.05);
+}
+#carousel p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+#carousel h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+#carousel .card {
+  background-color: #fefefe;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+#carousel .card:hover {
+  transform: translateY(-5px);
+}
+
+
+/* Animaciones  */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Centrar imágenes horizontalmente en el carrusel */
+.carousel-item img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Posicionar los indicadores (puntos) un poco más abajo del carrusel */
+.carousel-indicators {
+  bottom: -30px;
+}
+
+/* Estilo personalizado para los puntos del carrusel */
+.carousel-indicators [data-bs-target] {
+  background-color: #333;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Responsive ajustes adicionales */
+@media (min-width: 768px) {
+  #equipo .col-md-4 {
+    text-align: center;
+  }
+}

@@ -1,0 +1,46 @@
+#footer {
+  background-color: #80AACC;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  text-align: center;
+  max-height:min-content;
+  box-sizing:border-box;
+}
+
+#footer a {
+  color: #0D0D0D;
+}
+
+p {
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.img-fluid{
+    max-width: 50%;
+    height: auto;
+}
+
+h3 {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.soporte, .contacto {
+  display: flex;
+  flex-direction: column;
+}
+
+.copyright{
+  font-size: 14px;
+}
+.break-text {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+#correo{
+  word-break: break-all;
+  font-size: 14px;
+  align-items: flex-start;
+}

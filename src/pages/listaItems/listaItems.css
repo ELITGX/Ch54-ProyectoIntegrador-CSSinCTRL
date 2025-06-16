@@ -1,0 +1,19 @@
+body{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+} 
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardImage {
+    height: 272px;
+    width: 129px;
+}

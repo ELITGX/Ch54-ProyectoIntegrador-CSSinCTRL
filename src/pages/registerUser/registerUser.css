@@ -1,0 +1,107 @@
+body{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: 
+        auto 1fr auto;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+
+}
+
+.error-alert{
+    z-index: 1;
+    display: none;
+}
+
+.locationPage{
+    margin: 0;
+    margin-top: 40px;
+    padding: 15px;
+}
+#mainRef{
+    opacity: 0.5;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+#formularioRef{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+.nombreDelProducto {
+    font-size: 12px;
+}
+
+.row{
+    display: flex;/* 
+    justify-self: center; */
+    flex-wrap: wrap; 
+}
+
+.añade{
+    margin: 0;
+    margin-top: 16px;
+    padding: 15px;
+    text-align: center;
+}
+
+.añadirArchivos{
+    padding: 16px;
+    padding-left: 30px
+}
+
+#btn-codigo {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #80AACC;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+h3{
+    background-color: #80AACC
+}
+#columna1{
+    margin-top: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#columna2{
+    margin-top: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#columna3{
+    margin-top: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#columna4{
+    margin-top: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#añadirPrincipalDiv, #botonesDiv{
+    margin: 30px;
+}
+#descripción .col-4 {
+    margin-bottom: 16px;
+}
+ #btnPublishRegisterUser {
+    background-color: #80AACC;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+#img{
+    max-width: 24%;
+    display: block;
+}
+a:hover{
+    color: #000000;
+}
+a{
+    color:white;
+}

@@ -1,0 +1,65 @@
+/* Estilos globales */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Header y Footer  */
+header, footer {
+  background-color: #80AACC; 
+  color: black;
+}
+
+/* Main: Contenedor principal */
+main {
+  padding: 2rem 1rem;
+}
+
+/* Carrito */
+h1 {
+  color: #2C3E50;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+#cartItemsContainer .card {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+}
+
+#cartItemsContainer .card h5 {
+  color: #2C3E50;
+  font-size: 1.1rem;
+}
+
+#cartItemsContainer .card small {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* Total del carrito */
+#cartTotal {
+  color: #FF6F61;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+  padding: 1rem 0;
+  margin-top: 2rem;
+  text-align: center;
+}
+

@@ -1,0 +1,53 @@
+body {
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+
+}
+
+
+#carrusel {
+    margin-top: -10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+
+#contenedorTarjeta {
+    display: flex;
+    gap: 15px;
+}
+
+.card {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 200px;
+}
+
+.card img {
+    display: block;
+    /* Hace que la imagen se comporte como un bloque */
+    top: 0;
+    padding: 0, 30px;
+    margin: 0 auto;
+    height: 150px;
+    width: 100px;
+}

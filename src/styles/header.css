@@ -1,0 +1,36 @@
+
+#header .nav-link.text-mamx {
+  color: #2C3E50;
+}
+
+#header {
+  background: #80AACC;
+;
+}
+
+#header .nav-link {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000;
+  padding-bottom: 1px;
+ 
+}
+
+
+.nav-link:hover {
+  border-bottom: solid #FF6F61;
+  text-decoration-thickness: 3px;
+
+}
+
+#header img {
+  max-height: 85px;
+  height: auto;
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
