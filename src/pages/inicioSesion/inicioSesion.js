@@ -4,30 +4,45 @@ form.addEventListener("submit", event => {
 
 
     // Crear el objeto directamente mientras se obtienen los valores de los inputs
-    const userData = {
+    
 
-        phoneOrEmail: document.getElementById("form2Example11").value,
-        password: document.getElementById("password").value,
-    };
+    const Email = document.getElementById("Email").value.trim();
+    const password = document.getElementById("password").value.trim();
+   
 
-    const { phoneOrEmail, password } = userData;
-
-
+    
     // Pruebas Validacion de  datos del usuario
-    let validationEmail = RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-    let validationPhone = RegExp("^\\d{10}$");
-    let validationPassword = RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$");
+    const validationEmail = RegExp (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
+    const validationPassword = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/);
 
+
+    console.log("Validaciones ");
     // Validacion de los datos del usuario
-    if (!validationEmail.test(phoneOrEmail) && !validationPhone.test(phoneOrEmail)) {
-        alert("El correo electrónico o número de teléfono no es válido.");
+    if (!validationEmail.test(Email)) {
+        alert("El correo electrónico no es válido.");
+        console.log("Validacion correo");
         return;
-    } else if (!validationPassword.test(password)) {
+    } 
+    
+    if (!validationPassword.test(password)) {
         alert("La contraseña es incorrecta.");
+        console.log("Validacion Password");
         return;
-    } else if ((userData.phoneOrEmail == localStorage.getItem("email") || userData.phoneOrEmail == localStorage.getItem("phone")) 
-                && userData.password == localStorage.getItem("password")) {//Comprobación de inicio de sesión
-        alertInput("¡Biuenvenvenido/a!", "¡Has iniciado sesión correctamente!");
+    }
+      console.log("Post validacion");
+
+    const storeUser = JSON.parse(localStorage.getItem("usuario"));
+    
+    if (!storeUser){
+        alert("No hay registros");
+        return;
     }
 
+    if (Email == storeUser.email && password == storeUser.password) {//Comprobación de inicio de sesión
+        alert("¡Bienvenudo/a! ¡Has iniciado sesión correctamente!");
+        console.log(" validacion cuenta");
+    } else {
+        alert("Correo incorrecto");
+    }
+        console.log("Post todo");
 });
