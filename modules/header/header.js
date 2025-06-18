@@ -70,7 +70,7 @@ const insertHeader = (header, homePath = "./") => {
                   aria-expanded="false">
                   Cuenta
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li><a class="dropdown-item active" href="${homePath}src/pages/inicioSesion/inicioSesion.html">Inicio de sesión</a></li>
                   <li>
                     <hr class="dropdown-divider">
