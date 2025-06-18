@@ -1,6 +1,6 @@
 
 #header .nav-link.text-mamx {
-  color: #2C3E50;
+  color: #fdfdfd;
 }
 
 #header {
@@ -10,7 +10,7 @@
 #header .nav-link {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #000;
+  color: #ffffff;
   padding-bottom: 1px;
  
 }
@@ -27,6 +27,18 @@
   width: auto;
   padding: 0;
   margin: 0;
+}
+
+#header .nav-link.dropdown-toggle {
+  color: #000 !important;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding-bottom: 1px;
+}
+
+#header .nav-link.dropdown-toggle:hover {
+  border-bottom: solid #FF6F61;
+  text-decoration-thickness: 3px;
 }
 
 
