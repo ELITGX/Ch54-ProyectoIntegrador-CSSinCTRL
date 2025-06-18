@@ -1,5 +1,16 @@
 const form = document.getElementById("logInButton");
-form.addEventListener("submit", event => {
+
+// Función para encriptar la contraseña con SHA-256
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
+form.addEventListener("submit", async event => {
     event.preventDefault();// previene el envío del formulario
 
 
@@ -29,12 +40,12 @@ form.addEventListener("submit", event => {
         return;
     }
 
-    if (Email == storeUser.email && password == storeUser.password) {//Comprobación de inicio de sesión
-        alert("¡Bienvenido/a! ¡Has iniciado sesión correctamente!");
-        window.location.href = "../../../index.html"; // Redirige al usuario a la página principal
-        const boolean = true;
-        localStorage.setItem("isLoggedIn", JSON.stringify(boolean)); // Guarda el estado de sesion iniciada
+    const hashedInputPassword = await hashPassword(password); // <<< encriptamos la entrada
+
+    if (Email === storeUser.email && hashedInputPassword === storeUser.password) {
+        localStorage.setItem("isLoggedIn", JSON.stringify(true));
+        window.location.href = "../../../index.html";
     } else {
-        alert("Correo incorrecto");
+        alert("Correo o contraseña incorrectos.");
     }
 });
