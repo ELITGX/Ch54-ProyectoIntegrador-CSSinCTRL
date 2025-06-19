@@ -100,7 +100,7 @@ const manejarBotonCuenta = (homePath) => {
     const btnCerrarSesion = document.getElementById("cerrar-sesion-btn");
     btnCerrarSesion.addEventListener("click", () => {
       localStorage.removeItem("isLoggedIn");
-      window.location.href = homePath + "index.html";
+      window.location.href = homePath + "src/pages/inicioSesion/inicioSesion.html";
     });
   } else {
     cuentaNav.innerHTML = `
