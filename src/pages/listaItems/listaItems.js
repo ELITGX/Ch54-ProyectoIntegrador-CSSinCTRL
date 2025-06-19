@@ -23,20 +23,21 @@ const readProducts = async(url) => {
 
 // Esta funcion es para renderizar el producto
 const buildProductCards = (products) => {
-    const cards = products.map((product) => (
-        `<div class="col-auto mt-3">
-            <div class="card" style="width: 18rem;">
-                <img src=${product.img} class="card-img-top cardImage mx-auto d-block" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">$${product.price}</p>
-                    <a href="#" class="btn btn-primary"> Añadir al carrito </a>
-                </div>
-            </div>
-        </div>`
-    ));
-    return cards;
-}
+  const cards = products.map((product, index) => (
+    `<div class="col-auto mt-3">
+      <div class="card" style="width: 18rem;">
+        <img src="${product.img}" class="card-img-top cardImage mx-auto d-block" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${product.name}</h5>
+          <p class="card-text">$${product.price}</p>
+          <button class="btn btn-info view-more-btn" data-index="${index}">Ver más</button>
+        </div>
+      </div>
+    </div>`
+  ));
+  return cards;
+};
+
 
 const insertCardsDom = (tarjetas, idDOM = "cards") => {
     const refDom = document.getElementById(idDOM);
@@ -56,6 +57,33 @@ const createProductCars = () => {
     const products = data.results;
     const cards = buildProductCards(products);
     insertCardsDom(cards);
+
+    document.querySelectorAll(".view-more-btn").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const index = e.target.dataset.index;
+    const product = products[index];
+
+    // Rellenar datos del modal
+    document.getElementById("modalProductImg").src = product.img;
+    document.getElementById("modalProductName").textContent = product.name;
+    document.getElementById("modalProductDesc").textContent = product.description;
+    document.getElementById("modalProductPrice").textContent = product.price;
+    document.getElementById("modalProductPres").textContent = product.presentation;
+    document.getElementById("modalProductConc").textContent = product.concentration;
+    document.getElementById("modalProductVia").textContent = product.administrationRoute;
+
+    // Botón "Añadir al carrito" dentro del modal
+    document.getElementById("modalAddToCart").onclick = () => {
+      addToCart(product);
+      alert(`${product.name} añadido al carrito`);
+      bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
+    };
+
+    // Mostrar el modal
+    const modal = new bootstrap.Modal(document.getElementById("productModal"));
+    modal.show();
+  });
+});
 
     // Escuchar clicks en botones de "Añadir al carrito"
     document.querySelectorAll(".btn.btn-primary").forEach((btn, index) => {
