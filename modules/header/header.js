@@ -97,13 +97,25 @@ const manejarBotonCuenta = (homePath) => {
 
   if (isLoggedIn) {
     cuentaNav.innerHTML = `
-      <button class="btn btn-outline-light ms-2" id="cerrar-sesion-btn">Cerrar sesión</button>
+      <div class="dropdown">
+        <button class="btn dropdown-toggle btn-outline-light ms-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Mi cuenta
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+          <li><a class="dropdown-item" href="${homePath}src/pages/editarPerfil/editarPerfil.html">Editar perfil</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><button class="dropdown-item text-danger" id="cerrar-sesion-btn">Cerrar sesión</button></li>
+        </ul>
+      </div>
     `;
+
+    // Listener para cerrar sesión
     const btnCerrarSesion = document.getElementById("cerrar-sesion-btn");
     btnCerrarSesion.addEventListener("click", () => {
       localStorage.removeItem("isLoggedIn");
       window.location.href = homePath + "src/pages/inicioSesion/inicioSesion.html";
     });
+
   } else {
     cuentaNav.innerHTML = `
       <div class="dropdown">
@@ -119,6 +131,7 @@ const manejarBotonCuenta = (homePath) => {
     `;
   }
 };
+
 
 const getNumberCartItems = () =>{
   const cartProducts = JSON.parse(localStorage.getItem("cart")) || [];
