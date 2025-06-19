@@ -19,7 +19,7 @@ const insertFooter = (footer, homePath = "./") => {
                     <a href="${homePath}src/pages/registerUser/registerUser.html">Mi cuenta</a>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-3 contacto">
-                    <h3>Contacto</h3>
+                    <h3><a class="nav-link text-mamx" href="${homePath}src/pages/contact/contact.html">Contáctanos</a></h3>
                      <i class="bi bi-envelope">medicinamexico417@gmail.com</i>
                 </div>
             </div>

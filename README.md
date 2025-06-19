@@ -2,6 +2,7 @@
 
 ### Equipo: **CSSin CTRL**
 
+=======
 - Desarrollo de la página web de Medicinas Alternativas Mx
 - Autoriazdo por medio de la Fundadora Silvia Huerta
 
@@ -107,3 +108,4 @@ cd Ch54-ProyectoIntegrador-CSSinCTRL
 
 ### Licencia
 Este proyecto es de uso académico y colaborativo, sin fines de lucro.
+>>>>>>> 08051e329ab30a451812aac2c7f91fb4c6f045c5
