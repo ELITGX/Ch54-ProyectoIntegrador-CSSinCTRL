@@ -1,17 +1,140 @@
+body{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: 
+        auto 1fr auto;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+
+}
+
+.error-alert{
+    z-index: 1;
+    display: none;
+}
+
+.locationPage{
+    margin: 0;
+    margin-top: 40px;
+    padding: 15px;
+}
+#mainRef{
+    opacity: 0.5;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+#formularioRef{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+.nombreDelProducto {
+    font-size: 12px;
+}
+
+.row{
+    display: flex;/* 
+    justify-self: center; */
+    flex-wrap: wrap; 
+}
+
+.añade{
+    margin: 0;
+    margin-top: 16px;
+    padding: 15px;
+    text-align: center;
+}
+
+.añadirArchivos{
+    padding: 16px;
+    padding-left: 30px
+}
+
+#btn-codigo {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #80AACC;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+#columna1{
+    margin-top: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#columna2{
+    margin-top: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#columna3{
+    margin-top: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#columna4{
+    margin-top: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#añadirPrincipalDiv, #botonesDiv{
+    margin: 30px;
+}
+#descripción .col-4 {
+    margin-bottom: 16px;
+}
+ #btnPublishRegisterUser {
+    background-color: var(--blue-god);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+#img{
+    max-width: 24%;
+    display: block;
+}
+a{
+    color:var(--font-text);
+}
+a:hover{
+    color: var(--highlights);
+}
+
+/*------------------ Estilos tarjeta ----------------------*/
+
+:root{
+    --blue-demon: #80aacc;
+    --blue-god: #2C3E50;
+    --blue-little: #d6e6d6; 
+    --highlights: #ff6f61;
+    --font-text: #3b3b3b;
+    
+}
+
 .gradient-custom-2 {
 /* fallback for old browsers */
 background: #fccb90;
 
 /* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, #80aacc 20%, #d6e6f2 );
+background-image: url(../../../images/pexels-n-voitkevich-7615558.jpg);
 
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(180deg,#2c3e50 30%, #80aacc );
+background-image: url(../../../images/pexels-n-voitkevich-7615558.jpg);
+
+background-size: cover;
 }
+
 
 .gradient-custom-1{
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(180deg,#2c3e50 30%, #80aacc );
+background: linear-gradient(180deg, var(--blue-god) 30%, var(--blue-demon) );
+
+
+
 }
 
 @media (min-width: 768px) {
@@ -25,4 +148,60 @@ height: 100vh !important;
 border-top-right-radius: .3rem;
 border-bottom-right-radius: .3rem;
 }
+}
+
+.btn-arrow {
+  top: 10px;
+  left: 10px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  z-index: 10;
+}
+.btn-arrow svg {
+  width: 28px;
+  height: 28px;
+}
+
+svg:hover{
+    fill: var(--highlights);
+}
+
+
+/* Oculta el checkbox original */
+.checkbox-custom input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Estilo del contenedor */
+.checkbox-custom {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Recuadro personalizado */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #f0f0f0; /* Color antes de marcar */
+  border: 2px solid #999;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+/* Cambia el color al pasar el mouse */
+.checkbox-custom:hover .checkmark {
+  background-color: #d0d0d0;
+}
+
+/* Cambia el color cuando está marcado */
+.checkbox-custom input:checked + .checkmark {
+  background-color: var(--blue-god);
 }
