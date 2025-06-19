@@ -101,3 +101,11 @@ h3{
     background-color: #f8f8f8;
     border-radius: 4px;
 }
+#productList {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    overflow-y: auto;
+    max-height: 600px;
+}

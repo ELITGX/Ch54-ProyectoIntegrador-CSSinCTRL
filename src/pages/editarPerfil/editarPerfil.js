@@ -4,11 +4,12 @@ import { insertFooter } from "../../../modules/footer/footer.js";
 const homePath = "../../../";
 // insertHeader(document.getElementById("header"), homePath);
 // insertFooter(document.getElementById("footer"), homePath);
+const archivoJson = JSON.parse(localStorage.getItem("usuario"));
 
-
-// Asumiendo que las validaciones ya se hicieron y el formulario es válido
-
-const form = document.getElementById("registerUser");
+const input = archivoJson.nameUser;
+document.getElementById("nameUser").value=archivoJson.nameUser;
+document.getElementById("phoneUser").value=archivoJson.phone;
+document.getElementById("emailUser").value=archivoJson.email;
 
 async function hashPassword(password) {
     const encoder = new TextEncoder();
@@ -20,6 +21,7 @@ async function hashPassword(password) {
 }
 
 
+const form = document.getElementById("registerUser");
 form.addEventListener("submit", async event => {
   event.preventDefault(); // Prevenir que se recargue la página
 
@@ -29,9 +31,7 @@ form.addEventListener("submit", async event => {
     phone: document.getElementById("phoneUser").value,
     email: document.getElementById("emailUser").value,
     password: document.getElementById("passwordUser").value,
-    passwordConfirm: document.getElementById("passwordConfirm").value,
-    termsAndConditions: document.getElementById("checkConditions").checked,
-    privacityAgreement: document.getElementById("checkPrivacity").checked
+    passwordConfirm: document.getElementById("passwordConfirm").value
   };
 
   // ================================ Desestructuración ==============================================
@@ -81,13 +81,6 @@ form.addEventListener("submit", async event => {
 
     alertInput("¡Verifica que ambas contraseñas coincidan!", "#FF6F61", "#FF6F61", "#D6E6F2");
 
-  } else if (termsAndConditions != true) {
-
-    alertInput("¡Debes aceptar términos y condiciones para continuar!", "#FF6F61", "#FF6F61", "#D6E6F2");
-
-  } else if (privacityAgreement != true ) {
-
-    alertInput("¡Debes aceptar el acuerdo de privacidad para continuar!", "#FF6F61", "#FF6F61", "#D6E6F2");
   } else {
     alertInput("¡Datos enviados exitosamente!", "#0a3622", "#0a3622", "#d1e7dd");
     
