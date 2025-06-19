@@ -1,5 +1,5 @@
 // Shopping.js 
-import { insertHeader } from "../../../modules/header/header.js";
+import { insertHeader, getNumberCartItems } from "../../../modules/header/header.js";
 import { insertFooter } from "../../../modules/footer/footer.js";
 const homePath ="../../../"
 const localStorageKey = "products";
@@ -77,6 +77,7 @@ const createProductCars = () => {
       addToCart(product);
       alert(`${product.name} añadido al carrito`);
       bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
+      getNumberCartItems();
     };
 
     // Mostrar el modal
@@ -91,6 +92,7 @@ const createProductCars = () => {
             const product = products[index];
             addToCart(product);
             alert(`${product.name} se agregó al carrito`);
+            getNumberCartItems();
         });
     });
 }

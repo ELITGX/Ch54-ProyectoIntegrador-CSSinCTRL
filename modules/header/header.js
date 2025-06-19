@@ -11,15 +11,25 @@ const renderHeaderHTML = (header, homePath = "./") => {
           <img src="${homePath}images/logoMAMX.png" alt="Logo Medicina Alternativa">
         </a>
 
-        <!-- Botón del menú en móvil -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarNav" aria-controls="navbarNav"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="d-flex align-items-center ms-auto order-lg-2">
+          <!-- Botón del menú en móvil -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="position-relative">
+            <a class="nav-link" href="/src/pages/ShoppingCart/ShoppingCart.html">
+              <i class="bi bi-cart-plus cart-icon"></i>
+            </a>
+            <!-- Badge -->
+            <span class="position-absolute translate-middle badge rounded-pill bg-danger " id="cartBadge">
+              9+
+            </span>
+          </div>
+        </div>
 
         <!-- Contenido colapsable -->
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse order-lg-1" id="navbarNav">
           
           <!-- Barra de búsqueda centrada -->
           <form class="d-flex mx-auto my-2" role="search" style="width: 100%; max-width: 600px;">
@@ -61,15 +71,7 @@ const renderHeaderHTML = (header, homePath = "./") => {
             <li class="nav-item">
               <a class="nav-link" href="${homePath}src/pages/aboutUs/aboutUs.html">Acerca de</a>
             </li>
-            <li class="nav-item">
-                  <a class="nav-link" href="${homePath}src/pages/ShoppingCart/ShoppingCart.html"><svg xmlns="http://www.w3.org/2000/svg"
-                width="24" height="24" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 20 20">
-                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z" />
-                <path
-                  d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
-              </svg>
-            </a>
-            </li>
+            
           </ul>
         </div>
       </div>
@@ -118,6 +120,26 @@ const manejarBotonCuenta = (homePath) => {
   }
 };
 
+const getNumberCartItems = () =>{
+  const cartProducts = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartBadge = document.getElementById("cartBadge");
+    
+  if(cartProducts.length > 0){
+    cartBadge.style.display = "block";
+    if(cartProducts.length > 9)
+    {
+      cartBadge.style.right = "-20px;"
+      cartBadge.innerText = "9+";
+    }else{
+      cartBadge.style.right = "-15px;"
+      cartBadge.innerText = cartProducts.length;
+    }
+  }else{
+    cartBadge.style.display = "none";
+  }
+}
+
+
 
 // ESTA es la función que usas en cada página
 const insertHeader = (headerElement, homePath = "./") => {
@@ -125,8 +147,9 @@ const insertHeader = (headerElement, homePath = "./") => {
     renderHeaderHTML(headerElement, homePath);
     controlarVisibilidadFormulario();
     manejarBotonCuenta(homePath);
+    getNumberCartItems();
   });
 };
 
-export { insertHeader };
+export { insertHeader,getNumberCartItems };
 
