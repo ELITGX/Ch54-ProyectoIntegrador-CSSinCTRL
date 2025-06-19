@@ -22,8 +22,8 @@
         <section>
             <h1>Detalles de la facturación</h1>
             <form action="">
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="row" >
+                    <div class="col-md-6" id="information-col">
                         <label>Nombre del comprador</label>
                         <input type="text" placeholder="" class="facturation-input">
                         <label>Nombre de la empresa</label>
@@ -42,30 +42,23 @@
                     </div>
                     <div class="col-md-6" >
                         <section id="products">
-                            <div class="row row-product">
-                                <div class="col-4">
-                                    <img src="../../../images/Productos/arginina.png" alt="imagen del producto" class="productImage">
-                                </div>
-                                <div class="col-4 divTextProduct">
-                                    <p class="productName">Arginina</p>
-                                </div>
-                                <div class="col-4 divTextProduct">
-                                    <p class="totalProduct">$230 MNX</p>
-                                </div>
-                            </div>
-                            <div class="row row-product">
-                                <div class="col-4">
-                                    <img src="../../../images/Productos/arginina.png" alt="imagen del producto" class="productImage">
-                                </div>
-                                <div class="col-4 divTextProduct">
-                                    <p class="productName">Arginina</p>
-                                </div>
-                                <div class="col-4 divTextProduct">
-                                    <p class="totalProduct">$230 MNX</p>
-                                </div>
-                            </div>
-
+                            
                         </section>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                            <label class="form-check-label" for="radioDefault1">
+                                Opción 1 de pago
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+                            <label class="form-check-label" for="radioDefault2">
+                                Opción 2 de pago
+                            </label>
+                        </div>
+                        <div class="divButton">
+                                <button class="btn w-100 w-md-auto" type="submit" id="btnEnviar">ENVIAR</button>
+                        </div>
                     </div>
 
                 </div>
