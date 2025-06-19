@@ -1,33 +1,51 @@
 const form = document.getElementById("logInButton");
-form.addEventListener("submit", event => {
+
+// Función para encriptar la contraseña con SHA-256
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
+form.addEventListener("submit", async event => {
     event.preventDefault();// previene el envío del formulario
 
 
     // Crear el objeto directamente mientras se obtienen los valores de los inputs
-    const userData = {
 
-        phoneOrEmail: document.getElementById("form2Example11").value,
-        password: document.getElementById("password").value,
-    };
-
-    const { phoneOrEmail, password } = userData;
-
+    const Email = document.getElementById("Email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
     // Pruebas Validacion de  datos del usuario
-    let validationEmail = RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-    let validationPhone = RegExp("^\\d{10}$");
-    let validationPassword = RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$");
+    const validationEmail = RegExp (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
+    const validationPassword = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/);
 
     // Validacion de los datos del usuario
-    if (!validationEmail.test(phoneOrEmail) && !validationPhone.test(phoneOrEmail)) {
-        alert("El correo electrónico o número de teléfono no es válido.");
+    if (!validationEmail.test(Email)) {
+        alert("El correo electrónico no es válido.");
         return;
-    } else if (!validationPassword.test(password)) {
+    } 
+    
+    if (!validationPassword.test(password)) {
         alert("La contraseña es incorrecta.");
         return;
-    } else if ((userData.phoneOrEmail == localStorage.getItem("email") || userData.phoneOrEmail == localStorage.getItem("phone")) 
-                && userData.password == localStorage.getItem("password")) {//Comprobación de inicio de sesión
-        alertInput("¡Biuenvenvenido/a!", "¡Has iniciado sesión correctamente!");
     }
 
+    const storeUser = JSON.parse(localStorage.getItem("usuario"));
+    
+    if (!storeUser){
+        return;
+    }
+
+    const hashedInputPassword = await hashPassword(password); // <<< encriptamos la entrada
+
+    if (Email === storeUser.email && hashedInputPassword === storeUser.password) {
+        localStorage.setItem("isLoggedIn", JSON.stringify(true));
+        window.location.href = "../../../index.html";
+    } else {
+        alert("Correo o contraseña incorrectos.");
+    }
 });

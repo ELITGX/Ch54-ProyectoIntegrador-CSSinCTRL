@@ -10,7 +10,17 @@ insertFooter(document.getElementById("footer"), homePath);
 
 const form = document.getElementById("registerUser");
 
-form.addEventListener("submit", event => {
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
+
+form.addEventListener("submit", async event => {
   event.preventDefault(); // Prevenir que se recargue la página
 
  // Crear el objeto directamente mientras se obtienen los valores de los inputs
@@ -80,8 +90,20 @@ form.addEventListener("submit", event => {
     alertInput("¡Debes aceptar el acuerdo de privacidad para continuar!", "#FF6F61", "#FF6F61", "#D6E6F2");
   } else {
     alertInput("¡Datos enviados exitosamente!", "#0a3622", "#0a3622", "#d1e7dd");
-    const userDataJSON = JSON.stringify(userData);
-    localStorage.setItem("usuario", userDataJSON);
+    
+
+    const hashedPassword = await hashPassword(password);
+    const userToStore = {
+      nameUser,
+      phone,
+      email,
+      password: hashedPassword,
+      termsAndConditions,
+      privacityAgreement
+    };
+    localStorage.setItem("usuario", JSON.stringify(userToStore));
+
+    // const userDataJSON = JSON.stringify(userData);
     form.reset();
   }
   

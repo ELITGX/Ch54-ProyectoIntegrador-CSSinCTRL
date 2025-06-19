@@ -1,6 +1,6 @@
 
 
-const insertHeader = (header, homePath = "./") => {
+const renderHeaderHTML = (header, homePath = "./") => {
 
   header.innerHTML = `
     <!-- Navbar (HEADER) -->
@@ -46,10 +46,16 @@ const insertHeader = (header, homePath = "./") => {
             <li class="nav-item">
               <a class="nav-link active" href="${homePath}index.html">Inicio</a>
             </li>
+
+          <li class="nav-item" id="cuenta-nav">
+            <!-- El contenido se reemplazará dinámicamente por login/logout -->
+          </li>
+
+
             <li class="nav-item">
               <a class="nav-link" href="${homePath}src/pages/listaItems/listaItems.html">Lista de Ítems</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="formulario-nav">
               <a class="nav-link" href="${homePath}src/pages/formulario/formularioDeCreacion.html">Formulario</a>
             </li>
             <li class="nav-item">
@@ -64,21 +70,6 @@ const insertHeader = (header, homePath = "./") => {
               </svg>
             </a>
             </li>
-            <li class="nav-item">
-              <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Cuenta
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item active" href="${homePath}src/pages/inicioSesion/inicioSesion.html">Inicio de sesión</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="${homePath}src/pages/registerUser/registerUser.html">Registro</a></li>
-                </ul>
-              </div>
-            </li>
           </ul>
         </div>
       </div>
@@ -86,4 +77,56 @@ const insertHeader = (header, homePath = "./") => {
     `
 }
 
+// Verifica si el usuario está logueado para mostrar u ocultar el botón del formulario
+const controlarVisibilidadFormulario = () => {
+  const formularioNav = document.getElementById("formulario-nav");
+  const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+
+  if (formularioNav) {
+    formularioNav.style.display = isLoggedIn ? "block" : "none";
+  }
+};
+
+const manejarBotonCuenta = (homePath) => {
+  const cuentaNav = document.getElementById("cuenta-nav");
+  const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+
+  if (!cuentaNav) return;
+
+  if (isLoggedIn) {
+    cuentaNav.innerHTML = `
+      <button class="btn btn-outline-light ms-2" id="cerrar-sesion-btn">Cerrar sesión</button>
+    `;
+    const btnCerrarSesion = document.getElementById("cerrar-sesion-btn");
+    btnCerrarSesion.addEventListener("click", () => {
+      localStorage.removeItem("isLoggedIn");
+      window.location.href = homePath + "src/pages/inicioSesion/inicioSesion.html";
+    });
+  } else {
+    cuentaNav.innerHTML = `
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Cuenta
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+          <li><a class="dropdown-item active" href="${homePath}src/pages/inicioSesion/inicioSesion.html">Inicio de sesión</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="${homePath}src/pages/registerUser/registerUser.html">Registro</a></li>
+        </ul>
+      </div>
+    `;
+  }
+};
+
+
+// ESTA es la función que usas en cada página
+const insertHeader = (headerElement, homePath = "./") => {
+  document.addEventListener("DOMContentLoaded", () => {
+    renderHeaderHTML(headerElement, homePath);
+    controlarVisibilidadFormulario();
+    manejarBotonCuenta(homePath);
+  });
+};
+
 export { insertHeader };
+
