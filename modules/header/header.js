@@ -18,7 +18,7 @@ const renderHeaderHTML = (header, homePath = "./") => {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="position-relative">
-            <a class="nav-link" href="/src/pages/ShoppingCart/ShoppingCart.html">
+            <a class="nav-link" href="${homePath}/src/pages/ShoppingCart/ShoppingCart.html">
               <i class="bi bi-cart-plus cart-icon"></i>
             </a>
             <!-- Badge -->
