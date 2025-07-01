@@ -7,7 +7,7 @@
   background: #80AACC;
 }
 
-#header .nav-link {
+#header .nav-link, #header button{
   font-size: 1.1rem;
   font-weight: bold;
   color: #ffffff;
@@ -30,7 +30,7 @@
 }
 
 #header .nav-link.dropdown-toggle {
-  color: #000 !important;
+  color: #fff !important;
   font-size: 1.1rem;
   font-weight: bold;
   padding-bottom: 1px;
