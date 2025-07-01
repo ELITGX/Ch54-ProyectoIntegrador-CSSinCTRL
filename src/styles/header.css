@@ -21,6 +21,17 @@
 
 }
 */
+@media(min-width: 720px) {
+  #header .nav-link, #header button{
+    padding-left: 1em;
+  }
+}
+@media(min-width: 1200px) {
+  #header .nav-link, #header button{
+    padding-left: 2em;
+  }
+  
+}
 .nav-link {
   position: relative;
   width: max-content;
