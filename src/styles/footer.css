@@ -26,7 +26,7 @@ h3 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.soporte, .contacto {
+.soporte, .contacto , .cuenta , .exclusivo {
   display: flex;
   flex-direction: column;
 }
