@@ -97,8 +97,8 @@ const manejarBotonCuenta = (homePath) => {
 
   if (isLoggedIn) {
     cuentaNav.innerHTML = `
-      <div class="dropdown">
-        <button class="btn dropdown-toggle btn-outline-light ms-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="nav-item dropdown">
+        <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Mi cuenta
         </button>
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
@@ -118,8 +118,8 @@ const manejarBotonCuenta = (homePath) => {
 
   } else {
     cuentaNav.innerHTML = `
-      <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="nav-item dropdown">
+        <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Cuenta
         </button>
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
