@@ -65,7 +65,7 @@ const renderHeaderHTML = (header, homePath = "./") => {
 
 
             <li class="nav-item">
-              <a class="nav-link" href="${homePath}src/pages/listaItems/listaItems.html">Lista de Ítems</a>
+              <a class="nav-link" href="${homePath}src/pages/listaItems/listaItems.html">Productos</a>
             </li>
             <li class="nav-item" id="formulario-nav">
               <a class="nav-link" href="${homePath}src/pages/formulario/formularioDeCreacion.html">Formulario</a>
