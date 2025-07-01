@@ -34,19 +34,21 @@ const renderHeaderHTML = (header, homePath = "./") => {
           <!-- Barra de búsqueda centrada -->
           <form class="d-flex mx-auto my-2" role="search" style="width: 100%; max-width: 600px;">
             <!-- Selector de categoría -->
+            <!--
             <select class="form-select me-2" style="min-width: 140px;">
               <option selected>Categoría</option>
               <option value="1">Salud</option>
               <option value="2">Belleza</option>
               <option value="3">Bienestar</option>
             </select>
+            -->
 
             <!-- Campo de búsqueda -->
              <div class="container row">
                 <input class="form-control me-6" type="search" placeholder="Buscar..." aria-label="Buscar" style="flex: 1; min-width:100px; max-width: 700px;">
               </div>
             <!-- Botón lupa -->
-            <button class="btn btn-outline-light" type="submit">
+            <button class="btn btn-outline-primary" type="submit">
               <i class="bi bi-search"></i>
             </button>
           </form>
