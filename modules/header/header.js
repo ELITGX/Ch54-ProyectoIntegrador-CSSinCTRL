@@ -37,19 +37,21 @@ const renderHeaderHTML = (header, homePath = "./") => {
           <!-- Barra de búsqueda centrada -->
           <form class="d-flex mx-auto my-2" role="search" style="width: 100%; max-width: 600px;">
             <!-- Selector de categoría -->
+            <!--
             <select class="form-select me-2" style="min-width: 140px;">
               <option selected>Categoría</option>
               <option value="1">Salud</option>
               <option value="2">Belleza</option>
               <option value="3">Bienestar</option>
             </select>
+            -->
 
             <!-- Campo de búsqueda -->
              <div class="container row">
                 <input class="form-control me-6" type="search" placeholder="Buscar..." aria-label="Buscar" style="flex: 1; min-width:100px; max-width: 700px;">
               </div>
             <!-- Botón lupa -->
-            <button class="btn btn-outline-light" type="submit">
+            <button class="btn btn-outline-primary" type="submit">
               <i class="bi bi-search"></i>
             </button>
           </form>
@@ -66,7 +68,7 @@ const renderHeaderHTML = (header, homePath = "./") => {
 
 
             <li class="nav-item">
-              <a class="nav-link" href="${homePath}src/pages/listaItems/listaItems.html">Lista de Ítems</a>
+              <a class="nav-link" href="${homePath}src/pages/listaItems/listaItems.html">Productos</a>
             </li>
             <li class="nav-item" id="formulario-nav">
               <a class="nav-link" href="${homePath}src/pages/formulario/formularioDeCreacion.html">Formulario</a>
@@ -100,17 +102,29 @@ const manejarBotonCuenta = (homePath) => {
 
   if (isLoggedIn) {
     cuentaNav.innerHTML = `
-      <button class="btn btn-outline-light ms-2" id="cerrar-sesion-btn">Cerrar sesión</button>
+      <div class="nav-item dropdown">
+        <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Mi cuenta
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+          <li><a class="dropdown-item" href="${homePath}src/pages/editarPerfil/editarPerfil.html">Editar perfil</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><button class="dropdown-item text-danger" id="cerrar-sesion-btn">Cerrar sesión</button></li>
+        </ul>
+      </div>
     `;
+
+    // Listener para cerrar sesión
     const btnCerrarSesion = document.getElementById("cerrar-sesion-btn");
     btnCerrarSesion.addEventListener("click", () => {
       localStorage.removeItem("isLoggedIn");
-      window.location.href = homePath + "index.html";
+      window.location.href = homePath + "src/pages/inicioSesion/inicioSesion.html";
     });
+
   } else {
     cuentaNav.innerHTML = `
-      <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="nav-item dropdown">
+        <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Cuenta
         </button>
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
@@ -122,6 +136,7 @@ const manejarBotonCuenta = (homePath) => {
     `;
   }
 };
+
 
 const getNumberCartItems = () =>{
   const cartProducts = JSON.parse(localStorage.getItem("cart")) || [];
