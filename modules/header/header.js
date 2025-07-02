@@ -11,21 +11,24 @@ const renderHeaderHTML = (header, homePath = "./") => {
           <img src="${homePath}images/logoMAMX.png" alt="Logo Medicina Alternativa">
         </a>
 
-        <div class="d-flex align-items-center ms-auto order-lg-2">
-          <!-- Botón del menú en móvil -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="position-relative">
+        <div class="ms-auto d-flex align-items-center order-lg-2">
+        <!-- ícono del carrito -->
+        <div class="position-relative">
             <a class="nav-link" href="/src/pages/ShoppingCart/ShoppingCart.html">
               <i class="bi bi-cart-plus cart-icon"></i>
             </a>
             <!-- Badge -->
             <span class="position-absolute translate-middle badge rounded-pill bg-danger " id="cartBadge">
-              9+
+
             </span>
           </div>
+
+          <!-- Botón del menú en móvil -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
         </div>
 
         <!-- Contenido colapsable -->
