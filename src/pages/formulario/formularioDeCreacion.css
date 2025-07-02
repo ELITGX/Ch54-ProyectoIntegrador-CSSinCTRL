@@ -88,13 +88,6 @@ h3{
 #descripción .col-4 {
     margin-bottom: 16px;
 }
- #botonDescuento {
-    background-color: #80AACC;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-}
 #resultadoDescuento {
     margin-top: 15px;
     padding: 10px;
@@ -109,3 +102,13 @@ h3{
     overflow-y: auto;
     max-height: 600px;
 }
+
+.card-header {
+    background-color: #80AACC !important;
+}
+
+#btnPublishProduct,#discount-Btn ,#discount {
+    width: 100%;
+}
+
+
