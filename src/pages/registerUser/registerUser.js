@@ -1,110 +1,105 @@
-import { insertHeader } from "../../../modules/header/header.js";
-import { insertFooter } from "../../../modules/footer/footer.js";
+document.addEventListener("DOMContentLoaded", () => {
 
-const homePath = "../../../";
-// insertHeader(document.getElementById("header"), homePath);
-// insertFooter(document.getElementById("footer"), homePath);
+  function openModal() {
+    const modal = document.getElementById("successModal");
+    modal.classList.add("show");
 
+    setTimeout(() => {
+      modal.classList.remove("show");
+    }, 3000);
+  }
 
-// Asumiendo que las validaciones ya se hicieron y el formulario es válido
+  const form = document.getElementById("registerUser");
 
-const form = document.getElementById("registerUser");
-
-async function hashPassword(password) {
+  async function hashPassword(password) {
     const encoder = new TextEncoder();
     const data = encoder.encode(password);
     const hashBuffer = await crypto.subtle.digest("SHA-256", data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     return hashHex;
-}
+  }
 
+  form.addEventListener("submit", async event => {
+    event.preventDefault();
 
-form.addEventListener("submit", async event => {
-  event.preventDefault(); // Prevenir que se recargue la página
+    const userData = {
+      nameUser: document.getElementById("nameUser").value.trim(),
+      phone: document.getElementById("phoneUser").value.trim(),
+      email: document.getElementById("emailUser").value.trim(),
+      password: document.getElementById("passwordUser").value,
+      passwordConfirm: document.getElementById("passwordConfirm").value,
+      termsAndConditions: document.getElementById("checkConditions").checked,
+      privacityAgreement: document.getElementById("checkPrivacity").checked
+    };
 
- // Crear el objeto directamente mientras se obtienen los valores de los inputs
-  const userData = {
-    nameUser: document.getElementById("nameUser").value,
-    phone: document.getElementById("phoneUser").value,
-    email: document.getElementById("emailUser").value,
-    password: document.getElementById("passwordUser").value,
-    passwordConfirm: document.getElementById("passwordConfirm").value,
-    termsAndConditions: document.getElementById("checkConditions").checked,
-    privacityAgreement: document.getElementById("checkPrivacity").checked
-  };
+    // ================================ Desestructuración ==============================================
 
-  // ================================ Desestructuración ==============================================
+    const { nameUser, phone, email, password, passwordConfirm, termsAndConditions, privacityAgreement } = userData;
 
-  const { nameUser, phone, email, password, passwordConfirm, termsAndConditions, privacityAgreement} = userData;
-  
-  //  ================ Validaciones de entradas de usuario ======================================
+    //  ================ Validaciones de entradas de usuario ======================================
 
-  let validationName = RegExp("^[A-ZÁÉÍÓÚÑa-záéíóúñ]+(?: [A-ZÁÉÍÓÚÑa-záéíóúñ]+)*$");
-  let validationEmail = RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-  let validationPhone = RegExp("^\\d{10}$");
-  let validationPassword = RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$");
+    const validationName = /^[A-ZÁÉÍÓÚÑa-záéíóúñ]{2,}(?: [A-ZÁÉÍÓÚÑa-záéíóúñ]{2,})+$/;
+    const validationEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const validationPhone = /^\d{10}$/;
+    const validationPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,25}$/;
 
- // ======================== Alertas de bootstrap ===========================================
+    // ======================== Alertas de bootstrap ===========================================
 
-  const alertInput = (message, color, borderColor, backgroundColor) => {
-    alertContainer.innerHTML = `
-        <div class="alert alert-success alert-dismissible fade show" role="alert" style="text-align: center; background-color:${backgroundColor};
-        color:${color}; border-color: ${borderColor};">
-        <strong>${message}</strong>
-        </div>`
+    const alertInput = (message, color, borderColor, backgroundColor, id) => {
+        const target = document.getElementById(id);
+        target.innerHTML = `<span style="color:rgb(163, 18, 5);">${message}</span>`;
 
         setTimeout(() => {
-          alertContainer.innerHTML = ``
+            target.innerHTML = ``;
         }, 5000);
-  }
-  
-  // ========================================== Validación de inputs ==========================================
-
-  if (!validationName.test(nameUser)) {
-    
-    alertInput("¡Verifica que el nombre no contenga números, caracteres especiales o espacios al inicio y al final!", "#FF6F61", "#FF6F61", "#D6E6F2");
-
-  } else if (!validationPhone.test(phone)) {
-
-    alertInput("¡Verifica que el número telefónico contenga 10 dígitos", "#FF6F61", "#FF6F61", "#D6E6F2");
-
-  } else if (!validationEmail.test(email)) {
-
-    alertInput('¡Verifica que tu dirección de correo contenga "@" y/o un dominio válido!', "#FF6F61", "#FF6F61", "#D6E6F2");
-
-  } else if (!validationPassword.test(password)) {
-
-    alertInput("¡Verifica que tu contraseña contenga 8 caracteres como mínimo y al menos una letra mayúscula, un carácter especial y un número!", "#FF6F61", "#FF6F61", "#D6E6F2");
-
-  } else if (passwordConfirm != password ) {
-
-    alertInput("¡Verifica que ambas contraseñas coincidan!", "#FF6F61", "#FF6F61", "#D6E6F2");
-
-  } else if (termsAndConditions != true) {
-
-    alertInput("¡Debes aceptar términos y condiciones para continuar!", "#FF6F61", "#FF6F61", "#D6E6F2");
-
-  } else if (privacityAgreement != true ) {
-
-    alertInput("¡Debes aceptar el acuerdo de privacidad para continuar!", "#FF6F61", "#FF6F61", "#D6E6F2");
-  } else {
-    alertInput("¡Datos enviados exitosamente!", "#0a3622", "#0a3622", "#d1e7dd");
-    
-
-    const hashedPassword = await hashPassword(password);
-    const userToStore = {
-      nameUser,
-      phone,
-      email,
-      password: hashedPassword,
-      termsAndConditions,
-      privacityAgreement
     };
-    localStorage.setItem("usuario", JSON.stringify(userToStore));
 
-    // const userDataJSON = JSON.stringify(userData);
-    form.reset();
-  }
-  
+    // ========================================== Validación de inputs ==========================================
+
+    const storedUserJSON = localStorage.getItem("usuario");
+    const storedUser = storedUserJSON ? JSON.parse(storedUserJSON) : null;
+
+    if (!validationName.test(nameUser)) {
+      alertInput("Ingresa tu nombre completo", "#FF6F61", "#FF6F61", "#D6E6F2", "errorName");
+    } else if (!validationPhone.test(phone)) {
+      alertInput("Ingresa un número de teléfono válido", "#FF6F61", "#FF6F61", "#D6E6F2", "errorPhone");
+    } else if (!validationEmail.test(email)) {
+      alertInput('Ingresa una dirección de correo electrónico válida', "#FF6F61", "#FF6F61", "#D6E6F2", "errorEmail");
+    } else if (storedUser && storedUser.email === email) {
+      alertInput('Este correo ya está registrado. Intente con uno diferente', "#FF6F61", "#FF6F61", "#D6E6F2", "errorEmail");
+    } else if (!validationPassword.test(password)) {
+      alertInput("Contraseña inválida", "#FF6F61", "#FF6F61", "#D6E6F2", "errorPassword");
+    } else if (password !== passwordConfirm) {
+      alertInput("Las contraseñas no coinciden", "#FF6F61", "#FF6F61", "#D6E6F2", "errorConfirm");
+    } else if (!termsAndConditions) {
+      alertInput("Debes aceptar términos y condiciones", "#FF6F61", "#FF6F61", "#D6E6F2", "errorConditions");
+    } else if (!privacityAgreement) {
+      alertInput("Debes aceptar el acuerdo de privacidad", "#FF6F61", "#FF6F61", "#D6E6F2", "errorPrivacity");
+    } else {
+      openModal();
+
+      setTimeout(async () => {
+        // Cierra el modal 
+        const modal = document.getElementById("successModal");
+        modal.classList.remove("show");
+
+        // Continuación del flujo
+        const hashedPassword = await hashPassword(password);
+        const userToStore = {
+          nameUser,
+          phone,
+          email,
+          password: hashedPassword,
+          termsAndConditions,
+          privacityAgreement
+        };
+
+        localStorage.setItem("usuario", JSON.stringify(userToStore));
+
+        // const userDataJSON = JSON.stringify(userData);
+        form.reset();
+      }, 5000);
+    }
+  });
 });
