@@ -171,22 +171,22 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
         const bsAlert = new bootstrap.Alert(alert);
         bsAlert.close();
       }
-    }, 5000);
+    }, 3000);
   };
 
    
    if (!isValidId) {
-    alertInput("El ID debe tener al menos 3 caracteres alfanuméricos", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    alertInput("El producto debe tener un ID. Puede ser alfanumérico.", "#FF6F61", "#FFFFFF", "#FFFFFF");
   } else if (!isValidName) {
-    alertInput("Agrega el nombre del producto. Sólo puede contener letras y números", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    alertInput("Agrega el nombre del producto. Sólo puede contener letras y números.", "#FF6F61", "#FFFFFF", "#FFFFFF");
   } else if (!isValidDescription) {
-    alertInput("Agrega una descripción con máximo 500 caracteres", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    alertInput("Agrega una descripción con máximo 500 caracteres.", "#FF6F61", "#FFFFFF", "#FFFFFF");
   }else if (!isValidPrice) {
-    alertInput("El precio debe ser un número mayor a 0", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    alertInput("El precio es un campo requerido.", "#FF6F61", "#FFFFFF", "#FFFFFF");
   } else if (!isValidPresentation) {
-    alertInput("La presentación debe tener al menos 2 caracteres (ej: 10 ml)", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    alertInput("La presentación es un campo requerido. Ejemplo: 10 ml)", "#FF6F61", "#FFFFFF", "#FFFFFF");
   } else if (!isValidConcentration) {
-    alertInput("La concentración es un campo requerido. Ejemplos válidos: 50mg, 10ml, 5mg/ml, 100UI", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    alertInput("La concentración es un campo requerido. Ejemplo: 50mg, 10ml, 5mg/ml, 100UI", "#FF6F61", "#FFFFFF", "#FFFFFF");
   } else if (!isValidRouteMain) {
     alertInput("Debes seleccionar una vía principal de administración", "#FF6F61", "#FFFFFF", "#FFFFFF");
   } else if (!isValidRouteSub) {
@@ -305,13 +305,13 @@ const renderProductList = () => {
     li.innerHTML = `
       <div class="ms-2 me-auto">
         <div class="fw-bold">${product.name}</div>
-        Precio original: $${product.price.toFixed(2)} MX<br>
+        Precio original: $${product.price.toFixed(2)} MXN <br>
       ${product.porcentajeDescuento > 0 ? `
           <span class="text-danger">
             Descuento: ${product.porcentajeDescuento}% <br>
           </span> 
           <span class="text-success">
-           Precio final: $${product.price * (1 - product.porcentajeDescuento / 100)} MX <br>
+           Precio final: $${product.price * (1 - product.porcentajeDescuento / 100)} MXN <br>
           </span>`: ""}
         Stock: ${product.stock}
       </div>
