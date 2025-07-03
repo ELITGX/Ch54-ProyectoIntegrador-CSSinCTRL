@@ -66,6 +66,30 @@ const insertCardsDom = (tarjetas, idDOM = "cards") => {
     localStorage.setItem("cart", JSON.stringify(cart));
 } */ 
 
+    // ============== Filtro de productos =========================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const botonDeFiltro = document.querySelector("#aplicar-filtro");
+  const entradaFiltro = document.querySelector("#dato-filtro");
+
+  if (botonDeFiltro && entradaFiltro) {
+    botonDeFiltro.addEventListener("click", (e) => {
+      const valor = entradaFiltro.value?.trim();
+
+      if (!valor) {
+        createProductCards(); // sin filtro
+      } else {
+        createProductCards(valor); // con filtro
+      }
+    });
+  } else {
+    console.warn("No se encontró #aplicar-filtro o #dato-filtro en el DOM");
+  }
+});
+
+const filtrado = (productos = [], texto) => {
+  return productos.filter(item => item.name.trim(" ").toLowerCase().includes(texto.toLowerCase()));
+}
 
 // funcion nueva para agragar los productos al carrito
 const addToCart = (product) => {
@@ -85,10 +109,22 @@ const addToCart = (product) => {
 
 
 // ✅ CAMBIO MÍNIMO AQUÍ
-const createProductCars = () => {
+const createProductCards = (texto = "") => {
   let data = JSON.parse(localStorage.getItem(localStorageKey));
   console.log(data);
-  const products = data?.results || data;
+  
+  let products = data?.results || data;
+  
+  if (texto){
+    products = filtrado(data.results, texto);
+    console.log(texto)
+    console.log(products)
+  }else{
+    products = data?.results || data;
+    if (!products || !Array.isArray(products)) return;
+    
+  }
+  
   if (!products || !Array.isArray(products)) return;
 
   const cards = buildProductCards(products);
@@ -187,7 +223,7 @@ const addProduct = (newProduct) => {
   if (data?.results) {
     data.results.push(newProduct);
     localStorage.setItem(localStorageKey, JSON.stringify(data));
-    createProductCars();
+    createProductCards();
   }
 };
 
@@ -198,7 +234,7 @@ const updateProductById = (id, updatedFields) => {
       product.id === id ? { ...product, ...updatedFields } : product
     );
     localStorage.setItem(localStorageKey, JSON.stringify(data));
-    createProductCars();
+    createProductCards();
   }
 };
 
@@ -210,7 +246,7 @@ const deleteProduct = ({ id, name }) => {
       (name ? product.name.toLowerCase() !== name.toLowerCase() : true)
     );
     localStorage.setItem(localStorageKey, JSON.stringify(data));
-    createProductCars();
+    createProductCards();
   }
 };
 
@@ -219,11 +255,11 @@ const clearAllProducts = () => {
   if (data) {
     data.results = [];
     localStorage.setItem(localStorageKey, JSON.stringify(data));
-    createProductCars();
+    createProductCards();
   }
 };
 
 // Inicializar
 jsonToLocal("../../../modules/assets/objetos.json").then(() => {
-  createProductCars();
+  createProductCards();
 });
