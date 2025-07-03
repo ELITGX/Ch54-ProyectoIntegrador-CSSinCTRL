@@ -99,21 +99,6 @@ const manejarBotonCuenta = (homePath) => {
 
   if (isLoggedIn) {
     cuentaNav.innerHTML = `
-<<<<<<< HEAD
-      <button class="btn btn-outline-light ms-2" id="cerrar-sesion-btn">Cerrar sesión</button>
-  
-      <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Cuenta
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-          <li><button class="btn btn-outline-light ms-2" id="cerrar-sesion-btn">Cerrar sesión</button></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="${homePath}src/pages/registerUser/registerUser.html">Registro</a></li>
-        </ul>
-      </div>
-  
-=======
       <div class="nav-item dropdown">
         <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Mi cuenta
@@ -124,7 +109,6 @@ const manejarBotonCuenta = (homePath) => {
           <li><button class="dropdown-item text-danger" id="cerrar-sesion-btn">Cerrar sesión</button></li>
         </ul>
       </div>
->>>>>>> 30d2fec176915f3cfac2a4bb468489f121d11eed
     `;
 
     // Listener para cerrar sesión
