@@ -100,6 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // const userDataJSON = JSON.stringify(userData);
         form.reset();
       }, 5000);
+
+      localStorage.setItem("isLoggedIn", JSON.stringify(true));
+      window.location.href = "../../../index.html";
     }
   });
 });
