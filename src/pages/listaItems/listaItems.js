@@ -59,11 +59,30 @@ const insertCardsDom = (tarjetas, idDOM = "cards") => {
   refDom.innerHTML = tarjetas.join("");
 }
 
+// Función para agregar productos al carrito
+ /* const addToCart = (product) => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+} */ 
+
+
+// funcion nueva para agragar los productos al carrito
 const addToCart = (product) => {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push(product);
+
+  const existingItem = cart.find(item => item.id === product.id);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    product.quantity = 1;
+    cart.push(product);
+  }
+
   localStorage.setItem("cart", JSON.stringify(cart));
-}
+};
+
 
 // ✅ CAMBIO MÍNIMO AQUÍ
 const createProductCars = () => {
