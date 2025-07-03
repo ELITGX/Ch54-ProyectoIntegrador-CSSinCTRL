@@ -1,0 +1,83 @@
+/* Reset básico */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  font-size: 16px;
+  background-color: #fff;
+}
+.row{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+label{
+    width: 80%;
+}
+
+.facturation-input{
+  width: 90%;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.form-message{
+    width: 90%;
+    font-weight: bold;
+}
+
+.productImage {
+    height: 60px;
+    width: 28px;
+}
+
+.productName, .totalProduct{
+    margin: 0;
+}
+.row-product{
+    margin-bottom: 10px;
+}
+.divTextProduct{
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+h1{
+    
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.divButton{
+    
+    margin-top: 30px;
+}
+
+#products{
+    margin-bottom: 30px;
+}
+
+
+#btnEnviar{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #80AACC;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* estilo para los input*/
+/* .facturation-input{
+  margin-bottom: 10px;
+  width: 90%;
+  font-size: 16px;
+  background-color: #F5F5F5;
+  color: black;
+  font-weight: bold;
+  border-color: #F5F5F5;
+  border-width: 0;
+} */

@@ -1,5 +1,5 @@
 // Shopping.js
-import { insertHeader } from "../../../modules/header/header.js";
+import { insertHeader, getNumberCartItems } from "../../../modules/header/header.js";
 import { insertFooter } from "../../../modules/footer/footer.js";
 
 const homePath = "../../../";
@@ -16,7 +16,6 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 // Renderizar carrito
 function renderCart() {
   cartItemsContainer.innerHTML = "";
-
   if (cart.length === 0) {
     cartItemsContainer.innerHTML = "<p class='text-muted'>Tu carrito está vacío.</p>";
     cartTotalElement.textContent = "$0.00";
@@ -42,6 +41,7 @@ function renderCart() {
       </div>
   `;
 
+
   cartItemsContainer.appendChild(itemElement);
   total += item.price * item.quantity;
 
@@ -50,6 +50,11 @@ function renderCart() {
    cartTotalElement.textContent = total.toLocaleString("es-MX", {
     style: "currency",
     currency: "MXN"
+/* =======
+    cartItemsContainer.appendChild(itemElement);
+    total += item.price;
+    
+>>>>>>> 30d2fec176915f3cfac2a4bb468489f121d11eed */
   });
 
   const removeButtons = cartItemsContainer.querySelectorAll("button");
@@ -65,6 +70,8 @@ function removeItemFromCart(index) {
   cart.splice(index, 1);
   localStorage.setItem("cart", JSON.stringify(cart));
   renderCart();
+  getNumberCartItems();
+  
 }
 
 clearCartBtn.addEventListener("click", () => {
@@ -72,6 +79,7 @@ clearCartBtn.addEventListener("click", () => {
     cart = [];
     localStorage.removeItem("cart");
     renderCart();
+    getNumberCartItems();
   }
 });
 
@@ -84,6 +92,7 @@ checkoutBtn.addEventListener("click", () => {
   cart = [];
   localStorage.removeItem("cart");
   renderCart();
+  getNumberCartItems();
 });
 
 renderCart();

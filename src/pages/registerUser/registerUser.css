@@ -1,207 +1,391 @@
-body{
-    display: grid;
-    min-height: 100dvh;
-    grid-template-rows: 
-        auto 1fr auto;
+*{
     padding: 0;
     margin: 0;
-    overflow: auto;
-
+    box-sizing: border-box;
 }
 
-.error-alert{
-    z-index: 1;
-    display: none;
+body{
+    height: 110vh;
 }
 
-.locationPage{
-    margin: 0;
-    margin-top: 40px;
-    padding: 15px;
-}
-#mainRef{
-    opacity: 0.5;
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
-}
-#formularioRef{
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
-}
-.nombreDelProducto {
-    font-size: 12px;
+main{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.row{
-    display: flex;/* 
-    justify-self: center; */
-    flex-wrap: wrap; 
-}
-
-.añade{
-    margin: 0;
-    margin-top: 16px;
-    padding: 15px;
-    text-align: center;
-}
-
-.añadirArchivos{
-    padding: 16px;
-    padding-left: 30px
-}
-
-#btn-codigo {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #80AACC;
-    color: white;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-#columna1{
-    margin-top: 8px;
-    padding-left: 0px;
-    padding-right: 0px;
-}
-#columna2{
-    margin-top: 8px;
-    padding-left: 0px;
-    padding-right: 0px;
-}
-#columna3{
-    margin-top: 8px;
-    padding-left: 0px;
-    padding-right: 0px;
-}
-#columna4{
-    margin-top: 8px;
-    padding-left: 0px;
-    padding-right: 0px;
-}
-#añadirPrincipalDiv, #botonesDiv{
+section{
+    height: 90%;
+    min-width:1075px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
     margin: 30px;
 }
-#descripción .col-4 {
-    margin-bottom: 16px;
-}
- #btnPublishRegisterUser {
-    background-color: var(--blue-god);
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-}
-#img{
-    max-width: 24%;
-    display: block;
-}
-a{
-    color:var(--font-text);
-}
-a:hover{
-    color: var(--highlights);
-}
-
-/*------------------ Estilos tarjeta ----------------------*/
-
-:root{
-    --blue-demon: #80aacc;
-    --blue-god: #2C3E50;
-    --blue-little: #d6e6d6; 
-    --highlights: #ff6f61;
-    --font-text: #3b3b3b;
-    
-}
-
-.gradient-custom-2 {
-/* fallback for old browsers */
-background: #fccb90;
-
-/* Chrome 10-25, Safari 5.1-6 */
-background-image: url(../../../images/pexels-n-voitkevich-7615558.jpg);
-
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background-image: url(../../../images/pexels-n-voitkevich-7615558.jpg);
-
-background-size: cover;
-}
-
-
-.gradient-custom-1{
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(180deg, var(--blue-god) 30%, var(--blue-demon) );
 
 
 
-}
-
-@media (min-width: 768px) {
-.gradient-form {
-height: 100vh !important;
-}
-}
-
-@media (min-width: 769px) {
-.gradient-custom-2 {
-border-top-right-radius: .3rem;
-border-bottom-right-radius: .3rem;
-}
+.izq{
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+    padding: 4% 0 2% 0;
+    background-color: rgb(255, 255, 255);
+    border: solid 0.1px black;
+    border-right: none;
+    border-radius: 10px 0px 0px 10px;
 }
 
 .btn-arrow {
-  top: 10px;
-  left: 10px;
-  border: none;
+  position: absolute;       
+  top: 1rem;
+  left: 1rem;
   background: transparent;
+  border: none;
   padding: 0;
-  z-index: 10;
+  cursor: pointer;
+  z-index: 1000;            
 }
+
 .btn-arrow svg {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
+  fill: #2c3e50;
 }
 
-svg:hover{
-    fill: var(--highlights);
+.btn-arrow svg:hover{
+    fill: #ff6f61;
+    transition: ease 0.8s;
 }
 
+.izq > h1{
+    margin-bottom: 2rem;
+}
 
-/* Oculta el checkbox original */
-.checkbox-custom input {
-  position: absolute;
-  opacity: 0;
+.izq > form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    overflow: hidden;
+}
+
+form label[for="nameUser"],
+form label[for="emailUser"],
+form label[for="phoneUser"],
+form label[for="passwordUser"],
+form label[for="passwordConfirm"] {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 0;
+}
+
+form input[type="checkbox"] {
+  margin-bottom: 0.9rem;
+}
+
+form > p{
+    height: 12px;
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#errorPrivacity, #errorConditions {
+    margin-bottom: 0px;
+}
+
+#checkPrivacity, #checkConditions{
+  margin: 0;
+  padding: 0;
+}
+
+#checkPrivacity{
+  margin-top: 10px;
+}
+
+form button {
+  margin-top: 1rem;
+  background-color: rgb(44, 62, 80); /* color base */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1rem;
   cursor: pointer;
-}
-
-/* Estilo del contenedor */
-.checkbox-custom {
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
-  padding-left: 30px;
-  cursor: pointer;
-  font-size: 16px;
+  overflow: hidden;
+  z-index: 1;
 }
 
-/* Recuadro personalizado */
-.checkmark {
+form button::before {
+  content: "";
   position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: #ff6f61;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s ease-in-out;
+  z-index: -1;
+}
+
+form button:hover::before {
+  transform: scaleX(1);
+}
+
+#linkConditions, #linkPrivacity{
+    color: black;
+}
+
+#linkConditions:hover, #linkPrivacity:hover{
+    color: #ff6f61;
+}
+
+.der{
+    flex: 1;
+    background-image: url(../../../images/pexels-n-voitkevich-7615558.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+footer{
+    width: 100%;
+    height: 15vh;
+    background-color: black;
+}
+
+
+/* =========== Modal de registro ========== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* ===== Modal general ===== */
+.modal {
+  position: fixed;
+  z-index: 9999;
   top: 0;
   left: 0;
-  height: 20px;
-  width: 20px;
-  background-color: #f0f0f0; /* Color antes de marcar */
-  border: 2px solid #999;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(6px) saturate(160%);
+  background-color: rgba(240, 248, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
-/* Cambia el color al pasar el mouse */
-.checkbox-custom:hover .checkmark {
-  background-color: #d0d0d0;
+.modal.show {
+  opacity: 1;
+  pointer-events: all;
 }
 
-/* Cambia el color cuando está marcado */
-.checkbox-custom input:checked + .checkmark {
-  background-color: var(--blue-god);
+/* ===== Contenedor modal ===== */
+.modal-content {
+  font-family: 'Inter', sans-serif;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1b2a41;
+  padding: 32px 40px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 80, 160, 0.15);
+  border: 1px solid rgba(0, 123, 255, 0.2);
+  backdrop-filter: blur(12px);
+  transform: translateY(-20px);
+  animation: fadeInUp 0.4s ease forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== Ícono centrado ===== */
+.modal-content .modal-icon {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 3px rgba(0, 119, 204, 0.4));
+}
+
+/* ===== Título ===== */
+.modal-content h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #0077cc;
+  margin-bottom: 12px;
+}
+
+/* ===== Texto ===== */
+.modal-content p {
+  font-size: 16px;
+  color: #3a4b5c;
+  line-height: 1.5;
+}
+
+/* ===== Animación ===== */
+@keyframes fadeInUp {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ======================= TABLET: <=1024px ======================= */
+@media (max-width: 1024px) {
+  body {
+    height: auto;
+  }
+
+  main {
+    height: auto;
+    padding: 2rem 1rem;
+  }
+
+  section {
+    flex-direction: column;
+    min-width: unset;
+    width: 100%;
+    margin: 20px 10px;
+    height: auto;
+  }
+
+  .izq {
+    width: 100%;
+    padding: 2rem 1rem;
+    border-radius: 10px 10px 0 0;
+    border-right: 0.1px solid black;
+  }
+
+  .der {
+    height: 300px;
+    border-radius: 0 0 10px 10px;
+  }
+
+  .izq h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .izq > form {
+    width: 95%;
+  }
+
+  form label,
+  form input,
+  form button {
+    font-size: 1rem;
+  }
+
+  .btn-arrow svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ======================= CELULAR: <=767px ======================= */
+@media (max-width: 767px) {
+  body {
+    height: auto;
+  }
+
+  main {
+    height: auto;
+    padding: 1rem;
+  }
+
+  section {
+    flex-direction: column;
+    width: 100%;
+    min-width: unset;
+    margin: 10px auto;
+    height: auto;
+  }
+
+  .izq {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
+    border: none;
+  }
+
+  .der {
+    display: none;
+  }
+
+  .izq h1 {
+    font-size: 1.7rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .izq > form {
+    width: 100%;
+  }
+
+  form label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  form input[type="text"],
+  form input[type="number"],
+  form input[type="email"],
+  form input[type="password"] {
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  form > p {
+    height: 0.7rem;
+    font-size: 0.7em;
+    color: red;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  form button {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .btn-arrow svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .btn-arrow {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+   form label[for="checkConditions"],
+    form label[for="checkPrivacity"]{
+       font-size: 0.8rem;
+   }
+
 }
