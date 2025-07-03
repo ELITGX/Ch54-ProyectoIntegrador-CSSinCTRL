@@ -25,36 +25,32 @@ function renderCart() {
 
   let total = 0;
 
-  cart.forEach((item, index) => {
-    const itemElement = document.createElement("div");
-    itemElement.classList.add(
-      "card",
-      "mb-2",
-      "p-2",
-      "d-flex",
-      "flex-row",
-      "align-items-center",
-      "justify-content-between"
-    );
+   cart.forEach((item, index) => {
+  const itemElement = document.createElement("div");
+  itemElement.classList.add("card", "mb-2", "p-2", "d-flex", "flex-row", "align-items-center", "justify-content-between");
 
-    itemElement.innerHTML = `
-      <div>
-        <h5 class="mb-0">${item.name}</h5>
-        <small class="text-muted">$${item.price.toFixed(2)}</small>
-      </div>
-      <div>
-        <span class="fw-bold">$${item.price.toFixed(2)}</span>
+  itemElement.innerHTML = `
+    <div>
+      <h5 class="mb-0">${item.name}</h5>
+      <small class="text-muted">Cantidad: ${item.quantity}</small>
+    </div>
+    <div>
+        <span class="fw-bold">${(item.price * item.quantity).toLocaleString("es-MX", { style: "currency", currency: "MXN" })}</span>
         <button class="btn btn-sm btn-outline-danger ms-2" data-index="${index}">
           <i class="bi bi-trash"></i>
         </button>
       </div>
-    `;
+  `;
 
-    cartItemsContainer.appendChild(itemElement);
-    total += item.price;
+  cartItemsContainer.appendChild(itemElement);
+  total += item.price * item.quantity;
+
+});
+
+   cartTotalElement.textContent = total.toLocaleString("es-MX", {
+    style: "currency",
+    currency: "MXN"
   });
-
-  cartTotalElement.textContent = `$${total.toFixed(2)}`;
 
   const removeButtons = cartItemsContainer.querySelectorAll("button");
   removeButtons.forEach((btn) => {
