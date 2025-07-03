@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       modal.classList.remove("show");
-    }, 3000);
+    }, 5000);
   }
 
   const form = document.getElementById("registerUser");
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
             target.innerHTML = ``;
-        }, 3000);
+        }, 5000);
     };
 
     // ========================================== Validación de inputs ==========================================
@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (!privacityAgreement) {
       alertInput("Debes aceptar el acuerdo de privacidad", "#FF6F61", "#FF6F61", "#D6E6F2", "errorPrivacity");
     } else {
+      form.reset();
       openModal();
 
       setTimeout(async () => {
@@ -101,8 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         localStorage.setItem("isLoggedIn", JSON.stringify(true));
         window.location.href = "../../../index.html";
-        form.reset();
-      }, 1000);
+        
+      }, 5000);
 
       
     }
