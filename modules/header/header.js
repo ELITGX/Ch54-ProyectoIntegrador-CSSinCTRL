@@ -11,21 +11,24 @@ const renderHeaderHTML = (header, homePath = "./") => {
           <img src="${homePath}images/logoMAMX.png" alt="Logo Medicina Alternativa">
         </a>
 
-        <div class="d-flex align-items-center ms-auto order-lg-2">
+        <div class="ms-auto d-flex align-items-center order-lg-2">
+        <!-- ícono del carrito -->
+        <div class="position-relative">
+            <a class="nav-link" href="/src/pages/ShoppingCart/ShoppingCart.html">
+              <i class="bi bi-cart-plus cart-icon"></i>
+            </a>
+            <!-- Badge -->
+            <span class="position-absolute translate-middle badge rounded-pill bg-danger " id="cartBadge">
+
+            </span>
+          </div>
+
           <!-- Botón del menú en móvil -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="position-relative">
-            <a class="nav-link" href="${homePath}/src/pages/ShoppingCart/ShoppingCart.html">
-              <i class="bi bi-cart-plus cart-icon"></i>
-            </a>
-            <!-- Badge -->
-            <span class="position-absolute translate-middle badge rounded-pill bg-danger " id="cartBadge">
-              9+
-            </span>
-          </div>
+
         </div>
 
         <!-- Contenido colapsable -->
@@ -154,7 +157,27 @@ const getNumberCartItems = () =>{
   }
 }
 
-
+const addEventListenerToSearchBar= (homePath) =>{
+  const input =document.querySelector("#dato-filtro");
+  const btnSearch = document.querySelector("#aplicar-filtro");
+  btnSearch.addEventListener("click",(e)=>{
+    e.preventDefault();
+    let query = input.value?.trim().toLowerCase();
+    let destiny;
+    if (input && btnSearch) {
+      if (!query) {
+        destiny = ` ${homePath}src/pages/listaItems/listaItems.html`;
+      } else {
+        destiny = ` ${homePath}src/pages/listaItems/listaItems.html?search=${query}`;
+      }
+      //console.log(destiny)
+      window.location.href = destiny;
+    } else {
+      console.warn("No se encontró #aplicar-filtro o #dato-filtro en el DOM");
+    }
+  })
+  
+}
 
 // ESTA es la función que usas en cada página
 const insertHeader = (headerElement, homePath = "./") => {
@@ -163,6 +186,7 @@ const insertHeader = (headerElement, homePath = "./") => {
     controlarVisibilidadFormulario();
     manejarBotonCuenta(homePath);
     getNumberCartItems();
+    addEventListenerToSearchBar(homePath);
   });
 };
 
