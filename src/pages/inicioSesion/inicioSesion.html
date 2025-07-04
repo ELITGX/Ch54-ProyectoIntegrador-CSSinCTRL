@@ -32,17 +32,18 @@
                   </div>
 
                   <form id="logInButton">
-                    <p>Porfavor ingresa a tu cuenta</p>
-
+                    
                     <div data-mdb-input-init class="form-outline mb-4">
-                      <input autocomplete="off" type="email" id="Email" class="form-control"
-                        placeholder="Email address" />
                       <label class="form-label" for="Email">Ingresa tu correo electronico</label>
-                    </div>
+                      <input autocomplete="off" type="email" id="email" class="form-control"
+                        placeholder="Ej: usuario@correo.com" />
+                        <small id="emailError" class="text-danger d-none">Por favor ingresa un correo válido.</small>
+                     </div>
 
                     <div data-mdb-input-init class="form-outline mb-4">
-                      <input autocomplete="off" type="password" id="password" class="form-control" />
-                      <label class="form-label" for="form2Example22">Contraseña</label>
+                      <label class="form-label" for="password">Contraseña</label>
+                      <input autocomplete="off" type="password" id="password" class="form-control" placeholder="********" />
+                      <small id= "passwordError" class="text-danger d-none">La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo.</small>
                     </div>
 
                     <div class="text-center pt-1 mb-5 pb-1">

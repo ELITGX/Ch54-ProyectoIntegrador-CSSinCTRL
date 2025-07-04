@@ -59,17 +59,78 @@ const insertCardsDom = (tarjetas, idDOM = "cards") => {
   refDom.innerHTML = tarjetas.join("");
 }
 
-const addToCart = (product) => {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push(product);
-  localStorage.setItem("cart", JSON.stringify(cart));
+// Función para agregar productos al carrito
+ /* const addToCart = (product) => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+} */ 
+
+    // ============== Filtro de productos =========================
+
+/* document.addEventListener("DOMContentLoaded", () => {
+  const botonDeFiltro = document.querySelector("#aplicar-filtro");
+  const entradaFiltro = document.querySelector("#dato-filtro");
+
+  if (botonDeFiltro && entradaFiltro) {
+    botonDeFiltro.addEventListener("click", (e) => {
+      const valor = entradaFiltro.value?.trim();
+
+      if (!valor) {
+        createProductCards(); // sin filtro
+      } else {
+        createProductCards(valor); // con filtro
+      }
+    });
+  } else {
+    console.warn("No se encontró #aplicar-filtro o #dato-filtro en el DOM");
+  }
+}); */
+
+const filtrado = (productos = [], texto) => {
+  return productos.filter(item => item.name.trim(" ").toLowerCase().includes(texto.toLowerCase()));
 }
 
+// funcion nueva para agragar los productos al carrito
+const addToCart = (product) => {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const existingItem = cart.find(item => item.id === product.id);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    product.quantity = 1;
+    cart.push(product);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
+
+
 // ✅ CAMBIO MÍNIMO AQUÍ
-const createProductCars = () => {
+const createProductCards = (texto = "") => {
   let data = JSON.parse(localStorage.getItem(localStorageKey));
   console.log(data);
-  const products = data?.results || data;
+  
+  let products = data?.results || data;
+  
+  if (texto){
+    products = filtrado(data.results, texto);
+    //console.log(texto);
+    //console.log(products);
+    if(products.length < 1){
+        console.log("no hay");
+        const refDom = document.getElementById("cards");
+        refDom.innerHTML = "<div class='col-auto mt-3'><h3>No se encontraron resultados que coincidan con la búsqueda</h3> </div>";
+        return;
+    }
+  }else{
+    products = data?.results || data;
+    if (!products || !Array.isArray(products)) return;
+    
+  }
+  
   if (!products || !Array.isArray(products)) return;
 
   const cards = buildProductCards(products);
@@ -168,7 +229,7 @@ const addProduct = (newProduct) => {
   if (data?.results) {
     data.results.push(newProduct);
     localStorage.setItem(localStorageKey, JSON.stringify(data));
-    createProductCars();
+    createProductCards();
   }
 };
 
@@ -179,7 +240,7 @@ const updateProductById = (id, updatedFields) => {
       product.id === id ? { ...product, ...updatedFields } : product
     );
     localStorage.setItem(localStorageKey, JSON.stringify(data));
-    createProductCars();
+    createProductCards();
   }
 };
 
@@ -191,7 +252,7 @@ const deleteProduct = ({ id, name }) => {
       (name ? product.name.toLowerCase() !== name.toLowerCase() : true)
     );
     localStorage.setItem(localStorageKey, JSON.stringify(data));
-    createProductCars();
+    createProductCards();
   }
 };
 
@@ -200,11 +261,17 @@ const clearAllProducts = () => {
   if (data) {
     data.results = [];
     localStorage.setItem(localStorageKey, JSON.stringify(data));
-    createProductCars();
+    createProductCards();
   }
 };
 
 // Inicializar
 jsonToLocal("../../../modules/assets/objetos.json").then(() => {
-  createProductCars();
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("search");
+  if (query) {
+    createProductCards(query);
+  }else{
+    createProductCards();
+  }
 });

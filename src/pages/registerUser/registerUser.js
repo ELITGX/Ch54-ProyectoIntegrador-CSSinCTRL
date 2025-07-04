@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
             target.innerHTML = ``;
-        }, 5000);
+        }, 3000);
     };
 
     // ========================================== Validación de inputs ==========================================
@@ -98,8 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("usuario", JSON.stringify(userToStore));
 
         // const userDataJSON = JSON.stringify(userData);
+
+        localStorage.setItem("isLoggedIn", JSON.stringify(true));
+        window.location.href = "../../../index.html";
         form.reset();
-      }, 5000);
+      }, 1000);
+
+      
     }
   });
 });

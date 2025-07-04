@@ -7,7 +7,7 @@
   background: #80AACC;
 }
 
-#header .nav-link, #header button{
+#header .nav-link, #header > button{
   font-size: 1.1rem;
   font-weight: bold;
   color: #ffffff;
@@ -22,12 +22,12 @@
 }
 */
 @media(min-width: 720px) {
-  #header .nav-link, #header button{
+  #header .nav-link, #header > button{
     margin-left: 1em;
   }
 }
 @media(min-width: 1200px) {
-  #header .nav-link, #header button{
+  #header .nav-link, #header > button{
     margin-left: 2em;
   }
   
@@ -73,7 +73,6 @@
 
 .cart-icon{
   font-size: 35px;
-  margin-left: 10px;
   position: relative;
 }
 
@@ -89,8 +88,8 @@
   font-weight: bold;
 }
 
-.aux{
-    text-align: end;
+.navbar-toggler{
+  margin-left: 10px;
 }
 
 

@@ -135,14 +135,71 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
 
     const {id:prod_id, name, description, price, presentation, concentration, administrationRoute, stock, img, porcentajeDescuento} = newProduct;
 
-      // Validaciones básicas
-      if (name && img && description && price !== 0 && presentation && concentration && administrationRoute && stock ) {
-              console.log("Producto creado:", newProduct);
-        alertContainer.innerHTML = `
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>¡Datos enviados!</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-        </div>`
+     //==================== Expresiones regulares =======================================
+  const validationId = /^[a-zA-Z0-9]{3,}$/;
+  const validationPresentation = /^[a-zA-Z0-9\s]{2,}(ml|mg|g|kg|L)?$/;
+  const validationName = /^[a-zA-Z0-9]/;
+  const validationConcentration = /^\d+(\.\d+)?\s*(mg|mcg|g|ml|l|%|UI|IU|mmol|meq|µg)?(\/?(ml|l|g|dosis|tableta|comprimido|ampolla))?$/i;
+  
+  //==================== Validaciones ==========================================
+  const isValidId = validationId.test(prod_id);
+  const isValidImage = imageDataUrl || img !== "https://via.placeholder.com/150";
+  const isValidPresentation = validationPresentation.test(presentation);
+  const isValidConcentration = validationConcentration.test(concentration);
+  const isValidDescription = description.length >= 10 && description.length <= 500;
+  const isValidName = validationName.test(name);
+  const isValidPrice = !isNaN(price) && price > 0;
+  const isValidRouteMain = document.getElementById("route-main").value !== "";
+  const isValidRouteSub = administrationRoute !== "";
+  const isValidStock = !isNaN(stock) && stock > 0;
+  const isValidDiscount = !isNaN(porcentajeDescuento) && porcentajeDescuento >= 0 && porcentajeDescuento <= 100;
+
+
+  const alertInput = (message, color, borderColor, backgroundColor) => {
+    alertContainer.innerHTML = `
+    <div class="text-center">
+      <div class="alert alert-dismissible fade show py-2" role="alert"
+           style="text-align: center; display: inline-block;  background-color:${backgroundColor};
+           color:${color}; border-color: ${borderColor};">
+        <strong>${message}</strong>
+        </div>
+      </div>`;
+
+    setTimeout(() => {
+      const alert = alertContainer.querySelector('.alert');
+      if (alert) {
+        const bsAlert = new bootstrap.Alert(alert);
+        bsAlert.close();
+      }
+    }, 3000);
+  };
+
+   
+   if (!isValidId) {
+    alertInput("El producto debe tener un ID. Puede ser alfanumérico.", "#FF6F61", "#FFFFFF", "#FFFFFF");
+  } else if (!isValidName) {
+    alertInput("Agrega el nombre del producto. Sólo puede contener letras y números.", "#FF6F61", "#FFFFFF", "#FFFFFF");
+  } else if (!isValidDescription) {
+    alertInput("Agrega una descripción con máximo 500 caracteres.", "#FF6F61", "#FFFFFF", "#FFFFFF");
+  }else if (!isValidPrice) {
+    alertInput("El precio es un campo requerido.", "#FF6F61", "#FFFFFF", "#FFFFFF");
+  } else if (!isValidPresentation) {
+    alertInput("La presentación es un campo requerido. Ejemplo: 10 ml)", "#FF6F61", "#FFFFFF", "#FFFFFF");
+  } else if (!isValidConcentration) {
+    alertInput("La concentración es un campo requerido. Ejemplo: 50mg, 10ml, 5mg/ml, 100UI", "#FF6F61", "#FFFFFF", "#FFFFFF");
+  } else if (!isValidRouteMain) {
+    alertInput("Debes seleccionar una vía principal de administración", "#FF6F61", "#FFFFFF", "#FFFFFF");
+  } else if (!isValidRouteSub) {
+    alertInput("Debes seleccionar una subcategoría de administración", "#FF6F61", "#FFFFFF", "#FFFFFF");
+  } else if (!isValidStock) {
+    alertInput("Debes de tener al menos 1 producto en tu stock", "#FF6F61", "#FFFFFF", "#FFFFFF");
+  } else if (!isValidImage) {
+    alertInput("Debes seleccionar una imagen válida", "#FF6F61", "#FFFFFF", "#FFFFFF");
+  } else if (!isValidDiscount) {
+    alertInput("El descuento debe estar entre 0% y 100%", "#FF6F61", "#FFFFFF", "#FFFFFF"); 
+  } else {
+    alertInput("¡Producto agregado correctamente!", "#0a3622", "#0a3622", "#d1e7dd");
+
 
       // Guardar en localStorage
       const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
@@ -248,11 +305,18 @@ const renderProductList = () => {
     li.innerHTML = `
       <div class="ms-2 me-auto">
         <div class="fw-bold">${product.name}</div>
-        Precio: $${product.price.toFixed(2)}<br>
+        Precio original: $${product.price.toFixed(2)} MXN <br>
+      ${product.porcentajeDescuento > 0 ? `
+          <span class="text-danger">
+            Descuento: ${product.porcentajeDescuento}% <br>
+          </span> 
+          <span class="text-success">
+           Precio final: $${product.price * (1 - product.porcentajeDescuento / 100)} MXN <br>
+          </span>`: ""}
         Stock: ${product.stock}
       </div>
       <div class="btn-group mt-2 mt-md-0">
-        <button class="btn btn-outline-success btn-sm me-2" data-index="${index}" data-action="stock" title="Añadir stock">
+        <button class="btn btn-outline-success btn-sm" data-index="${index}" data-action="stock" title="Añadir stock">
           <i class="bi bi-plus-circle"></i>
         </button>
         <button class="btn btn-outline-primary btn-sm" data-index="${index}" data-action="edit" title="Editar">
