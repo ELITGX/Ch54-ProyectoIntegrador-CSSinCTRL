@@ -245,3 +245,70 @@ h2 {
 .testimonial-client h4 {
     margin-bottom: 5px;
 }
+/* ===== Hero Carousel – alto fijo y fade limpio ===== */
+
+#heroCarousel .carousel-item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* rellena sin deformar */
+}
+
+/* Fondo blanco para que el fade sea uniforme */
+#heroCarousel .carousel-item{ background:#fff; }
+
+/* ===== Imágenes de carrusel sin recorte ===== */
+.carousel-fit{
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;           /* asegura proporción intacta */
+  height: auto;
+  object-fit: contain;   /* nunca recorta */
+}
+
+/* 1️⃣  Quita la altura fija */
+#heroCarousel{
+  aspect-ratio: 1000 / 365;   /* o usa .ratio en el HTML */
+  overflow: hidden;
+}
+
+/* 2️⃣  Mantén min-height para imágenes bajitas si lo deseas */
+@media (min-width:576px){
+  #heroCarousel{ min-height: 320px; }
+}
+
+/* 3️⃣  Todas las imágenes rellenan sin deformar */
+#heroCarousel .carousel-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;           /* todas tus imágenes nuevas son horizontales */
+  background:#fff;            /* fade limpio */
+}
+
+/* ---------- Carrusel por defecto (≥ 576 px) ---------- */
+#heroCarousel{
+  aspect-ratio: 1000 / 365;      /* ancho grande, banner bajo */
+  overflow: hidden;
+  min-height: 320px;             /* evita que “desaparezca” si el ancho es muy grande */
+}
+#heroCarousel .carousel-item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* recorta bordes para llenar la caja */
+}
+
+/* ---------- Móviles (< 576 px) ---------- */
+@media (max-width: 575.98px){
+  /* 1️⃣  deja de forzar el aspecto; dale un alto cómodo */
+  #heroCarousel{
+    aspect-ratio: auto;          /* permite crecer en vertical */
+    min-height: 220px;           /* o el que se vea mejor en tu diseño */
+  }
+
+  /* 2️⃣  muestra la imagen COMPLETA sin recortes */
+  #heroCarousel .carousel-item img{
+    object-fit: contain;         /* ya no recorta: se ve toda la foto */
+    background: #fff;            /* el fondo rellena las franjas */
+  }
+}
+
+

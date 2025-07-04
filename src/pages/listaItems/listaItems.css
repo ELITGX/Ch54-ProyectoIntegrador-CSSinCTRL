@@ -1,3 +1,4 @@
+/* 5 columnas personalizadas usando Bootstrap grid */
 body{
     display: grid;
     min-height: 100dvh;
@@ -16,4 +17,9 @@ main{
 .cardImage {
     height: 272px;
     width: 129px;
+}
+
+/* Da espacio entre las cards y el footer */
+#cards {
+  margin-bottom: 80px; /* Ajusta este valor según cuánto espacio quieras */
 }

@@ -68,7 +68,7 @@ const insertCardsDom = (tarjetas, idDOM = "cards") => {
 
     // ============== Filtro de productos =========================
 
-document.addEventListener("DOMContentLoaded", () => {
+/* document.addEventListener("DOMContentLoaded", () => {
   const botonDeFiltro = document.querySelector("#aplicar-filtro");
   const entradaFiltro = document.querySelector("#dato-filtro");
 
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.warn("No se encontró #aplicar-filtro o #dato-filtro en el DOM");
   }
-});
+}); */
 
 const filtrado = (productos = [], texto) => {
   return productos.filter(item => item.name.trim(" ").toLowerCase().includes(texto.toLowerCase()));
@@ -117,8 +117,14 @@ const createProductCards = (texto = "") => {
   
   if (texto){
     products = filtrado(data.results, texto);
-    console.log(texto)
-    console.log(products)
+    //console.log(texto);
+    //console.log(products);
+    if(products.length < 1){
+        console.log("no hay");
+        const refDom = document.getElementById("cards");
+        refDom.innerHTML = "<div class='col-auto mt-3'><h3>No se encontraron resultados que coincidan con la búsqueda</h3> </div>";
+        return;
+    }
   }else{
     products = data?.results || data;
     if (!products || !Array.isArray(products)) return;
@@ -261,5 +267,11 @@ const clearAllProducts = () => {
 
 // Inicializar
 jsonToLocal("../../../modules/assets/objetos.json").then(() => {
-  createProductCards();
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("search");
+  if (query) {
+    createProductCards(query);
+  }else{
+    createProductCards();
+  }
 });

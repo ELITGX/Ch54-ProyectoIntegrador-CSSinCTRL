@@ -73,7 +73,6 @@
 
 .cart-icon{
   font-size: 35px;
-  margin-left: 10px;
   position: relative;
 }
 
@@ -89,8 +88,8 @@
   font-weight: bold;
 }
 
-.aux{
-    text-align: end;
+.navbar-toggler{
+  margin-left: 10px;
 }
 
 
