@@ -1,4 +1,4 @@
-// listaItems.js actualizado con <input> editable para cantidad
+// listaItems.js actualizado con <input> editable para cantidad y alertas Bootstrap
 
 import { insertHeader, getNumberCartItems } from "../../../modules/header/header.js";
 import { insertFooter } from "../../../modules/footer/footer.js";
@@ -16,6 +16,18 @@ const formatPrice = (price) => {
 
 insertHeader(document.getElementById("header"), homePath);
 insertFooter(document.getElementById("footer"), homePath);
+
+const showAlert = (message) => {
+    const alertDiv = document.getElementById("cartAlert");
+    alertDiv.textContent = message;
+    alertDiv.classList.remove("d-none");
+    alertDiv.classList.add("show");
+
+    setTimeout(() => {
+        alertDiv.classList.remove("show");
+        alertDiv.classList.add("d-none");
+    }, 3000);
+};
 
 const readProducts = async (url) => {
     try {
@@ -115,7 +127,7 @@ const createProductCards = (texto = "") => {
             const qty = parseInt(input.value);
             const product = products[index];
             addToCart(product, qty);
-            alert(`${product.name} añadido al carrito (${qty})`);
+            showAlert(`${product.name} añadido al carrito (${qty})`);
             getNumberCartItems();
         });
     });
@@ -155,7 +167,7 @@ const createProductCards = (texto = "") => {
 
             document.getElementById("modalAddToCart").onclick = () => {
                 addToCart(product, modalQty);
-                alert(`${product.name} añadido al carrito (${modalQty})`);
+                showAlert(`${product.name} añadido al carrito (${modalQty})`);
                 bootstrap.Modal.getInstance(document.getElementById("productModal")).hide();
                 getNumberCartItems();
             };
