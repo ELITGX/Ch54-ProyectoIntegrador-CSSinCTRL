@@ -102,7 +102,7 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
   
 
   discountBtn.addEventListener("click", ()=>{
-    const priceOriginal = parseFloat(document.getElementById("price").value);
+  const priceOriginal = parseFloat(document.getElementById("price").value);
   const discount = parseFloat(document.getElementById("discount").value);
       
       // Validar los valores
@@ -171,7 +171,7 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
      //==================== Expresiones regulares =======================================
     //const validationId = /^[a-zA-Z0-9]{3,}$/;
     const validationPresentation = /^[a-zA-Z0-9\s]{2,}(ml|mg|g|kg|L)?$/;
-    const validationName = /^[a-zA-Z0-9]/;
+    const validationName = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]/;
     const validationConcentration = /^\d+(\.\d+)?\s*(mg|mcg|g|ml|l|%|UI|IU|mmol|meq|µg)?(\/?(ml|l|g|dosis|tableta|comprimido|ampolla))?$/i;
     
     //==================== Validaciones ==========================================
@@ -286,22 +286,61 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
 
   });
   // ==================== Botones de formulario de stock =============================
-  const handleStockIncrease = (index) => {
-  const stored = JSON.parse(localStorage.getItem("products"));
-  const product = stored.results[index];
+  const handleStockIncrease = async(index) => {
+    let products = await readProducts("http://18.232.175.128:8080/api/v1/products");
+    let useApi = true;
 
-  stockIndex = index;
-  stockProductName.textContent = `Producto: ${product.name}`;
-  stockInput.value = "";
-  stockModal.show();
+    if(!products || products.length < 1){
+      useApi = false;
+    }
+    let product = products[index];
+    if(!useApi ){
+      const stored = JSON.parse(localStorage.getItem("products"));
+      product = stored.results[index]; 
+    }
+    
+
+    stockIndex = index;
+    stockProductName.textContent = `Producto: ${product.name}`;
+    stockInput.value = "";
+    stockModal.show();
 };
 
-confirmAddStock.addEventListener("click", () => {
+confirmAddStock.addEventListener("click", async () => {
   const cantidad = parseInt(stockInput.value);
   if (!isNaN(cantidad) && cantidad > 0) {
-    const stored = JSON.parse(localStorage.getItem("products"));
-    stored.results[stockIndex].stock += cantidad;
-    localStorage.setItem("products", JSON.stringify(stored));
+
+    let products = await readProducts("http://18.232.175.128:8080/api/v1/products");
+    let useApi = true;
+
+    if(!products || products.length < 1){
+      useApi = false;
+    }
+    let product = products[stockIndex];
+    let idProduct = products[stockIndex].id;
+
+
+    if(!useApi ){
+      const stored = JSON.parse(localStorage.getItem("products"));
+      stored.results[stockIndex].stock += cantidad;
+      localStorage.setItem("products", JSON.stringify(stored)); 
+    }else{
+      delete product.id;
+      product.stock += cantidad;
+      const options = {
+        method: "PUT", 
+        headers: {
+            "Content-Type": "application/json" // Tipo de contenido
+        },
+        body: JSON.stringify(product)
+      }
+      const response = await fetch(`http://18.232.175.128:8080/api/v1/products/${idProduct}`, options);
+      console.log( "Respuesta del servidor:", response );
+      if ( !response.ok  ) {
+          // Si la respuesta no es correcta, lanzar un error
+          throw new Error(`Error al intentar pubicar el producto: ${response.statusText}`);
+      }
+    }
     stockModal.hide();
     renderProductList();
   } else {
