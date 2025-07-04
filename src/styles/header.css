@@ -7,7 +7,7 @@
   background: #80AACC;
 }
 
-#header .nav-link, #header button{
+#header .nav-link, #header > button{
   font-size: 1.1rem;
   font-weight: bold;
   color: #ffffff;
@@ -22,12 +22,12 @@
 }
 */
 @media(min-width: 720px) {
-  #header .nav-link, #header button{
+  #header .nav-link, #header > button{
     margin-left: 1em;
   }
 }
 @media(min-width: 1200px) {
-  #header .nav-link, #header button{
+  #header .nav-link, #header > button{
     margin-left: 2em;
   }
   
