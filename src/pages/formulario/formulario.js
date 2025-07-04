@@ -134,11 +134,11 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
   };
   
   // ==================== Envío de formulario =============================
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit",async (e) => {
     e.preventDefault();
 
     const newProduct = {
-      //id: document.getElementById("ID").value,
+      id: document.getElementById("ID").value,
       name: document.getElementById("nombre").value,
       description: document.getElementById("descripcion").value,
       price: parseFloat(document.getElementById("price").value),
@@ -152,81 +152,120 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
       productPropertyId:1
       
     };
+    
+    const {id:prod_id, name, description, price, presentation, concentration, administrationRoute, stock, img, discountPercentage} = newProduct;
 
-    const {/*id:prod_id,*/ name, description, price, presentation, concentration, administrationRoute, stock, img, discountPercentage} = newProduct;
+    let stored = await readProducts("http://18.232.175.128:8080/api/v1/products");
+    let useApi = true;
+    let idIsPresent = prod_id != null;
+    let foundIndex = 0;
+    if(useApi && idIsPresent){
+      for (const product of stored) {
+        if(product.id == prod_id){
+          break;
+        }
+        foundIndex++;
+      }
+    }
 
      //==================== Expresiones regulares =======================================
-  const validationId = /^[a-zA-Z0-9]{3,}$/;
-  const validationPresentation = /^[a-zA-Z0-9\s]{2,}(ml|mg|g|kg|L)?$/;
-  const validationName = /^[a-zA-Z0-9]/;
-  const validationConcentration = /^\d+(\.\d+)?\s*(mg|mcg|g|ml|l|%|UI|IU|mmol|meq|µg)?(\/?(ml|l|g|dosis|tableta|comprimido|ampolla))?$/i;
-  
-  //==================== Validaciones ==========================================
-  const isValidId = validationId.test(prod_id);
-  const isValidImage = imageDataUrl || img !== "https://via.placeholder.com/150";
-  const isValidPresentation = validationPresentation.test(presentation);
-  const isValidConcentration = validationConcentration.test(concentration);
-  const isValidDescription = description.length >= 10 && description.length <= 500;
-  const isValidName = validationName.test(name);
-  const isValidPrice = !isNaN(price) && price > 0;
-  const isValidRouteMain = document.getElementById("route-main").value !== "";
-  const isValidRouteSub = administrationRoute !== "";
-  const isValidStock = !isNaN(stock) && stock > 0;
-  const isValidDiscount = !isNaN(discountPercentage) && discountPercentage >= 0 && discountPercentage <= 100;
+    //const validationId = /^[a-zA-Z0-9]{3,}$/;
+    const validationPresentation = /^[a-zA-Z0-9\s]{2,}(ml|mg|g|kg|L)?$/;
+    const validationName = /^[a-zA-Z0-9]/;
+    const validationConcentration = /^\d+(\.\d+)?\s*(mg|mcg|g|ml|l|%|UI|IU|mmol|meq|µg)?(\/?(ml|l|g|dosis|tableta|comprimido|ampolla))?$/i;
+    
+    //==================== Validaciones ==========================================
+    //const isValidId = validationId.test(prod_id);
+    const isValidImage = imageDataUrl || img !== "https://via.placeholder.com/150";
+    const isValidPresentation = validationPresentation.test(presentation);
+    const isValidConcentration = validationConcentration.test(concentration);
+    const isValidDescription = description.length >= 10 && description.length <= 1000;
+    const isValidName = validationName.test(name);
+    const isValidPrice = !isNaN(price) && price > 0;
+    const isValidRouteMain = document.getElementById("route-main").value !== "";
+    const isValidRouteSub = administrationRoute !== "";
+    const isValidStock = !isNaN(stock) && stock > 0;
+    const isValidDiscount = !isNaN(discountPercentage) && discountPercentage >= 0 && discountPercentage <= 100;
 
 
-  const alertInput = (message, color, borderColor, backgroundColor) => {
-    alertContainer.innerHTML = `
-    <div class="text-center">
-      <div class="alert alert-dismissible fade show py-2" role="alert"
-           style="text-align: center; display: inline-block;  background-color:${backgroundColor};
-           color:${color}; border-color: ${borderColor};">
-        <strong>${message}</strong>
-        </div>
-      </div>`;
+    const alertInput = (message, color, borderColor, backgroundColor) => {
+      alertContainer.innerHTML = `
+      <div class="text-center">
+        <div class="alert alert-dismissible fade show py-2" role="alert"
+            style="text-align: center; display: inline-block;  background-color:${backgroundColor};
+            color:${color}; border-color: ${borderColor};">
+          <strong>${message}</strong>
+          </div>
+        </div>`;
 
-    setTimeout(() => {
-      const alert = alertContainer.querySelector('.alert');
-      if (alert) {
-        const bsAlert = new bootstrap.Alert(alert);
-        bsAlert.close();
+      setTimeout(() => {
+        const alert = alertContainer.querySelector('.alert');
+        if (alert) {
+          const bsAlert = new bootstrap.Alert(alert);
+          bsAlert.close();
+        }
+      }, 3000);
+    };
+
+    
+    /*if (!isValidId ) {
+      alertInput("El producto debe tener un ID. Puede ser alfanumérico.", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    } else */if (!isValidName) {
+      alertInput("Agrega el nombre del producto. Sólo puede contener letras y números.", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    } else if (!isValidDescription) {
+      alertInput("Agrega una descripción con máximo 500 caracteres.", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    }else if (!isValidPrice) {
+      alertInput("El precio es un campo requerido.", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    } else if (!isValidPresentation) {
+      alertInput("La presentación es un campo requerido. Ejemplo: 10 ml)", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    } else if (!isValidConcentration) {
+      alertInput("La concentración es un campo requerido. Ejemplo: 50mg, 10ml, 5mg/ml, 100UI", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    } else if (!isValidRouteMain) {
+      alertInput("Debes seleccionar una vía principal de administración", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    } else if (!isValidRouteSub) {
+      alertInput("Debes seleccionar una subcategoría de administración", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    } else if (!isValidStock) {
+      alertInput("Debes de tener al menos 1 producto en tu stock", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    } else if (!isValidImage) {
+      alertInput("Debes seleccionar una imagen válida", "#FF6F61", "#FFFFFF", "#FFFFFF"); // Posible eliminación
+    } else if (!isValidDiscount) {
+      alertInput("El descuento debe estar entre 0% y 100%", "#FF6F61", "#FFFFFF", "#FFFFFF"); 
+    } else {
+      alertInput("¡Producto agregado correctamente!", "#0a3622", "#0a3622", "#d1e7dd");
+
+
+
+      if(useApi)
+      {
+        delete newProduct.id;
+        let method = "POST";
+        let url = `http://18.232.175.128:8080/api/v1/products`;
+        if(idIsPresent && foundIndex < stored.length){
+          method = "PUT";
+          url = `http://18.232.175.128:8080/api/v1/products/${stored[foundIndex].id}`;
+        }
+        console.log(newProduct.toString());
+        const options = {
+          method: method, 
+          headers: {
+              "Content-Type": "application/json" // Tipo de contenido
+          },
+          body: JSON.stringify(newProduct)
+        }
+        const response = await fetch(url, options);
+        console.log( "Respuesta del servidor:", response );
+        if ( !response.ok  ) {
+            // Si la respuesta no es correcta, lanzar un error
+            throw new Error(`Error al intentar pubicar el producto: ${response.statusText}`);
+        }
+
       }
-    }, 3000);
-  };
-
-   
-   /*if (!isValidId) {
-    alertInput("El producto debe tener un ID. Puede ser alfanumérico.", "#FF6F61", "#FFFFFF", "#FFFFFF");
-  } else*/ if (!isValidName) {
-    alertInput("Agrega el nombre del producto. Sólo puede contener letras y números.", "#FF6F61", "#FFFFFF", "#FFFFFF");
-  } else if (!isValidDescription) {
-    alertInput("Agrega una descripción con máximo 500 caracteres.", "#FF6F61", "#FFFFFF", "#FFFFFF");
-  }else if (!isValidPrice) {
-    alertInput("El precio es un campo requerido.", "#FF6F61", "#FFFFFF", "#FFFFFF");
-  } else if (!isValidPresentation) {
-    alertInput("La presentación es un campo requerido. Ejemplo: 10 ml)", "#FF6F61", "#FFFFFF", "#FFFFFF");
-  } else if (!isValidConcentration) {
-    alertInput("La concentración es un campo requerido. Ejemplo: 50mg, 10ml, 5mg/ml, 100UI", "#FF6F61", "#FFFFFF", "#FFFFFF");
-  } else if (!isValidRouteMain) {
-    alertInput("Debes seleccionar una vía principal de administración", "#FF6F61", "#FFFFFF", "#FFFFFF");
-  } else if (!isValidRouteSub) {
-    alertInput("Debes seleccionar una subcategoría de administración", "#FF6F61", "#FFFFFF", "#FFFFFF");
-  } else if (!isValidStock) {
-    alertInput("Debes de tener al menos 1 producto en tu stock", "#FF6F61", "#FFFFFF", "#FFFFFF");
-  } else if (!isValidImage) {
-    alertInput("Debes seleccionar una imagen válida", "#FF6F61", "#FFFFFF", "#FFFFFF"); // Posible eliminación
-  } else if (!isValidDiscount) {
-    alertInput("El descuento debe estar entre 0% y 100%", "#FF6F61", "#FFFFFF", "#FFFFFF"); 
-  } else {
-    alertInput("¡Producto agregado correctamente!", "#0a3622", "#0a3622", "#d1e7dd");
-
-
-
-      
-      // Guardar en localStorage
-      const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
-      savedProducts.results.push(newProduct);
-      localStorage.setItem("products", JSON.stringify(savedProducts));
+      else{
+        // Guardar en localStorage
+        const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
+        savedProducts.results.push(newProduct);
+        localStorage.setItem("products", JSON.stringify(savedProducts));
+      }
 
       // Limpiar formulario y previsualización
       form.reset();
@@ -240,6 +279,7 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
 
       // Limpiar descuento
       discountResult.innerHTML = "";
+      renderProductList();
 
     } 
 
@@ -271,9 +311,18 @@ confirmAddStock.addEventListener("click", () => {
 
 
 
-const handleEditProduct = (index) => {
-  const storedProducts = JSON.parse(localStorage.getItem("products"));
-  const product = storedProducts.results[index];
+const handleEditProduct = async (index) => {
+
+  let stored = await readProducts("http://18.232.175.128:8080/api/v1/products");
+  let usingApi = true;
+  let product = stored[index];
+
+  if(!stored || stored.length < 1){
+    stored = JSON.parse(localStorage.getItem("products"));
+    product = stored.results[index];
+    usingApi = false;
+  }
+  
 
   document.getElementById("ID").value = product.id;
   document.getElementById("nombre").value = product.name;
@@ -283,6 +332,7 @@ const handleEditProduct = (index) => {
   document.getElementById("concentracion").value = product.concentration;
   document.getElementById("cantidad").value = product.stock;
   document.getElementById("discount").value = product.discountPercentage || 0;
+  document.getElementById("image").value = product.imgUrl;
 
   // Si ya hay una imagen cargada
   if (product.img) {
@@ -305,7 +355,7 @@ const handleEditProduct = (index) => {
 const handleDeleteProduct = async (index) => {
 
   const productList = document.getElementById("productList");
-  let data = await readProducts("http://localhost:8080/api/v1/products");
+  let data = await readProducts("http://18.232.175.128:8080/api/v1/products");
   let stored = data;
   let usingApi = true;
   let product = stored[index];
@@ -327,7 +377,7 @@ const handleDeleteProduct = async (index) => {
             "Content-Type": "application/json" // Tipo de contenido
         }
       }
-      const response = await fetch( `http://localhost:8080/api/v1/products/${product.id}`, options);
+      const response = await fetch( `http://18.232.175.128:8080/api/v1/products/${product.id}`, options);
       console.log( "Respuesta del servidor:", response );
       if ( !response.ok  ) {
           // Si la respuesta no es correcta, lanzar un error
@@ -345,7 +395,7 @@ const handleDeleteProduct = async (index) => {
   // ==================== Renderiza la lista de productos =============================
 const renderProductList = async ()=> {
   const productList = document.getElementById("productList");
-  let data = await readProducts("http://localhost:8080/api/v1/products");
+  let data = await readProducts("http://18.232.175.128:8080/api/v1/products");
   let stored = data;
   if(!data || data.length < 1){
     stored = JSON.parse(localStorage.getItem("products")) || { results: [] };

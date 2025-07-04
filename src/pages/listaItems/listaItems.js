@@ -89,7 +89,7 @@ const addToCart = (product, quantity = 1) => {
 };
 
 const createProductCards = async (texto = "") => {
-    let data = await readProducts("http://localhost:8080/api/v1/products");
+    let data = await readProducts("http://18.232.175.128:8080/api/v1/products");
     let products = data;
     if(!data || data.length < 1){
         data = JSON.parse(localStorage.getItem(localStorageKey));
