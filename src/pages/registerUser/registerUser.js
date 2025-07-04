@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       modal.classList.remove("show");
-    }, 3000);
+    }, 5000);
   }
 
   const form = document.getElementById("registerUser");
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const userData = {
       nameUser: document.getElementById("nameUser").value.trim(),
+      lastNameUser: document.getElementById("lastNameUser").value.trim(),
       phone: document.getElementById("phoneUser").value.trim(),
       email: document.getElementById("emailUser").value.trim(),
       password: document.getElementById("passwordUser").value,
@@ -33,78 +34,96 @@ document.addEventListener("DOMContentLoaded", () => {
       privacityAgreement: document.getElementById("checkPrivacity").checked
     };
 
-    // ================================ Desestructuración ==============================================
+    const { nameUser: name, lastNameUser: lastName, phone, email, password, passwordConfirm, termsAndConditions, privacityAgreement } = userData;
 
-    const { nameUser, phone, email, password, passwordConfirm, termsAndConditions, privacityAgreement } = userData;
-
-    //  ================ Validaciones de entradas de usuario ======================================
-
-    const validationName = /^[A-ZÁÉÍÓÚÑa-záéíóúñ]{2,}(?: [A-ZÁÉÍÓÚÑa-záéíóúñ]{2,})+$/;
+    // Validaciones
+    const validationName = /^[A-ZÁÉÍÓÚÑa-záéíóúñ]{2,}(?: [A-ZÁÉÍÓÚÑa-záéíóúñ]{2,})*$/;
+    const validatioLastName = /^[A-ZÁÉÍÓÚÑa-záéíóúñ]{2,}(?: [A-ZÁÉÍÓÚÑa-záéíóúñ]{2,})+$/;
     const validationEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const validationPhone = /^\d{10}$/;
     const validationPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,25}$/;
 
-    // ======================== Alertas de bootstrap ===========================================
-
-    const alertInput = (message, color, borderColor, backgroundColor, id) => {
-        const target = document.getElementById(id);
-        target.innerHTML = `<span style="color:rgb(163, 18, 5);">${message}</span>`;
-
-        setTimeout(() => {
-            target.innerHTML = ``;
-        }, 3000);
+    const alertInput = (message, id) => {
+      const target = document.getElementById(id);
+      target.innerHTML = `<span style="color:rgb(163, 18, 5);">${message}</span>`;
+      setTimeout(() => {
+        target.innerHTML = ``;
+      }, 5000);
     };
 
-    // ========================================== Validación de inputs ==========================================
-
-    const storedUserJSON = localStorage.getItem("usuario");
-    const storedUser = storedUserJSON ? JSON.parse(storedUserJSON) : null;
-
-    if (!validationName.test(nameUser)) {
-      alertInput("Ingresa tu nombre completo", "#FF6F61", "#FF6F61", "#D6E6F2", "errorName");
+    // Validaciones
+    if (!validationName.test(name)) {
+      alertInput("Ingresa tu nombre correctamente", "errorName");
+    } else if (!validatioLastName.test(lastName)) {
+      alertInput("Ingresa tus apellidos correctamente", "errorLastName");
     } else if (!validationPhone.test(phone)) {
-      alertInput("Ingresa un número de teléfono válido", "#FF6F61", "#FF6F61", "#D6E6F2", "errorPhone");
+      alertInput("Ingresa un número de teléfono válido", "errorPhone");
     } else if (!validationEmail.test(email)) {
-      alertInput('Ingresa una dirección de correo electrónico válida', "#FF6F61", "#FF6F61", "#D6E6F2", "errorEmail");
-    } else if (storedUser && storedUser.email === email) {
-      alertInput('Este correo ya está registrado. Intente con uno diferente', "#FF6F61", "#FF6F61", "#D6E6F2", "errorEmail");
+      alertInput("Ingresa una dirección de correo electrónico válida", "errorEmail");
     } else if (!validationPassword.test(password)) {
-      alertInput("Contraseña inválida", "#FF6F61", "#FF6F61", "#D6E6F2", "errorPassword");
+      alertInput("Contraseña inválida", "errorPassword");
     } else if (password !== passwordConfirm) {
-      alertInput("Las contraseñas no coinciden", "#FF6F61", "#FF6F61", "#D6E6F2", "errorConfirm");
+      alertInput("Las contraseñas no coinciden", "errorConfirm");
     } else if (!termsAndConditions) {
-      alertInput("Debes aceptar términos y condiciones", "#FF6F61", "#FF6F61", "#D6E6F2", "errorConditions");
+      alertInput("Debes aceptar términos y condiciones", "errorConditions");
     } else if (!privacityAgreement) {
-      alertInput("Debes aceptar el acuerdo de privacidad", "#FF6F61", "#FF6F61", "#D6E6F2", "errorPrivacity");
+      alertInput("Debes aceptar el acuerdo de privacidad", "errorPrivacity");
     } else {
+
+      try {
+       
+        const emailCheck = await fetch(`http://localhost:8080/api/v1/users/email/${encodeURIComponent(email)}`);
+
+        if (emailCheck.ok) {
+          
+          alertInput("Este correo ya está registrado. Ingresa un correo distinto", "errorEmail");
+          return;
+        }
+
+      } catch (error) {
+        console.error("Error al verificar el correo:", error);
+        alert("Error al verificar el correo. Intenta más tarde.");
+        return;
+      }
+
+      form.reset();
       openModal();
 
       setTimeout(async () => {
-        // Cierra el modal 
         const modal = document.getElementById("successModal");
         modal.classList.remove("show");
 
-        // Continuación del flujo
         const hashedPassword = await hashPassword(password);
-        const userToStore = {
-          nameUser,
+
+        const userToSend = {
+          name,
+          lastName,
           phone,
           email,
-          password: hashedPassword,
-          termsAndConditions,
-          privacityAgreement
+          password: hashedPassword
         };
+        try {
+          const response = await fetch("http://localhost:8080/api/v1/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userToSend)
+          });
 
-        localStorage.setItem("usuario", JSON.stringify(userToStore));
+          if (response.ok) {
+            window.location.href = "../../../index.html";
+          } else {
+            const errorData = await response.json();
+            console.error("Error en el servidor:", errorData);
+            alert("Ocurrió un error al registrar. Intenta de nuevo.");
+          }
+        } catch (error) {
+          console.error("Error en la petición:", error);
+          alert("No se pudo conectar con el servidor.");
+        }
 
-        // const userDataJSON = JSON.stringify(userData);
-
-        localStorage.setItem("isLoggedIn", JSON.stringify(true));
-        window.location.href = "../../../index.html";
-        form.reset();
-      }, 1000);
-
-      
+      }, 5000);
     }
   });
 });

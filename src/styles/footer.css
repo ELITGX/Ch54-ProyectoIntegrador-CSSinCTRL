@@ -7,16 +7,27 @@
   box-sizing:border-box;
 }
 
-#footer a {
-  color: #0D0D0D;
 
+
+a {
+  text-decoration: none;
+  color: #0D0D0D;
+  
 }
+
 
 p {
     font-size: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-bottom: 0%;
 }
+
+#exc:hover{
+  font-weight: bold;        /* Lo hace más fuerte */
+}
+
+
+#
 
 .img-fluid{
     max-width: 50%;

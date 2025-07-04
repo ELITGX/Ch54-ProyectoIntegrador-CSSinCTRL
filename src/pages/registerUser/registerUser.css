@@ -17,7 +17,7 @@ main{
 }
 
 section{
-    height: 90%;
+    height: 80%;
     min-width:1075px;
     border-radius: 10px;
     display: flex;
@@ -29,16 +29,17 @@ section{
 
 
 .izq{
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    flex: 1;
-    padding: 3% 0 2% 0;
-    background-color: rgb(255, 255, 255);
-    border: solid 0.1px black;
-    border-right: none;
-    border-radius: 10px 0px 0px 10px;
+  height: 100% ;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  padding: 3% 5% 2% 5%;
+  background-color: rgb(255, 255, 255);
+  border: solid 0.1px black;
+  border-right: none;
+  border-radius: 10px 0px 0px 10px;
 }
 
 .btn-arrow {
@@ -59,40 +60,66 @@ section{
 }
 
 .btn-arrow svg:hover{
-    fill: #ff6f61;
-    transition: ease 0.8s;
+  fill: #ff6f61;
+  transition: ease 0.8s;
 }
 
 .izq > h1{
-    margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
+  font-size: 2rem;
 }
 
 .izq > form {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    overflow: hidden;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto; 
 }
 
 form label[for="nameUser"],
+form label[for="lastNameUser"],
 form label[for="emailUser"],
 form label[for="phoneUser"],
 form label[for="passwordUser"],
 form label[for="passwordConfirm"] {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
 }
+
+form label[for="checkConditions"],
+form label[for="checkPrivacity"] {
+  font-size: .7rem;
+}
+
 
 form input[type="text"],
 form input[type="number"],
 form input[type="email"],
 form input[type="password"] {
   width: 100%;
-  padding: 6px;
-  font-size: 1em;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 0px, 4px, 4px, 4px;
+  font-size: .8em;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: solid 1px;
+  border-color:  #ccc;
   margin: 0;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+  outline: none;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  box-shadow: none; 
+  border-bottom: 1.5px solid #ff6f61;
+  transition: border 0.8s ease-in-out;
 }
 
 form input[type="checkbox"] {
@@ -100,10 +127,10 @@ form input[type="checkbox"] {
 }
 
 form > p{
-    height: 12px;
-    font-size: 12.5px;
-    font-weight: 700;
-    margin-bottom: 10px;
+  height: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 5px;
 }
 
 #errorPrivacity, #errorConditions {
@@ -116,7 +143,7 @@ form > p{
 }
 
 #checkPrivacity{
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 form button {
@@ -362,6 +389,19 @@ footer{
     padding: 10px;
     font-size: 1rem;
     margin-bottom: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    box-shadow: none;
+  }
+
+  form input[type="text"]:focus,
+  form input[type="number"]:focus,
+  form input[type="email"]:focus,
+  form input[type="password"]:focus {
+    border: 1.5px solid #ff6f61;
+    box-shadow: 0 0 5px rgba(255, 111, 97, 0.4);
+    transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   }
 
   form > p {

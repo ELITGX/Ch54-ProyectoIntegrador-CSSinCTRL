@@ -70,7 +70,16 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
 
   // ==================== Previsualización de imagen ======================
   imageInput.addEventListener("change", (e) => {
-    const file = e.target.files[0];
+
+    imageDataUrl = document.getElementById("image").value;
+    console.log(imageDataUrl);
+
+    imagePreview.src = imageDataUrl;
+    imagePreview.style.display = "block";
+    
+
+
+/*     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -83,7 +92,8 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
       imagePreview.src = "";
       imagePreview.style.display = "none";
       imageDataUrl = "";
-    }
+    } */
+    
   });
 
 // ==================== Descuento a producto ========================
@@ -194,7 +204,7 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
   } else if (!isValidStock) {
     alertInput("Debes de tener al menos 1 producto en tu stock", "#FF6F61", "#FFFFFF", "#FFFFFF");
   } else if (!isValidImage) {
-    alertInput("Debes seleccionar una imagen válida", "#FF6F61", "#FFFFFF", "#FFFFFF");
+    alertInput("Debes seleccionar una imagen válida", "#FF6F61", "#FFFFFF", "#FFFFFF"); // Posible eliminación
   } else if (!isValidDiscount) {
     alertInput("El descuento debe estar entre 0% y 100%", "#FF6F61", "#FFFFFF", "#FFFFFF"); 
   } else {

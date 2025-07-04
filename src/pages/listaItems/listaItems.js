@@ -1,10 +1,11 @@
-// Shopping.js 
+// listaItems.js actualizado con <input> editable para cantidad y alertas Bootstrap
+
 import { insertHeader, getNumberCartItems } from "../../../modules/header/header.js";
 import { insertFooter } from "../../../modules/footer/footer.js";
+
 const homePath = "../../../"
 const localStorageKey = "products";
 
-// -------------------------------CAMBIO 6------------------------------------
 const formatPrice = (price) => {
     return `${new Intl.NumberFormat("es-MX", {
         style: "decimal",
@@ -12,25 +13,32 @@ const formatPrice = (price) => {
         maximumFractionDigits: 2
     }).format(price)} MXN`;
 };
-// -------------------------------FIN CAMBIO 6------------------------------------
 
 insertHeader(document.getElementById("header"), homePath);
 insertFooter(document.getElementById("footer"), homePath);
 
-//==================== uso de la api fetch ==========================
+const showAlert = (message) => {
+    const alertDiv = document.getElementById("cartAlert");
+    alertDiv.textContent = message;
+    alertDiv.classList.remove("d-none");
+    alertDiv.classList.add("show");
+
+    setTimeout(() => {
+        alertDiv.classList.remove("show");
+        alertDiv.classList.add("d-none");
+    }, 3000);
+};
+
 const readProducts = async (url) => {
     try {
         const response = await fetch(url);
-        console.log(response);
         const datosApi = await response.json();
-        console.log(datosApi);
         return datosApi;
     } catch (error) {
         console.log("No se pueden obtener los datos", error);
     }
-}
+};
 
-// Esta funcion es para renderizar el producto
 const buildProductCards = (products) => {
     const cards = products.map((product, index) => (
         `<div class="col-auto mt-3">
@@ -40,20 +48,19 @@ const buildProductCards = (products) => {
           <h5 class="card-title">${product.name}</h5> 
           <p class="card-text current-price">${formatPrice(product.price)}</p>
 
-          <div class="d-flex justify-content-center align-items-center mb-2">
-            <button class="btn btn-outline-secondary btn-sm btn-minus" data-index="${index}">-</button>
-            <span class="mx-2 quantity" data-index="${index}">1</span>
-            <button class="btn btn-outline-secondary btn-sm btn-plus" data-index="${index}">+</button>
-          </div>
+                    <div class="d-flex justify-content-center align-items-center mb-2">
+                        <button class="btn btn-outline-secondary btn-sm btn-minus" data-index="${index}">-</button>
+                        <input type="number" class="form-control form-control-sm quantity-input mx-2" style="width: 120px; text-align: center;" value="1" min="1" data-index="${index}">
+                        <button class="btn btn-outline-secondary btn-sm btn-plus" data-index="${index}">+</button>
+                    </div>
 
-          <div class="d-flex justify-content-between">
-            <button class="btn btn-success btn-add-cart" data-index="${index}">Añadir al carrito</button>
-             <button class="btn btn-info view-more-btn" data-index="${index}">Ver más</button>
-          </div>
-
-        </div>
-      </div>
-    </div>`
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-success btn-add-cart" data-index="${index}">Añadir al carrito</button>
+                        <button class="btn btn-info view-more-btn" data-index="${index}">Ver más</button>
+                    </div>
+                </div>
+            </div>
+        </div>`
     ));
     return cards;
 };
@@ -61,118 +68,82 @@ const buildProductCards = (products) => {
 const insertCardsDom = (tarjetas, idDOM = "cards") => {
     const refDom = document.getElementById(idDOM);
     refDom.innerHTML = tarjetas.join("");
-}
-
-// Función para agregar productos al carrito
-/* const addToCart = (product) => {
-   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-   cart.push(product);
-   localStorage.setItem("cart", JSON.stringify(cart));
-} */
-
-// ============== Filtro de productos =========================
-
-/* document.addEventListener("DOMContentLoaded", () => {
-  const botonDeFiltro = document.querySelector("#aplicar-filtro");
-  const entradaFiltro = document.querySelector("#dato-filtro");
-
-  if (botonDeFiltro && entradaFiltro) {
-    botonDeFiltro.addEventListener("click", (e) => {
-      const valor = entradaFiltro.value?.trim();
-
-      if (!valor) {
-        createProductCards(); // sin filtro
-      } else {
-        createProductCards(valor); // con filtro
-      }
-    });
-  } else {
-    console.warn("No se encontró #aplicar-filtro o #dato-filtro en el DOM");
-  }
-}); */
+};
 
 const filtrado = (productos = [], texto) => {
-    return productos.filter(item => item.name.trim(" ").toLowerCase().includes(texto.toLowerCase()));
-}
+    return productos.filter(item => item.name.trim().toLowerCase().includes(texto.toLowerCase()));
+};
 
-// funcion nueva para agragar los productos al carrito
-const addToCart = (product) => {
+const addToCart = (product, quantity = 1) => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
     const existingItem = cart.find(item => item.id === product.id);
 
     if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += quantity;
     } else {
-        product.quantity = 1;
+        product.quantity = quantity;
         cart.push(product);
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
 };
 
-
-// ✅ CAMBIO MÍNIMO AQUÍ
 const createProductCards = (texto = "") => {
     let data = JSON.parse(localStorage.getItem(localStorageKey));
-    console.log(data);
-
     let products = data?.results || data;
 
     if (texto) {
-        products = filtrado(data.results, texto);
-        //console.log(texto);
-        //console.log(products);
+        products = filtrado(products, texto);
         if (products.length < 1) {
-            console.log("no hay");
-            const refDom = document.getElementById("cards");
-            refDom.innerHTML = "<div class='col-auto mt-3'><h3>No se encontraron resultados que coincidan con la búsqueda</h3> </div>";
+            document.getElementById("cards").innerHTML = "<div class='col-auto mt-3'><h3>No se encontraron resultados que coincidan con la búsqueda</h3></div>";
             return;
         }
-    } else {
-        products = data?.results || data;
-        if (!products || !Array.isArray(products)) return;
-
     }
-
-    if (!products || !Array.isArray(products)) return;
 
     const cards = buildProductCards(products);
     insertCardsDom(cards);
 
-    document.querySelectorAll(".btn-minus").forEach((btn) => {
+    document.querySelectorAll(".btn-minus").forEach(btn => {
         btn.addEventListener("click", (e) => {
             const index = e.target.dataset.index;
-            const span = document.querySelector(`.quantity[data-index="${index}"]`);
-            let qty = parseInt(span.textContent);
-            if (qty > 1) span.textContent = qty - 1;
+            const input = document.querySelector(`.quantity-input[data-index="${index}"]`);
+            let qty = parseInt(input.value);
+            if (qty > 1) input.value = qty - 1;
         });
     });
 
-    document.querySelectorAll(".btn-plus").forEach((btn) => {
+    document.querySelectorAll(".btn-plus").forEach(btn => {
         btn.addEventListener("click", (e) => {
             const index = e.target.dataset.index;
-            const span = document.querySelector(`.quantity[data-index="${index}"]`);
-            let qty = parseInt(span.textContent);
-            span.textContent = qty + 1;
+            const input = document.querySelector(`.quantity-input[data-index="${index}"]`);
+            input.value = parseInt(input.value) + 1;
         });
     });
 
-    document.querySelectorAll(".view-more-btn").forEach((btn) => {
+    document.querySelectorAll(".btn-add-cart").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const index = e.target.dataset.index;
+            const input = document.querySelector(`.quantity-input[data-index="${index}"]`);
+            const qty = parseInt(input.value);
+            const product = products[index];
+            addToCart(product, qty);
+            showAlert(`${product.name} añadido al carrito (${qty})`);
+            getNumberCartItems();
+        });
+    });
+
+    document.querySelectorAll(".view-more-btn").forEach(btn => {
         btn.addEventListener("click", (e) => {
             const index = e.target.dataset.index;
             const product = products[index];
-
-            const qtySpan = document.querySelector(`.quantity[data-index="${index}"]`);
-            const selectedQty = parseInt(qtySpan.textContent);
-
-            let modalQty = selectedQty;
-            document.getElementById("modalQty").textContent = modalQty;
+            const input = document.querySelector(`.quantity-input[data-index="${index}"]`);
+            let modalQty = parseInt(input.value);
 
             const updateModalQty = () => {
                 document.getElementById("modalQty").textContent = modalQty;
             };
-    
+
+            document.getElementById("modalQty").textContent = modalQty;
 
             document.getElementById("modalMinusBtn").onclick = () => {
                 if (modalQty > 1) {
@@ -195,44 +166,14 @@ const createProductCards = (texto = "") => {
             document.getElementById("modalProductVia").textContent = product.administrationRoute;
 
             document.getElementById("modalAddToCart").onclick = () => {
-                for (let i = 0; i < modalQty; i++) {
-                    addToCart(product);
-                }
-                alert(`${product.name} añadido al carrito (${selectedQty})`);
-                bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
+                addToCart(product, modalQty);
+                showAlert(`${product.name} añadido al carrito (${modalQty})`);
+                bootstrap.Modal.getInstance(document.getElementById("productModal")).hide();
                 getNumberCartItems();
             };
 
             const modal = new bootstrap.Modal(document.getElementById("productModal"));
             modal.show();
-        });
-    });
-
-    // "Añadir al carrito" desde fuera
-
-    document.querySelectorAll(".btn-add-cart").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-            const index = e.target.dataset.index;
-            const product = products[index];
-
-            const qtySpan = document.querySelector(`.quantity[data-index="${index}"]`);
-            const selectedQty = parseInt(qtySpan.textContent);
-
-            for (let i = 0; i < selectedQty; i++) {
-                addToCart(product);
-            }
-
-            alert(`${product.name} añadido al carrito (${selectedQty})`);
-            getNumberCartItems();
-        });
-    });
-
-    document.querySelectorAll(".btn.btn-primary").forEach((btn, index) => {
-        btn.addEventListener("click", () => {
-            const product = products[index];
-            addToCart(product);
-            alert(`${product.name} se agregó al carrito`);
-            getNumberCartItems();
         });
     });
 };
@@ -248,48 +189,6 @@ const jsonToLocal = async (url) => {
     }
 };
 
-const addProduct = (newProduct) => {
-    const data = JSON.parse(localStorage.getItem(localStorageKey));
-    if (data?.results) {
-        data.results.push(newProduct);
-        localStorage.setItem(localStorageKey, JSON.stringify(data));
-        createProductCards();
-    }
-};
-
-const updateProductById = (id, updatedFields) => {
-    const data = JSON.parse(localStorage.getItem(localStorageKey));
-    if (data?.results) {
-        data.results = data.results.map(product =>
-            product.id === id ? { ...product, ...updatedFields } : product
-        );
-        localStorage.setItem(localStorageKey, JSON.stringify(data));
-        createProductCards();
-    }
-};
-
-const deleteProduct = ({ id, name }) => {
-    const data = JSON.parse(localStorage.getItem(localStorageKey));
-    if (data?.results) {
-        data.results = data.results.filter(product =>
-            (id ? product.id !== id : true) &&
-            (name ? product.name.toLowerCase() !== name.toLowerCase() : true)
-        );
-        localStorage.setItem(localStorageKey, JSON.stringify(data));
-        createProductCards();
-    }
-};
-
-const clearAllProducts = () => {
-    const data = JSON.parse(localStorage.getItem(localStorageKey));
-    if (data) {
-        data.results = [];
-        localStorage.setItem(localStorageKey, JSON.stringify(data));
-        createProductCards();
-    }
-};
-
-// Inicializar
 jsonToLocal("../../../modules/assets/objetos.json").then(() => {
     const params = new URLSearchParams(window.location.search);
     const query = params.get("search");
