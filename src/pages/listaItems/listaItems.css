@@ -23,3 +23,8 @@ main{
 #cards {
   margin-bottom: 80px; /* Ajusta este valor según cuánto espacio quieras */
 }
+
+input.quantity-input {
+  width: 60px; /* Puedes ajustar el valor según lo que quieras */
+  text-align: center;
+}
