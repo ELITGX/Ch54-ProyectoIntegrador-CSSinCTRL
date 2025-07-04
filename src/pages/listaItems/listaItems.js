@@ -4,7 +4,6 @@ import { insertFooter } from "../../../modules/footer/footer.js";
 const homePath = "../../../"
 const localStorageKey = "products";
 
-// -------------------------------CAMBIO 6------------------------------------
 const formatPrice = (price) => {
     return `${new Intl.NumberFormat("es-MX", {
         style: "decimal",
@@ -12,48 +11,43 @@ const formatPrice = (price) => {
         maximumFractionDigits: 2
     }).format(price)} MXN`;
 };
-// -------------------------------FIN CAMBIO 6------------------------------------
 
 insertHeader(document.getElementById("header"), homePath);
 insertFooter(document.getElementById("footer"), homePath);
 
-//==================== uso de la api fetch ==========================
 const readProducts = async (url) => {
     try {
         const response = await fetch(url);
-        console.log(response);
         const datosApi = await response.json();
-        console.log(datosApi);
         return datosApi;
     } catch (error) {
         console.log("No se pueden obtener los datos", error);
     }
 }
 
-// Esta funcion es para renderizar el producto
 const buildProductCards = (products) => {
     const cards = products.map((product, index) => (
         `<div class="col-auto mt-3">
-      <div class="card" style="width: 18rem;">
-        <img src="${product.img}" class="card-img-top cardImage mx-auto d-block" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">${product.name}</h5> 
-          <p class="card-text">${formatPrice(product.price)}</p>
+          <div class="card" style="width: 18rem;">
+            <img src="${product.img}" class="card-img-top cardImage mx-auto d-block" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">${product.name}</h5> 
+              <p class="card-text">${formatPrice(product.price)}</p>
 
-          <div class="d-flex justify-content-center align-items-center mb-2">
-            <button class="btn btn-outline-secondary btn-sm btn-minus" data-index="${index}">-</button>
-            <span class="mx-2 quantity" data-index="${index}">1</span>
-            <button class="btn btn-outline-secondary btn-sm btn-plus" data-index="${index}">+</button>
+              <div class="d-flex justify-content-center align-items-center mb-2">
+                <button class="btn btn-outline-secondary btn-sm btn-minus" data-index="${index}">-</button>
+                <input class="form-control quantity-input text-center mx-2" style="width: 60px;" type="number" min="1" value="1" data-index="${index}" />
+                <button class="btn btn-outline-secondary btn-sm btn-plus" data-index="${index}">+</button>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-success btn-add-cart" data-index="${index}">Añadir al carrito</button>
+                <button class="btn btn-info view-more-btn" data-index="${index}">Ver más</button>
+              </div>
+
+            </div>
           </div>
-
-          <div class="d-flex justify-content-between">
-            <button class="btn btn-success btn-add-cart" data-index="${index}">Añadir al carrito</button>
-             <button class="btn btn-info view-more-btn" data-index="${index}">Ver más</button>
-          </div>
-
-        </div>
-      </div>
-    </div>`
+        </div>`
     ));
     return cards;
 };
@@ -63,42 +57,12 @@ const insertCardsDom = (tarjetas, idDOM = "cards") => {
     refDom.innerHTML = tarjetas.join("");
 }
 
-// Función para agregar productos al carrito
-/* const addToCart = (product) => {
-   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-   cart.push(product);
-   localStorage.setItem("cart", JSON.stringify(cart));
-} */
-
-// ============== Filtro de productos =========================
-
-/* document.addEventListener("DOMContentLoaded", () => {
-  const botonDeFiltro = document.querySelector("#aplicar-filtro");
-  const entradaFiltro = document.querySelector("#dato-filtro");
-
-  if (botonDeFiltro && entradaFiltro) {
-    botonDeFiltro.addEventListener("click", (e) => {
-      const valor = entradaFiltro.value?.trim();
-
-      if (!valor) {
-        createProductCards(); // sin filtro
-      } else {
-        createProductCards(valor); // con filtro
-      }
-    });
-  } else {
-    console.warn("No se encontró #aplicar-filtro o #dato-filtro en el DOM");
-  }
-}); */
-
 const filtrado = (productos = [], texto) => {
     return productos.filter(item => item.name.trim(" ").toLowerCase().includes(texto.toLowerCase()));
 }
 
-// funcion nueva para agragar los productos al carrito
 const addToCart = (product) => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
     const existingItem = cart.find(item => item.id === product.id);
 
     if (existingItem) {
@@ -111,28 +75,20 @@ const addToCart = (product) => {
     localStorage.setItem("cart", JSON.stringify(cart));
 };
 
-
-// ✅ CAMBIO MÍNIMO AQUÍ
 const createProductCards = (texto = "") => {
     let data = JSON.parse(localStorage.getItem(localStorageKey));
-    console.log(data);
-
     let products = data?.results || data;
 
     if (texto) {
         products = filtrado(data.results, texto);
-        //console.log(texto);
-        //console.log(products);
         if (products.length < 1) {
-            console.log("no hay");
             const refDom = document.getElementById("cards");
-            refDom.innerHTML = "<div class='col-auto mt-3'><h3>No se encontraron resultados que coincidan con la búsqueda</h3> </div>";
+            refDom.innerHTML = "<div class='col-auto mt-3'><h3>No se encontraron resultados que coincidan con la búsqueda</h3></div>";
             return;
         }
     } else {
         products = data?.results || data;
         if (!products || !Array.isArray(products)) return;
-
     }
 
     if (!products || !Array.isArray(products)) return;
@@ -143,18 +99,18 @@ const createProductCards = (texto = "") => {
     document.querySelectorAll(".btn-minus").forEach((btn) => {
         btn.addEventListener("click", (e) => {
             const index = e.target.dataset.index;
-            const span = document.querySelector(`.quantity[data-index="${index}"]`);
-            let qty = parseInt(span.textContent);
-            if (qty > 1) span.textContent = qty - 1;
+            const input = document.querySelector(`.quantity-input[data-index="${index}"]`);
+            let qty = parseInt(input.value);
+            if (qty > 1) input.value = qty - 1;
         });
     });
 
     document.querySelectorAll(".btn-plus").forEach((btn) => {
         btn.addEventListener("click", (e) => {
             const index = e.target.dataset.index;
-            const span = document.querySelector(`.quantity[data-index="${index}"]`);
-            let qty = parseInt(span.textContent);
-            span.textContent = qty + 1;
+            const input = document.querySelector(`.quantity-input[data-index="${index}"]`);
+            let qty = parseInt(input.value);
+            input.value = qty + 1;
         });
     });
 
@@ -163,8 +119,8 @@ const createProductCards = (texto = "") => {
             const index = e.target.dataset.index;
             const product = products[index];
 
-            const qtySpan = document.querySelector(`.quantity[data-index="${index}"]`);
-            const selectedQty = parseInt(qtySpan.textContent);
+            const input = document.querySelector(`.quantity-input[data-index="${index}"]`);
+            const selectedQty = parseInt(input.value);
 
             let modalQty = selectedQty;
             document.getElementById("modalQty").textContent = modalQty;
@@ -172,7 +128,6 @@ const createProductCards = (texto = "") => {
             const updateModalQty = () => {
                 document.getElementById("modalQty").textContent = modalQty;
             };
-    
 
             document.getElementById("modalMinusBtn").onclick = () => {
                 if (modalQty > 1) {
@@ -198,7 +153,7 @@ const createProductCards = (texto = "") => {
                 for (let i = 0; i < modalQty; i++) {
                     addToCart(product);
                 }
-                alert(`${product.name} añadido al carrito (${selectedQty})`);
+                alert(`${product.name} añadido al carrito (${modalQty})`);
                 bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
                 getNumberCartItems();
             };
@@ -208,30 +163,19 @@ const createProductCards = (texto = "") => {
         });
     });
 
-    // "Añadir al carrito" desde fuera
-
     document.querySelectorAll(".btn-add-cart").forEach((btn) => {
         btn.addEventListener("click", (e) => {
             const index = e.target.dataset.index;
             const product = products[index];
 
-            const qtySpan = document.querySelector(`.quantity[data-index="${index}"]`);
-            const selectedQty = parseInt(qtySpan.textContent);
+            const input = document.querySelector(`.quantity-input[data-index="${index}"]`);
+            const selectedQty = parseInt(input.value);
 
             for (let i = 0; i < selectedQty; i++) {
                 addToCart(product);
             }
 
             alert(`${product.name} añadido al carrito (${selectedQty})`);
-            getNumberCartItems();
-        });
-    });
-
-    document.querySelectorAll(".btn.btn-primary").forEach((btn, index) => {
-        btn.addEventListener("click", () => {
-            const product = products[index];
-            addToCart(product);
-            alert(`${product.name} se agregó al carrito`);
             getNumberCartItems();
         });
     });
@@ -245,47 +189,6 @@ const jsonToLocal = async (url) => {
             data = { results: data };
         }
         localStorage.setItem(localStorageKey, JSON.stringify(data));
-    }
-};
-
-const addProduct = (newProduct) => {
-    const data = JSON.parse(localStorage.getItem(localStorageKey));
-    if (data?.results) {
-        data.results.push(newProduct);
-        localStorage.setItem(localStorageKey, JSON.stringify(data));
-        createProductCards();
-    }
-};
-
-const updateProductById = (id, updatedFields) => {
-    const data = JSON.parse(localStorage.getItem(localStorageKey));
-    if (data?.results) {
-        data.results = data.results.map(product =>
-            product.id === id ? { ...product, ...updatedFields } : product
-        );
-        localStorage.setItem(localStorageKey, JSON.stringify(data));
-        createProductCards();
-    }
-};
-
-const deleteProduct = ({ id, name }) => {
-    const data = JSON.parse(localStorage.getItem(localStorageKey));
-    if (data?.results) {
-        data.results = data.results.filter(product =>
-            (id ? product.id !== id : true) &&
-            (name ? product.name.toLowerCase() !== name.toLowerCase() : true)
-        );
-        localStorage.setItem(localStorageKey, JSON.stringify(data));
-        createProductCards();
-    }
-};
-
-const clearAllProducts = () => {
-    const data = JSON.parse(localStorage.getItem(localStorageKey));
-    if (data) {
-        data.results = [];
-        localStorage.setItem(localStorageKey, JSON.stringify(data));
-        createProductCards();
     }
 };
 
