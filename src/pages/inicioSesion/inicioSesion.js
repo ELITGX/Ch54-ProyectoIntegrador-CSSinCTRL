@@ -15,37 +15,50 @@ form.addEventListener("submit", async event => {
 
 
     // Crear el objeto directamente mientras se obtienen los valores de los inputs
-
-    const Email = document.getElementById("Email").value.trim();
-    const password = document.getElementById("password").value.trim();
+    const emailInput = document.getElementById ("email");
+    const passwordInput = document.getElementById ("password");
+    const emailError = document.getElementById ("emailError");
+    const passwordError = document.getElementById ("passwordError");
+    
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
 
     // Pruebas Validacion de  datos del usuario
-    const validationEmail = RegExp (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
+    const validationEmail =RegExp(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
     const validationPassword = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/);
 
+    let isValid = true;
+
     // Validacion de los datos del usuario
-    if (!validationEmail.test(Email)) {
-        alert("El correo electrónico no es válido.");
-        return;
+    if (!validationEmail.test(email)) {
+        emailError.textContent = "El correo electrónico no es válido.";
+        emailError.classList.remove("d-none");
+        isValid = false;
     } 
     
     if (!validationPassword.test(password)) {
-        alert("La contraseña es incorrecta.");
-        return;
+        passwordError.classList.remove("d-none");
+        passwordError.textContent = "La contraseña no cumple con los requisitos.";
+        isValid = false;
     }
+
+    if(!isValid) return;
 
     const storeUser = JSON.parse(localStorage.getItem("usuario"));
     
     if (!storeUser){
+        passwordError.textContent = "No se encontró un usuario registrado.";
+        passwordError.classList.remove("d-none");
         return;
     }
 
     const hashedInputPassword = await hashPassword(password); // <<< encriptamos la entrada
 
-    if (Email === storeUser.email && hashedInputPassword === storeUser.password) {
+    if (email === storeUser.email && hashedInputPassword === storeUser.password) {
         localStorage.setItem("isLoggedIn", JSON.stringify(true));
         window.location.href = "../../../index.html";
     } else {
-        alert("Correo o contraseña incorrectos.");
+        passwordError.textContent = "Correo o contraseña incorrectos.";
+        passwordError.classList.remove("d-none");   
     }
 });

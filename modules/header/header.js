@@ -32,7 +32,7 @@ const renderHeaderHTML = (header, homePath = "./") => {
         <div class="collapse navbar-collapse order-lg-1" id="navbarNav">
           
           <!-- Barra de búsqueda centrada -->
-          <form class="d-flex mx-auto my-2" role="search" style="width: 100%; max-width: 600px;">
+          <div class="d-flex mx-auto my-2" role="search" style="width: 100%; max-width: 600px;">
             <!-- Selector de categoría -->
             <!--
             <select class="form-select me-2" style="min-width: 140px;">
@@ -45,13 +45,13 @@ const renderHeaderHTML = (header, homePath = "./") => {
 
             <!-- Campo de búsqueda -->
              <div class="container row">
-                <input class="form-control me-6" type="search" placeholder="Buscar..." aria-label="Buscar" style="flex: 1; min-width:100px; max-width: 700px;">
+                <input id="dato-filtro" class="form-control me-6" type="search" placeholder="Buscar..." aria-label="Buscar" style="flex: 1; min-width:100px; max-width: 700px;">
               </div>
             <!-- Botón lupa -->
-            <button class="btn btn-outline-primary" type="submit">
+            <button id="aplicar-filtro" class="btn btn-outline-primary" type="submit">
               <i class="bi bi-search"></i>
             </button>
-          </form>
+          </div>
 
           <!-- Enlaces del navbar alineados a la derecha -->
           <ul class="navbar-nav ms-auto">
