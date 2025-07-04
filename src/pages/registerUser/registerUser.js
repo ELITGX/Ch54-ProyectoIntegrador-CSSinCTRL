@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           if (response.ok) {
-            window.location.href = "../../../index.html";
+            window.location.href = "../inicioSesion/inicioSesion.html";
           } else {
             const errorData = await response.json();
             console.error("Error en el servidor:", errorData);
