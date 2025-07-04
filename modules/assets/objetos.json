@@ -5,7 +5,7 @@
   {
     "id": 1,
     "name": "Ácido Alfa Lipoíco",
-    "img": "../../../images/Productos/alfaLip.png",
+    "img": "https://raw.githubusercontent.com/ELITGX/Ch54-ProyectoIntegrador-CSSinCTRL/main/images/Productos/alfaLip.png",
     "description": "Posee propiedades antioxidantes, neutraliza radicales libres, retrasa el envejecimiento, incrementa la respuesta inmune, mejora la capacidad detoxificadora del hígado y ayuda a prevenir las cataratas y las enfermedades vasculares ateroscleróticas. Estimula la síntesis de glutatión, reduce los niveles de triglicéridos y de lipoproteínas de muy baja densidad, favorece la conversión de carbohidratos en energía, incrementa el transporte de glucosa a través de las membranas celulares y su captación por adipocitos y células musculares, mejorando la respuesta a la insulina y disminuyendo la glucosa en sangre.",
     "price": 850,
     "presentation": "10 ml",
@@ -16,7 +16,7 @@
   {
     "id": 2,
     "name": "Arginina y Ornitina",
-    "img": "../../../images/Productos/arginina.png",
+    "img": "https://raw.githubusercontent.com/ELITGX/Ch54-ProyectoIntegrador-CSSinCTRL/main/images/Productos/arginina.png",
     "description": "La arginina es esencial para la síntesis de proteínas. Estimula la glándula hipofisaria, la secreción de la hormona del crecimiento humano y la función inmune. Ayuda a combatir la fatiga física y mental, y actúa sobre el músculo liso intestinal, mejorando la contracción peristáltica. También regenera el tejido hepático, es un antioxidante hormonal, favorece la remetilación del ADN, es precursora del óxido nítrico y mejora la cicatrización de heridas y quemaduras al estimular la producción de colágeno y elastina. La ornitina potencia la producción de hormona del crecimiento humano, contribuye al metabolismo de las grasas, con un efecto mayor cuando se combina con arginina o carnitina. Refuerza el sistema inmunológico, estimula la secreción de insulina y su acción anabólica, desintoxica el organismo del amoníaco y favorece la regeneración hepática.",
     "price": 350,
     "presentation": "10 ml",

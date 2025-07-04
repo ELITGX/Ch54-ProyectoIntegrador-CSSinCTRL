@@ -43,7 +43,7 @@ const buildProductCards = (products) => {
     const cards = products.map((product, index) => (
         `<div class="col-auto mt-3">
             <div class="card" style="width: 18rem;">
-                <img src="${product.img}" class="card-img-top cardImage mx-auto d-block" alt="...">
+                <img src="${product.imgUrl}" class="card-img-top cardImage mx-auto d-block" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">${formatPrice(product.price)}</p>
@@ -88,9 +88,14 @@ const addToCart = (product, quantity = 1) => {
     localStorage.setItem("cart", JSON.stringify(cart));
 };
 
-const createProductCards = (texto = "") => {
-    let data = JSON.parse(localStorage.getItem(localStorageKey));
-    let products = data?.results || data;
+const createProductCards = async (texto = "") => {
+    let data = await readProducts("http://localhost:8080/api/v1/products");
+    let products = data;
+    if(data.length < 1){
+        data = JSON.parse(localStorage.getItem(localStorageKey));
+        products = data?.results || data;
+
+    }
 
     if (texto) {
         products = filtrado(products, texto);
@@ -157,7 +162,7 @@ const createProductCards = (texto = "") => {
                 updateModalQty();
             };
 
-            document.getElementById("modalProductImg").src = product.img;
+            document.getElementById("modalProductImg").src = product.imgUrl;
             document.getElementById("modalProductName").textContent = product.name;
             document.getElementById("modalProductDesc").textContent = product.description;
             document.getElementById("modalProductPrice").textContent = formatPrice(product.price);
@@ -188,6 +193,14 @@ const jsonToLocal = async (url) => {
         localStorage.setItem(localStorageKey, JSON.stringify(data));
     }
 };
+
+const getApiProducts = async (url) =>{
+    let data = await readProducts(url);
+}
+
+getApiProducts("http://localhost:8080/api/v1/products").then(()=>{
+
+})
 
 jsonToLocal("../../../modules/assets/objetos.json").then(() => {
     const params = new URLSearchParams(window.location.search);
