@@ -42,11 +42,11 @@ const readProducts = async (url) => {
 const buildProductCards = (products) => {
     const cards = products.map((product, index) => (
         `<div class="col-auto mt-3">
-            <div class="card" style="width: 18rem;">
-                <img src="${product.imgUrl}" class="card-img-top cardImage mx-auto d-block" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">${formatPrice(product.price)}</p>
+      <div class="card" style="width: 18rem;">
+        <img src="${product.imgUrl}" class="card-img-top cardImage mx-auto d-block" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${product.name}</h5> 
+          <p class="card-text current-price">${formatPrice(product.price)}</p>
 
                     <div class="d-flex justify-content-center align-items-center mb-2">
                         <button class="btn btn-outline-secondary btn-sm btn-minus" data-index="${index}">-</button>
