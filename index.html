@@ -27,15 +27,74 @@
   </header>
 
   <main>
-    <div >
-      <img src="./images/banner.jpg" alt="conjunto de medicamentos que se venden en medicinas alternativas mx">
+    <!-- ===== Hero Carousel (4 diapositivas horizontales) ===== -->
+<section id="heroCarousel"
+         class="carousel slide carousel-fade mb-5"
+         data-bs-ride="carousel"
+         data-bs-interval="3000">
+
+  <!-- Indicadores ÚNICOS -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0"
+            class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3"
+            aria-label="Slide 4"></button>
+  </div>
+
+  <!-- Slides -->
+  <div class="carousel-inner">
+    <div class="carousel-item active d-flex align-items-center bg-white">
+      <img src="images/banner.jpg"
+           class="carousel-fit"
+           alt="El poder de la medicina alternativa al servicio de tu bienestar">
     </div>
+
+    <div class="carousel-item d-flex align-items-center bg-white">
+      <img src="images/3b.jpg"
+           class="carousel-fit"
+           alt="Más de 500 productos diferentes">
+    </div>
+
+    <div class="carousel-item d-flex align-items-center bg-white">
+      <img src="images/1d.png"
+           class="carousel-fit"
+           alt="Logotipo Medicinas Alternativas MX">
+    </div>
+
+    <div class="carousel-item d-flex align-items-center bg-white">
+      <img src="images/11.png"
+           class="carousel-fit"
+           alt="Monalisa – Ácido hialurónico de alta pureza">
+    </div>
+  </div>
+
+  <!-- Controles -->
+  <button class="carousel-control-prev" type="button"
+          data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+  </button>
+
+  <button class="carousel-control-next" type="button"
+          data-bs-target="#heroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Siguiente</span>
+  </button>
+</section>
+
+
+<!-- ===== /Hero Carousel ===== -->
+
+
+
     </section>
 
-   
-
     <section class="offers">
-       <div class="container">
+      <div class="container">
                 <h2>¡Productos en oferta!</h2>
                 <div class="product-grid">
                     <!-- Producto 1 -->
@@ -93,7 +152,7 @@
             </div>
     </section>
 
-     <section class="categories">
+    <section class="categories">
       <div class="container">
         <h2>Nuestras categorías</h2>
         <div class="category-grid">
@@ -121,22 +180,22 @@
       </div>
     </section>
 
-     <section class="labs_categories">
+    <section class="labs_categories">
       <div class="container">
         <h2>Laboratorios</h2>
         <div class="category-grid">
           <div class="category-card">
-            <img src="./images/vivancolab.png" alt="Laboratorio Vivanco">
+            <img src="./images/vivancolab1.png" alt="Laboratorio Vivanco">
             <h3>Vivanco</h3>
             <a href="#" class="btn">Ver</a>
           </div>
           <div class="category-card">
-            <img src="./images/manuellab.png" alt="Laboratorio manuell">
+            <img src="./images/manuellab1.png" alt="Laboratorio manuell">
             <h3>Manuell</h3>
             <a href="#" class="btn">Ver</a>
           </div>
           <div class="category-card">
-            <img src="./images/cbcellslab.png" alt="Laboratorio cbcells">
+            <img src="./images/cbcellslab1.png" alt="Laboratorio cbcells">
             <h3>CBCells</h3>
             <a href="#" class="btn">Ver</a>
           </div>
@@ -144,7 +203,7 @@
       </div>
     </section>
 
-     <section class="promo-banner">
+    <section class="promo-banner">
             <div class="container">
                 <div class="promo-content">
                     <h2>Recibe un 10% de descuento en tu primera compra</h2>
@@ -184,7 +243,7 @@
       </div>
     </section>
 
-   
+  
   </main>
 
   <footer id="footer" >
