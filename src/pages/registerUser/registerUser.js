@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const userData = {
       nameUser: document.getElementById("nameUser").value.trim(),
+      lastNameUser: document.getElementById("lastNameUser").value.trim(),
       phone: document.getElementById("phoneUser").value.trim(),
       email: document.getElementById("emailUser").value.trim(),
       password: document.getElementById("passwordUser").value,
@@ -35,11 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ================================ Desestructuración ==============================================
 
-    const { nameUser, phone, email, password, passwordConfirm, termsAndConditions, privacityAgreement } = userData;
+    const { nameUser:name, lastNameUser:lastName, phone, email, password, passwordConfirm, termsAndConditions, privacityAgreement } = userData;
 
     //  ================ Validaciones de entradas de usuario ======================================
 
-    const validationName = /^[A-ZÁÉÍÓÚÑa-záéíóúñ]{2,}(?: [A-ZÁÉÍÓÚÑa-záéíóúñ]{2,})+$/;
+    const validationName = /^[A-ZÁÉÍÓÚÑa-záéíóúñ]{2,}(?: [A-ZÁÉÍÓÚÑa-záéíóúñ]{2,})*$/;
+    const validatioLastName = /^[A-ZÁÉÍÓÚÑa-záéíóúñ]{2,}(?: [A-ZÁÉÍÓÚÑa-záéíóúñ]{2,})+$/;
     const validationEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const validationPhone = /^\d{10}$/;
     const validationPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,25}$/;
@@ -60,8 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const storedUserJSON = localStorage.getItem("usuario");
     const storedUser = storedUserJSON ? JSON.parse(storedUserJSON) : null;
 
-    if (!validationName.test(nameUser)) {
-      alertInput("Ingresa tu nombre completo", "#FF6F61", "#FF6F61", "#D6E6F2", "errorName");
+    if (!validationName.test(name)) {
+      alertInput("Ingresa tu nombre correctamente", "#FF6F61", "#FF6F61", "#D6E6F2", "errorName");
+    } else if (!validatioLastName.test(lastName)) {
+      alertInput("Ingresa tus apellidos correctamente", "#FF6F61", "#FF6F61", "#D6E6F2", "errorLastName");
     } else if (!validationPhone.test(phone)) {
       alertInput("Ingresa un número de teléfono válido", "#FF6F61", "#FF6F61", "#D6E6F2", "errorPhone");
     } else if (!validationEmail.test(email)) {
@@ -88,7 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Continuación del flujo
         const hashedPassword = await hashPassword(password);
         const userToStore = {
-          nameUser,
+          name,
+          lastName,
           phone,
           email,
           password: hashedPassword,
@@ -97,8 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         localStorage.setItem("usuario", JSON.stringify(userToStore));
-
-        // const userDataJSON = JSON.stringify(userData);
 
         localStorage.setItem("isLoggedIn", JSON.stringify(true));
         window.location.href = "../../../index.html";
