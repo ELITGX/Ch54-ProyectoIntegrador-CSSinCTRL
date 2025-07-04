@@ -157,7 +157,27 @@ const getNumberCartItems = () =>{
   }
 }
 
-
+const addEventListenerToSearchBar= (homePath) =>{
+  const input =document.querySelector("#dato-filtro");
+  const btnSearch = document.querySelector("#aplicar-filtro");
+  btnSearch.addEventListener("click",(e)=>{
+    e.preventDefault();
+    let query = input.value?.trim().toLowerCase();
+    let destiny;
+    if (input && btnSearch) {
+      if (!query) {
+        destiny = ` ${homePath}src/pages/listaItems/listaItems.html`;
+      } else {
+        destiny = ` ${homePath}src/pages/listaItems/listaItems.html?search=${query}`;
+      }
+      //console.log(destiny)
+      window.location.href = destiny;
+    } else {
+      console.warn("No se encontró #aplicar-filtro o #dato-filtro en el DOM");
+    }
+  })
+  
+}
 
 // ESTA es la función que usas en cada página
 const insertHeader = (headerElement, homePath = "./") => {
@@ -166,6 +186,7 @@ const insertHeader = (headerElement, homePath = "./") => {
     controlarVisibilidadFormulario();
     manejarBotonCuenta(homePath);
     getNumberCartItems();
+    addEventListenerToSearchBar(homePath);
   });
 };
 
