@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
        
-        const emailCheck = await fetch(`http://localhost:8080/api/v1/users/email/${encodeURIComponent(email)}`);
+        const emailCheck = await fetch(`http://18.232.175.128:8080/api/v1/users/email/${encodeURIComponent(email)}`); 
 
         if (emailCheck.ok) {
           
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
           password: hashedPassword
         };
         try {
-          const response = await fetch("http://localhost:8080/api/v1/users", {
+          const response = await fetch("http://18.232.175.128:8080/api/v1/users", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
