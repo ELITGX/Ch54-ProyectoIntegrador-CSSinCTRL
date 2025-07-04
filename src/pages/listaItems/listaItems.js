@@ -38,7 +38,7 @@ const buildProductCards = (products) => {
         <img src="${product.img}" class="card-img-top cardImage mx-auto d-block" alt="...">
         <div class="card-body">
           <h5 class="card-title">${product.name}</h5> 
-          <p class="card-text">${formatPrice(product.price)}</p>
+          <p class="card-text current-price">${formatPrice(product.price)}</p>
 
           <div class="d-flex justify-content-center align-items-center mb-2">
             <button class="btn btn-outline-secondary btn-sm btn-minus" data-index="${index}">-</button>
