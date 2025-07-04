@@ -122,15 +122,23 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
           <p><strong>Precio final: $${priceFinal.toFixed(2)}</strong></p>
       `;
   });
-
-
+  // ==================== Leer productos de Api
+  const readProducts = async (url) => {
+    try {
+        const response = await fetch(url);
+        const datosApi = await response.json();
+        return datosApi;
+    } catch (error) {
+        console.log("No se pueden obtener los datos", error);
+    }
+  };
   
   // ==================== Envío de formulario =============================
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const newProduct = {
-      id: document.getElementById("ID").value,
+      //id: document.getElementById("ID").value,
       name: document.getElementById("nombre").value,
       description: document.getElementById("descripcion").value,
       price: parseFloat(document.getElementById("price").value),
@@ -138,12 +146,14 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
       concentration: document.getElementById("concentracion").value,
       administrationRoute: routeSub.value, // obtenemos la subcategoría elegida
       stock: parseInt(document.getElementById("cantidad").value),
-      img: imageDataUrl || "https://via.placeholder.com/150",
-      porcentajeDescuento: parseFloat(document.getElementById("discount").value)
+      imgUrl: imageDataUrl || "https://via.placeholder.com/150",
+      discountPercentage: parseFloat(document.getElementById("discount").value),
+      categoryId:1,
+      productPropertyId:1
       
     };
 
-    const {id:prod_id, name, description, price, presentation, concentration, administrationRoute, stock, img, porcentajeDescuento} = newProduct;
+    const {/*id:prod_id,*/ name, description, price, presentation, concentration, administrationRoute, stock, img, discountPercentage} = newProduct;
 
      //==================== Expresiones regulares =======================================
   const validationId = /^[a-zA-Z0-9]{3,}$/;
@@ -162,7 +172,7 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
   const isValidRouteMain = document.getElementById("route-main").value !== "";
   const isValidRouteSub = administrationRoute !== "";
   const isValidStock = !isNaN(stock) && stock > 0;
-  const isValidDiscount = !isNaN(porcentajeDescuento) && porcentajeDescuento >= 0 && porcentajeDescuento <= 100;
+  const isValidDiscount = !isNaN(discountPercentage) && discountPercentage >= 0 && discountPercentage <= 100;
 
 
   const alertInput = (message, color, borderColor, backgroundColor) => {
@@ -185,9 +195,9 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
   };
 
    
-   if (!isValidId) {
+   /*if (!isValidId) {
     alertInput("El producto debe tener un ID. Puede ser alfanumérico.", "#FF6F61", "#FFFFFF", "#FFFFFF");
-  } else if (!isValidName) {
+  } else*/ if (!isValidName) {
     alertInput("Agrega el nombre del producto. Sólo puede contener letras y números.", "#FF6F61", "#FFFFFF", "#FFFFFF");
   } else if (!isValidDescription) {
     alertInput("Agrega una descripción con máximo 500 caracteres.", "#FF6F61", "#FFFFFF", "#FFFFFF");
@@ -211,6 +221,8 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
     alertInput("¡Producto agregado correctamente!", "#0a3622", "#0a3622", "#d1e7dd");
 
 
+
+      
       // Guardar en localStorage
       const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
       savedProducts.results.push(newProduct);
@@ -270,7 +282,7 @@ const handleEditProduct = (index) => {
   document.getElementById("presentacion").value = product.presentation;
   document.getElementById("concentracion").value = product.concentration;
   document.getElementById("cantidad").value = product.stock;
-  document.getElementById("discount").value = product.porcentajeDescuento || 0;
+  document.getElementById("discount").value = product.discountPercentage || 0;
 
   // Si ya hay una imagen cargada
   if (product.img) {
@@ -290,25 +302,60 @@ const handleEditProduct = (index) => {
   }
 };
 
-const handleDeleteProduct = (index) => {
-  const stored = JSON.parse(localStorage.getItem("products"));
-  const product = stored.results[index];
+const handleDeleteProduct = async (index) => {
+
+  const productList = document.getElementById("productList");
+  let data = await readProducts("http://localhost:8080/api/v1/products");
+  let stored = data;
+  let usingApi = true;
+  let product = stored[index];
+
+  if(!data || data.length < 1){
+    stored = JSON.parse(localStorage.getItem("products"));
+    usingApi = false;
+    product =stored.results[index];
+  }
+  
+  
   const confirmed = confirm(`¿Eliminar "${product.name}" del inventario?`);
 
   if (confirmed) {
-    stored.results.splice(index, 1);
-    localStorage.setItem("products", JSON.stringify(stored));
+    if(usingApi){
+      const options = {
+        method: "DELETE", 
+        headers: {
+            "Content-Type": "application/json" // Tipo de contenido
+        }
+      }
+      const response = await fetch( `http://localhost:8080/api/v1/products/${product.id}`, options);
+      console.log( "Respuesta del servidor:", response );
+      if ( !response.ok  ) {
+          // Si la respuesta no es correcta, lanzar un error
+          throw new Error(`Error al intentar eliminar el producto: ${response.statusText}`);
+      }
+
+    }else{
+      stored.results.splice(index, 1);
+      localStorage.setItem("products", JSON.stringify(stored));
+    }
     renderProductList();
+    
   }
 };
   // ==================== Renderiza la lista de productos =============================
-const renderProductList = () => {
+const renderProductList = async ()=> {
   const productList = document.getElementById("productList");
-  const stored = JSON.parse(localStorage.getItem("products")) || { results: [] };
+  let data = await readProducts("http://localhost:8080/api/v1/products");
+  let stored = data;
+  if(!data || data.length < 1){
+    stored = JSON.parse(localStorage.getItem("products")) || { results: [] };
+    stored = stored.results;
+  }
+  console.log(stored)
 
   productList.innerHTML = "";
 
-  stored.results.forEach((product, index) => {
+  stored.forEach((product, index) => {
     const li = document.createElement("li");
     li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-start", "flex-column", "flex-md-row");
 
@@ -316,12 +363,12 @@ const renderProductList = () => {
       <div class="ms-2 me-auto">
         <div class="fw-bold">${product.name}</div>
         Precio original: $${product.price.toFixed(2)} MXN <br>
-      ${product.porcentajeDescuento > 0 ? `
+      ${product.discountPercentage > 0 ? `
           <span class="text-danger">
-            Descuento: ${product.porcentajeDescuento}% <br>
+            Descuento: ${product.discountPercentage}% <br>
           </span> 
           <span class="text-success">
-           Precio final: $${product.price * (1 - product.porcentajeDescuento / 100)} MXN <br>
+           Precio final: $${product.price * (1 - product.discountPercentage / 100)} MXN <br>
           </span>`: ""}
         Stock: ${product.stock}
       </div>

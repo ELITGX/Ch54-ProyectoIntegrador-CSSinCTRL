@@ -91,7 +91,7 @@ const addToCart = (product, quantity = 1) => {
 const createProductCards = async (texto = "") => {
     let data = await readProducts("http://localhost:8080/api/v1/products");
     let products = data;
-    if(data.length < 1){
+    if(!data || data.length < 1){
         data = JSON.parse(localStorage.getItem(localStorageKey));
         products = data?.results || data;
 
@@ -194,13 +194,6 @@ const jsonToLocal = async (url) => {
     }
 };
 
-const getApiProducts = async (url) =>{
-    let data = await readProducts(url);
-}
-
-getApiProducts("http://localhost:8080/api/v1/products").then(()=>{
-
-})
 
 jsonToLocal("../../../modules/assets/objetos.json").then(() => {
     const params = new URLSearchParams(window.location.search);
