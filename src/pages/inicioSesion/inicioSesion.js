@@ -2,12 +2,13 @@ const form = document.getElementById("logInButton");
 
 // Función para encriptar la contraseña con SHA-256
 async function hashPassword(password) {
-    const encoder = new TextEncoder();
+    /* const encoder = new TextEncoder();
     const data = encoder.encode(password);
     const hashBuffer = await crypto.subtle.digest("SHA-256", data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    return hashHex;
+    return hashHex; */
+    return CryptoJS.SHA256(password).toString();
 }
 
 form.addEventListener("submit", async event => {

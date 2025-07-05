@@ -12,12 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registerUser");
 
   async function hashPassword(password) {
-    const encoder = new TextEncoder();
+    /*const encoder = new TextEncoder();
     const data = encoder.encode(password);
     const hashBuffer = await crypto.subtle.digest("SHA-256", data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    return hashHex;
+    return hashHex;*/
+    return CryptoJS.SHA256(password).toString();
   }
 
   form.addEventListener("submit", async event => {
@@ -100,7 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
           lastName,
           phone,
           email,
-          password: hashedPassword
+          password: hashedPassword,
+          roles
         };
         try {
           const response = await fetch("http://18.232.175.128:8080/api/v1/users", {

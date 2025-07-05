@@ -8,7 +8,8 @@ insertFooter(document.getElementById("footer"), homePath);
 
 let stockIndex = null; // Guardamos el índice actual a editar
 
-
+let useApi = true;
+let respuetaApiInicial = true;
 let imageDataUrl = "";
 
 // Subopciones accesibles globalmente
@@ -155,10 +156,13 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
     
     const {id:prod_id, name, description, price, presentation, concentration, administrationRoute, stock, img, discountPercentage} = newProduct;
 
-    let stored = await readProducts("http://18.232.175.128:8080/api/v1/products");
-    let useApi = true;
-    let idIsPresent = prod_id != null;
-    let foundIndex = 0;
+    let stored, idIsPresent, foundIndex;
+    if(useApi){
+      stored = await readProducts("http://18.232.175.128:8080/api/v1/products");
+      idIsPresent = prod_id != null;
+      foundIndex = 0;
+    }
+    
     if(useApi && idIsPresent){
       for (const product of stored) {
         if(product.id == prod_id){
@@ -287,13 +291,17 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
   });
   // ==================== Botones de formulario de stock =============================
   const handleStockIncrease = async(index) => {
-    let products = await readProducts("http://18.232.175.128:8080/api/v1/products");
-    let useApi = true;
+
+    let products, useApi,product;
+    if(useApi){
+      products = await readProducts("http://18.232.175.128:8080/api/v1/products");
+      product = products[index];
+    }
 
     if(!products || products.length < 1){
       useApi = false;
     }
-    let product = products[index];
+
     if(!useApi ){
       const stored = JSON.parse(localStorage.getItem("products"));
       product = stored.results[index]; 
@@ -310,14 +318,19 @@ confirmAddStock.addEventListener("click", async () => {
   const cantidad = parseInt(stockInput.value);
   if (!isNaN(cantidad) && cantidad > 0) {
 
-    let products = await readProducts("http://18.232.175.128:8080/api/v1/products");
-    let useApi = true;
+
+    let products;
+    if(useApi){
+      products = await readProducts("http://18.232.175.128:8080/api/v1/products");
+    }
 
     if(!products || products.length < 1){
       useApi = false;
+    }else{
+      product = products[stockIndex];
+      idProduct = products[stockIndex].id;
     }
-    let product = products[stockIndex];
-    let idProduct = products[stockIndex].id;
+    
 
 
     if(!useApi ){
@@ -352,14 +365,17 @@ confirmAddStock.addEventListener("click", async () => {
 
 const handleEditProduct = async (index) => {
 
-  let stored = await readProducts("http://18.232.175.128:8080/api/v1/products");
-  let usingApi = true;
-  let product = stored[index];
+  let stored, product;
+  if(useApi){
+    stored = await readProducts("http://18.232.175.128:8080/api/v1/products");
+    product = stored[index];
+  }
+  
 
   if(!stored || stored.length < 1){
     stored = JSON.parse(localStorage.getItem("products"));
     product = stored.results[index];
-    usingApi = false;
+    useApi = false;
   }
   
 
@@ -392,16 +408,18 @@ const handleEditProduct = async (index) => {
 };
 
 const handleDeleteProduct = async (index) => {
-
   const productList = document.getElementById("productList");
-  let data = await readProducts("http://18.232.175.128:8080/api/v1/products");
-  let stored = data;
-  let usingApi = true;
-  let product = stored[index];
+  let data,stored,product;
+  
+  if(useApi){
+    data = await readProducts("http://18.232.175.128:8080/api/v1/products");
+    stored = data;
+    product = stored[index];
+  }
 
   if(!data || data.length < 1){
     stored = JSON.parse(localStorage.getItem("products"));
-    usingApi = false;
+    useApi = false;
     product =stored.results[index];
   }
   
@@ -409,7 +427,7 @@ const handleDeleteProduct = async (index) => {
   const confirmed = confirm(`¿Eliminar "${product.name}" del inventario?`);
 
   if (confirmed) {
-    if(usingApi){
+    if(useApi){
       const options = {
         method: "DELETE", 
         headers: {
@@ -434,9 +452,17 @@ const handleDeleteProduct = async (index) => {
   // ==================== Renderiza la lista de productos =============================
 const renderProductList = async ()=> {
   const productList = document.getElementById("productList");
-  let data = await readProducts("http://18.232.175.128:8080/api/v1/products");
-  let stored = data;
+  let data, stored;
+  if(respuetaApiInicial){
+    data = await readProducts("http://18.232.175.128:8080/api/v1/products");
+    stored = data;
+  }
+  
   if(!data || data.length < 1){
+    if(respuetaApiInicial){
+      useApi = false;
+      respuetaApiInicial = false;
+    }
     stored = JSON.parse(localStorage.getItem("products")) || { results: [] };
     stored = stored.results;
   }
