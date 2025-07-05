@@ -158,7 +158,7 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
 
     let stored, idIsPresent, foundIndex;
     if(useApi){
-      stored = await readProducts("http://18.232.175.128:8080/api/v1/products");
+      stored = await readProducts("http://localhost:8081/api/v1/products");
       idIsPresent = prod_id != null;
       foundIndex = 0;
     }
@@ -243,10 +243,10 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
       {
         delete newProduct.id;
         let method = "POST";
-        let url = `http://18.232.175.128:8080/api/v1/products`;
+        let url = `http://localhost:8081/api/v1/products`;
         if(idIsPresent && foundIndex < stored.length){
           method = "PUT";
-          url = `http://18.232.175.128:8080/api/v1/products/${stored[foundIndex].id}`;
+          url = `http://localhost:8081/api/v1/products/${stored[foundIndex].id}`;
         }
         console.log(newProduct.toString());
         const options = {
@@ -294,7 +294,7 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
 
     let products, useApi,product;
     if(useApi){
-      products = await readProducts("http://18.232.175.128:8080/api/v1/products");
+      products = await readProducts("http://localhost:8081/api/v1/products");
       product = products[index];
     }
 
@@ -321,7 +321,7 @@ confirmAddStock.addEventListener("click", async () => {
 
     let products;
     if(useApi){
-      products = await readProducts("http://18.232.175.128:8080/api/v1/products");
+      products = await readProducts("http://localhost:8081/api/v1/products");
     }
 
     if(!products || products.length < 1){
@@ -347,7 +347,7 @@ confirmAddStock.addEventListener("click", async () => {
         },
         body: JSON.stringify(product)
       }
-      const response = await fetch(`http://18.232.175.128:8080/api/v1/products/${idProduct}`, options);
+      const response = await fetch(`http://localhost:8081/api/v1/products/${idProduct}`, options);
       console.log( "Respuesta del servidor:", response );
       if ( !response.ok  ) {
           // Si la respuesta no es correcta, lanzar un error
@@ -367,7 +367,7 @@ const handleEditProduct = async (index) => {
 
   let stored, product;
   if(useApi){
-    stored = await readProducts("http://18.232.175.128:8080/api/v1/products");
+    stored = await readProducts("http://localhost:8081/api/v1/products");
     product = stored[index];
   }
   
@@ -412,7 +412,7 @@ const handleDeleteProduct = async (index) => {
   let data,stored,product;
   
   if(useApi){
-    data = await readProducts("http://18.232.175.128:8080/api/v1/products");
+    data = await readProducts("http://localhost:8081/api/v1/products");
     stored = data;
     product = stored[index];
   }
@@ -434,7 +434,7 @@ const handleDeleteProduct = async (index) => {
             "Content-Type": "application/json" // Tipo de contenido
         }
       }
-      const response = await fetch( `http://18.232.175.128:8080/api/v1/products/${product.id}`, options);
+      const response = await fetch( `http://localhost:8081/api/v1/products/${product.id}`, options);
       console.log( "Respuesta del servidor:", response );
       if ( !response.ok  ) {
           // Si la respuesta no es correcta, lanzar un error
@@ -454,7 +454,7 @@ const renderProductList = async ()=> {
   const productList = document.getElementById("productList");
   let data, stored;
   if(respuetaApiInicial){
-    data = await readProducts("http://18.232.175.128:8080/api/v1/products");
+    data = await readProducts("http://localhost:8081/api/v1/products");
     stored = data;
   }
   

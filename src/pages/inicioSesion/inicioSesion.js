@@ -45,7 +45,7 @@ form.addEventListener("submit", async event => {
     if (!isValid) return;
 
     try {
-        const response = await fetch(`http://18.232.175.128:8080/api/v1/users/email/${encodeURIComponent(email)}`);
+        const response = await fetch(`http://localhost:8081/api/v1/users/email/${encodeURIComponent(email)}`);
         
         if (!response.ok) {
             emailError.textContent = "El correo no está registrado.";
