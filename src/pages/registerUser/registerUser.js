@@ -101,8 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
           lastName,
           phone,
           email,
-          password: hashedPassword,
-          roles
+          password: hashedPassword
         };
         try {
           const response = await fetch("http://localhost:8081/api/v1/users", {
