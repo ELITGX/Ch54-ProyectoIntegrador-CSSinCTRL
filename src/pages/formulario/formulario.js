@@ -124,15 +124,20 @@ const stockModal = new bootstrap.Modal(document.getElementById("stockModal"));
       `;
   });
   // ==================== Leer productos de Api
-  const readProducts = async (url) => {
-    try {
-        const response = await fetch(url);
-        const datosApi = await response.json();
-        return datosApi;
-    } catch (error) {
-        console.log("No se pueden obtener los datos", error);
-    }
-  };
+const readProducts = async (url, timeout = 3000) => {
+  const controller = new AbortController();
+  const timerId = setTimeout(() => controller.abort(), timeout);
+
+  try {
+      const response = await fetch(url, { signal: controller.signal });
+      const datosApi = await response.json();
+      clearTimeout(timerId);
+      return datosApi;
+  } catch (error) {
+      console.log("No se pueden obtener los datos", error);
+      return null;
+  }
+};
   
   // ==================== Envío de formulario =============================
   form.addEventListener("submit",async (e) => {
